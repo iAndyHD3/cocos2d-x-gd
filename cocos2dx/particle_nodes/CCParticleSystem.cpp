@@ -1431,6 +1431,25 @@ void CCParticleSystem::saveDefaults(void) {
     }
 }
 
+int CCParticleSystem::getParticleDrawCost(void)
+{
+    if (!m_bIsActive || m_uParticleCount == 0)
+        return 0;
+
+    float totalArea = 0.0f;
+
+    for (unsigned int i = 0; i < m_uParticleCount; ++i)
+    {
+        // timeToLive is 16 bytes after size (offset +4 floats)
+        if (m_pParticles[i].timeToLive > 0.0f)
+        {
+            float radius = m_pParticles[i].size * 0.5f;
+            totalArea += (radius * radius) * 3.1415927f;
+        }
+    }
+
+    return (int)roundf(totalArea / 10.0f);
+}
 
 NS_CC_END
 

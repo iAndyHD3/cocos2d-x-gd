@@ -639,6 +639,8 @@ public:
     void toggleUniformColorMode(bool);
 	// @note RobTop Addition
     void updateVisible();
+
+    int getParticleDrawCost(void);
 };
 
 // end of particle_nodes group

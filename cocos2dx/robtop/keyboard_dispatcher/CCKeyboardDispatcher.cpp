@@ -69,7 +69,7 @@ enumKeyCodes CCKeyboardDispatcher::convertKeyCode(enumKeyCodes key) {
     }
 }
 
-bool CCKeyboardDispatcher::dispatchKeyboardMSG(enumKeyCodes key, bool isKeyDown, bool isKeyRepeat) {
+bool CCKeyboardDispatcher::dispatchKeyboardMSG(enumKeyCodes key, bool isKeyDown, bool isKeyRepeat, double unk) {
     if (m_bBlockRepeat && isKeyRepeat) {
         return false;
     }
@@ -90,9 +90,9 @@ bool CCKeyboardDispatcher::dispatchKeyboardMSG(enumKeyCodes key, bool isKeyDown,
     CCARRAY_FOREACH(m_pHandlers, pObj) {
         pHandler = (CCKeyboardHandler*)pObj;
         if (isKeyDown) {
-            pHandler->getDelegate()->keyDown(key);
+            pHandler->getDelegate()->keyDown(key, unk);
         } else {
-            pHandler->getDelegate()->keyUp(key);
+            pHandler->getDelegate()->keyUp(key, unk);
         }
     }
 

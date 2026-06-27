@@ -517,6 +517,15 @@ public:
 	constexpr float getMin(int idx) {
          return idx == 0 ? getMinX() : getMinY();
     }
+
+    constexpr void inflateRect(float amount)
+    {
+        origin.x -= amount;
+        origin.y -= amount;
+        size.width += amount + amount;
+        size.height += amount + amount;
+    }
+
 };
 
 

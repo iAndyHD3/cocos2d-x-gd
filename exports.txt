@@ -1,0 +1,1226 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35226.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file C:\Users\User\Desktop\GDGEODE\GeometryDash.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Section contains the following imports:
+
+    libExtensions.dll
+             140515748 Import Address Table
+             1406AAB70 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         148 ?create@CCControlColourPicker@extension@cocos2d@@SAPEAV123@XZ
+                          44 ??0ColorPickerDelegate@extension@cocos2d@@QEAA@XZ
+                         118 ?availableThreadCount@CCHttpClient@extension@cocos2d@@QEAA_KXZ
+                         19A ?getInstance@CCHttpClient@extension@cocos2d@@SAPEAV123@XZ
+                         257 ?send@CCHttpClient@extension@cocos2d@@QEAAXPEAVCCHttpRequest@23@@Z
+                         1C8 ?getTag@CCHttpRequest@extension@cocos2d@@QEAAPEBDXZ
+                         2D7 ?setTag@CCHttpRequest@extension@cocos2d@@QEAAXPEBD@Z
+                         2C5 ?setRequestData@CCHttpRequest@extension@cocos2d@@QEAAXPEBDI@Z
+                         2EA ?setUrl@CCHttpRequest@extension@cocos2d@@QEAAXPEBD@Z
+                          58 ??1CCHttpRequest@extension@cocos2d@@UEAA@XZ
+                          29 ??0CCHttpRequest@extension@cocos2d@@QEAA@XZ
+                         265 ?setBlendAdditive@CCScale9Sprite@extension@cocos2d@@QEAAX_N@Z
+                          FD ?HSVfromRGB@CCControlUtils@extension@cocos2d@@SA?AUHSV@23@URGBA@23@@Z
+                         101 ?RGBfromHSV@CCControlUtils@extension@cocos2d@@SA?AURGBA@23@UHSV@23@@Z
+                         155 ?create@CCScale9Sprite@extension@cocos2d@@SAPEAV123@PEBDVCCRect@3@@Z
+
+    libcocos2d.dll
+             1405157C8 Import Address Table
+             1406AABF0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                        12B4 ?setBatchNode@CCSprite@cocos2d@@UEAAXPEAVCCSpriteBatchNode@2@@Z
+                         D19 ?getBatchNode@CCSprite@cocos2d@@UEAAPEAVCCSpriteBatchNode@2@XZ
+                        162A ?updateTransform@CCSprite@cocos2d@@UEAAXXZ
+                        1612 ?updateDisplayedOpacity@CCSprite@cocos2d@@UEAAXE@Z
+                        1075 ?isOpacityModifyRGB@CCSprite@cocos2d@@UEAA_NXZ
+                        1396 ?setOpacityModifyRGB@CCSprite@cocos2d@@UEAAX_N@Z
+                        12D0 ?setChildOpacity@CCSprite@cocos2d@@UEAAXE@Z
+                        138E ?setOpacity@CCSprite@cocos2d@@UEAAXE@Z
+                        160E ?updateDisplayedColor@CCSprite@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                        12CF ?setChildColor@CCSprite@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                        12DB ?setColor@CCSprite@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                         C87 ?draw@CCSprite@cocos2d@@UEAAXXZ
+                        149A ?setVisible@CCSprite@cocos2d@@UEAAX_N@Z
+                         F37 ?ignoreAnchorPointForPosition@CCSprite@cocos2d@@UEAAX_N@Z
+                        12A3 ?setAnchorPoint@CCSprite@cocos2d@@UEAAXAEBVCCPoint@2@@Z
+                        1491 ?setVertexZ@CCSprite@cocos2d@@UEAAXM@Z
+                        13E7 ?setScale@CCSprite@cocos2d@@UEAAXM@Z
+                        14D4 ?sortAllChildren@CCSprite@cocos2d@@UEAAXXZ
+                         984 ?addChild@CCSprite@cocos2d@@UEAAXPEAVCCNode@2@@Z
+                         985 ?addChild@CCSprite@cocos2d@@UEAAXPEAVCCNode@2@H@Z
+                         986 ?addChild@CCSprite@cocos2d@@UEAAXPEAVCCNode@2@HH@Z
+                        11ED ?reorderChild@CCSprite@cocos2d@@UEAAXPEAVCCNode@2@H@Z
+                        11A1 ?removeAllChildrenWithCleanup@CCSprite@cocos2d@@UEAAX_N@Z
+                        11B3 ?removeChild@CCSprite@cocos2d@@UEAAXPEAVCCNode@2@_N@Z
+                        1405 ?setSkewY@CCSprite@cocos2d@@UEAAXM@Z
+                        1403 ?setSkewX@CCSprite@cocos2d@@UEAAXM@Z
+                        13E2 ?setRotationY@CCSprite@cocos2d@@UEAAXM@Z
+                        13E0 ?setRotationX@CCSprite@cocos2d@@UEAAXM@Z
+                        13DD ?setRotation@CCSprite@cocos2d@@UEAAXM@Z
+                        13AF ?setPosition@CCSprite@cocos2d@@UEAAXAEBVCCPoint@2@@Z
+                        13EF ?setScaleY@CCSprite@cocos2d@@UEAAXM@Z
+                        13EB ?setScaleX@CCSprite@cocos2d@@UEAAXM@Z
+                         ECC ?getTexture@CCSprite@cocos2d@@UEAAPEAVCCTexture2D@2@XZ
+                        1448 ?setTexture@CCSprite@cocos2d@@UEAAXPEAVCCTexture2D@2@@Z
+                         FCE ?initWithFile@CCSprite@cocos2d@@UEAA_NPEBD@Z
+                         FCF ?initWithFile@CCSprite@cocos2d@@UEAA_NPEBDAEBVCCRect@2@@Z
+                         FF0 ?initWithSpriteFrameName@CCSprite@cocos2d@@UEAA_NPEBD@Z
+                         FEF ?initWithSpriteFrame@CCSprite@cocos2d@@UEAA_NPEAVCCSpriteFrame@2@@Z
+                        100E ?initWithTexture@CCSprite@cocos2d@@UEAA_NPEAVCCTexture2D@2@@Z
+                        100F ?initWithTexture@CCSprite@cocos2d@@UEAA_NPEAVCCTexture2D@2@AEBVCCRect@2@@Z
+                        1010 ?initWithTexture@CCSprite@cocos2d@@UEAA_NPEAVCCTexture2D@2@AEBVCCRect@2@_N@Z
+                         F67 ?init@CCSprite@cocos2d@@UEAA_NXZ
+                         3DD ??1CCSprite@cocos2d@@UEAA@XZ
+                         229 ??0CCSprite@cocos2d@@QEAA@XZ
+                         5BF ??4CCSize@cocos2d@@QEAAAEAV01@AEBV01@@Z
+                         217 ??0CCSize@cocos2d@@QEAA@XZ
+                         995 ?addImage@CCTextureCache@cocos2d@@QEAAPEAVCCTexture2D@2@PEBD_N@Z
+                        14BB ?sharedTextureCache@CCTextureCache@cocos2d@@SAPEAV12@XZ
+                        12F7 ?setDirty@CCSprite@cocos2d@@UEAAX_N@Z
+                        1051 ?isDirty@CCSprite@cocos2d@@UEAA_NXZ
+                         D22 ?getBlendFunc@CCSprite@cocos2d@@UEAA?AU_ccBlendFunc@2@XZ
+                        12BD ?setBlendFunc@CCSprite@cocos2d@@UEAAXU_ccBlendFunc@2@@Z
+                         CF2 ?getActionByTag@CCNode@cocos2d@@QEAAPEAVCCAction@2@H@Z
+                        1520 ?stopAllActions@CCNode@cocos2d@@QEAAXXZ
+                        1065 ?isFlipX@CCSprite@cocos2d@@QEAA_NXZ
+                         C32 ?createWithTexture@CCSprite@cocos2d@@SAPEAV12@PEAVCCTexture2D@2@AEBVCCRect@2@@Z
+                         9EB ?boolValue@CCString@cocos2d@@QEBA_NXZ
+                        1304 ?setDontDraw@CCSprite@cocos2d@@QEAAX_N@Z
+                        14BA ?sharedSpriteFrameCache@CCSpriteFrameCache@cocos2d@@SAPEAV12@XZ
+                        14DB ?spriteFrameByName@CCSpriteFrameCache@cocos2d@@QEAAPEAVCCSpriteFrame@2@PEBD@Z
+                         B8F ?create@CCNode@cocos2d@@SAPEAV12@XZ
+                         B07 ?count@CCDictionary@cocos2d@@QEAAIXZ
+                         EFB ?getVec2ForKey@DS_Dictionary@@QEAA?AVCCPoint@cocos2d@@PEBD@Z
+                         EB9 ?getStringForKey@DS_Dictionary@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEBD@Z
+                         DCE ?getKey@DS_Dictionary@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z
+                         E00 ?getNumKeys@DS_Dictionary@@QEAAIXZ
+                        1510 ?stepBackToRootSubDict@DS_Dictionary@@QEAAXXZ
+                        1512 ?stepOutOfSubDict@DS_Dictionary@@QEAAXXZ
+                        1511 ?stepIntoSubDictWithKey@DS_Dictionary@@QEAA_NPEBD@Z
+                        10B8 ?loadRootSubDictFromFile@DS_Dictionary@@QEAA_NPEBD@Z
+                         2E1 ??0DS_Dictionary@@QEAA@XZ
+                        1337 ?setFrameName@CCSpriteFrame@cocos2d@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                        1568 ?unregisterForcePrio@CCTouchDispatcher@cocos2d@@QEAAXPEAVCCObject@2@@Z
+                        1181 ?registerForcePrio@CCTouchDispatcher@cocos2d@@QEAAXPEAVCCObject@2@H@Z
+                         9B3 ?addTargetedDelegate@CCTouchDispatcher@cocos2d@@QEAAXPEAVCCTouchDelegate@2@H_N@Z
+                         A0C ?ccDrawCircle@cocos2d@@YAXAEBVCCPoint@1@MMI_N@Z
+                         B44 ?create@CCEaseOut@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@M@Z
+                         972 ?addAction@CCActionManager@cocos2d@@QEAAXPEAVCCAction@2@PEAVCCNode@2@_N@Z
+                         A22 ?ccGLBlendFunc@cocos2d@@YAXII@Z
+                         A12 ?ccDrawFilledCircle@cocos2d@@YAXAEBVCCPoint@1@MMI@Z
+                        1570 ?unschedule@CCNode@cocos2d@@QEAAXP8CCObject@2@EAAXM@Z@Z
+                        126E ?schedule@CCNode@cocos2d@@QEAAXP8CCObject@2@EAAXM@Z@Z
+                         BC5 ?create@CCSpawn@cocos2d@@SAPEAV12@PEAVCCFiniteTimeAction@2@ZZ
+                         B10 ?create@CCActionTween@cocos2d@@SAPEAV12@MPEBDMM@Z
+                         BA6 ?create@CCProgressTimer@cocos2d@@SAPEAV12@PEAVCCSprite@2@@Z
+                        13A3 ?setPercentage@CCProgressTimer@cocos2d@@QEAAXM@Z
+                         C88 ?draw@CCSpriteBatchNode@cocos2d@@UEAAXXZ
+                        14D5 ?sortAllChildren@CCSpriteBatchNode@cocos2d@@UEAAXXZ
+                        11A2 ?removeAllChildrenWithCleanup@CCSpriteBatchNode@cocos2d@@UEAAX_N@Z
+                        11B4 ?removeChild@CCSpriteBatchNode@cocos2d@@UEAAXPEAVCCNode@2@_N@Z
+                        11EE ?reorderChild@CCSpriteBatchNode@cocos2d@@UEAAXPEAVCCNode@2@H@Z
+                         987 ?addChild@CCSpriteBatchNode@cocos2d@@UEAAXPEAVCCNode@2@@Z
+                         988 ?addChild@CCSpriteBatchNode@cocos2d@@UEAAXPEAVCCNode@2@H@Z
+                         989 ?addChild@CCSpriteBatchNode@cocos2d@@UEAAXPEAVCCNode@2@HH@Z
+                        1656 ?visit@CCSpriteBatchNode@cocos2d@@UEAAXXZ
+                         D23 ?getBlendFunc@CCSpriteBatchNode@cocos2d@@UEAA?AU_ccBlendFunc@2@XZ
+                        12BE ?setBlendFunc@CCSpriteBatchNode@cocos2d@@UEAAXU_ccBlendFunc@2@@Z
+                        1449 ?setTexture@CCSpriteBatchNode@cocos2d@@UEAAXPEAVCCTexture2D@2@@Z
+                         ECD ?getTexture@CCSpriteBatchNode@cocos2d@@UEAAPEAVCCTexture2D@2@XZ
+                        12C8 ?setCascadeColorEnabled@CCLabelBMFont@cocos2d@@UEAAX_N@Z
+                        1049 ?isCascadeColorEnabled@CCLabelBMFont@cocos2d@@UEAA_NXZ
+                        160B ?updateDisplayedColor@CCLabelBMFont@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                        12D6 ?setColor@CCLabelBMFont@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                         D6F ?getDisplayedColor@CCLabelBMFont@cocos2d@@UEAAAEBU_ccColor3B@2@XZ
+                         D40 ?getColor@CCLabelBMFont@cocos2d@@UEAAAEBU_ccColor3B@2@XZ
+                        12CB ?setCascadeOpacityEnabled@CCLabelBMFont@cocos2d@@UEAAX_N@Z
+                        104C ?isCascadeOpacityEnabled@CCLabelBMFont@cocos2d@@UEAA_NXZ
+                        160F ?updateDisplayedOpacity@CCLabelBMFont@cocos2d@@UEAAXE@Z
+                        1387 ?setOpacity@CCLabelBMFont@cocos2d@@UEAAXE@Z
+                         D72 ?getDisplayedOpacity@CCLabelBMFont@cocos2d@@UEAAEXZ
+                         E0F ?getOpacity@CCLabelBMFont@cocos2d@@UEAAEXZ
+                        1390 ?setOpacityModifyRGB@CCLabelBMFont@cocos2d@@UEAAX_N@Z
+                        1070 ?isOpacityModifyRGB@CCLabelBMFont@cocos2d@@UEAA_NXZ
+                        13EC ?setScaleY@CCLabelBMFont@cocos2d@@UEAAXM@Z
+                        13E8 ?setScaleX@CCLabelBMFont@cocos2d@@UEAAXM@Z
+                        13E3 ?setScale@CCLabelBMFont@cocos2d@@UEAAXM@Z
+                        1365 ?setLineBreakWithoutSpace@CCLabelBMFont@cocos2d@@UEAAX_N@Z
+                        149C ?setWidth@CCLabelBMFont@cocos2d@@UEAAXM@Z
+                        128E ?setAlignment@CCLabelBMFont@cocos2d@@UEAAXW4CCTextAlignment@2@@Z
+                        1618 ?updateLabel@CCLabelBMFont@cocos2d@@UEAAXXZ
+                        12A0 ?setAnchorPoint@CCLabelBMFont@cocos2d@@UEAAXAEBVCCPoint@2@@Z
+                        12C7 ?setCString@CCLabelBMFont@cocos2d@@UEAAXPEBD@Z
+                         EB3 ?getString@CCLabelBMFont@cocos2d@@UEAAPEBDXZ
+                        1428 ?setString@CCLabelBMFont@cocos2d@@UEAAXPEBD@Z
+                        1429 ?setString@CCLabelBMFont@cocos2d@@UEAAXPEBD_N@Z
+                        1427 ?setString@CCLabelBMFont@cocos2d@@MEAAXPEAG_N@Z
+                         FF6 ?initWithString@CCLabelBMFont@cocos2d@@QEAA_NPEBD0MW4CCTextAlignment@2@VCCPoint@2@@Z
+                         F4C ?init@CCLabelBMFont@cocos2d@@UEAA_NXZ
+                         38B ??1CCLabelBMFont@cocos2d@@UEAA@XZ
+                         157 ??0CCLabelBMFont@cocos2d@@QEAA@XZ
+                        1573 ?unscheduleAllSelectors@CCNode@cocos2d@@QEAAXXZ
+                         B4A ?create@CCFadeOut@cocos2d@@SAPEAV12@M@Z
+                         B42 ?create@CCEaseIn@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@M@Z
+                         B6C ?create@CCLayerColor@cocos2d@@SAPEAV12@AEBU_ccColor4B@2@@Z
+                         B49 ?create@CCFadeIn@cocos2d@@SAPEAV12@M@Z
+                         A1C ?ccDrawSolidPoly@cocos2d@@YAXPEBVCCPoint@1@IU_ccColor4F@1@@Z
+                         BC0 ?create@CCShow@cocos2d@@SAPEAV12@XZ
+                         65C ??DCCPoint@cocos2d@@QEBA?AV01@M@Z
+                         A16 ?ccDrawLines@cocos2d@@YAXPEBVCCPoint@1@I@Z
+                         1D3 ??0CCRGBAProtocol@cocos2d@@QEAA@XZ
+                        160D ?updateDisplayedColor@CCNodeRGBA@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                        12D9 ?setColor@CCNodeRGBA@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                        1611 ?updateDisplayedOpacity@CCNodeRGBA@cocos2d@@UEAAXE@Z
+                        138B ?setOpacity@CCNodeRGBA@cocos2d@@UEAAXE@Z
+                         F55 ?init@CCNodeRGBA@cocos2d@@UEAA_NXZ
+                         B36 ?create@CCEaseBounceOut@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@@Z
+                         A9E ?convertToNodeSpace@CCNode@cocos2d@@QEAA?AVCCPoint@2@AEBV32@@Z
+                        1616 ?updateImagesVisibility@CCMenuItemSprite@cocos2d@@MEAAXXZ
+                        1310 ?setEnabled@CCMenuItemSprite@cocos2d@@UEAAX_N@Z
+                        157B ?unselected@CCMenuItemSprite@cocos2d@@UEAAXXZ
+                        127D ?selected@CCMenuItemSprite@cocos2d@@UEAAXXZ
+                         FE1 ?initWithNormalSprite@CCMenuItemSprite@cocos2d@@QEAA_NPEAVCCNode@2@00PEAVCCObject@2@P842@EAAX1@Z@Z
+                        12FB ?setDisabledImage@CCMenuItemSprite@cocos2d@@UEAAXPEAVCCNode@2@@Z
+                         D6D ?getDisabledImage@CCMenuItemSprite@cocos2d@@UEAAPEAVCCNode@2@XZ
+                        13FA ?setSelectedImage@CCMenuItemSprite@cocos2d@@UEAAXPEAVCCNode@2@@Z
+                         E83 ?getSelectedImage@CCMenuItemSprite@cocos2d@@UEAAPEAVCCNode@2@XZ
+                        1376 ?setNormalImage@CCMenuItemSprite@cocos2d@@UEAAXPEAVCCNode@2@@Z
+                         DFE ?getNormalImage@CCMenuItemSprite@cocos2d@@UEAAPEAVCCNode@2@XZ
+                        1080 ?isSelected@CCMenuItem@cocos2d@@UEAA_NXZ
+                        105F ?isEnabled@CCMenuItem@cocos2d@@UEAA_NXZ
+                        156D ?unregisterScriptTapHandler@CCMenuItem@cocos2d@@UEAAXXZ
+                        1186 ?registerScriptTapHandler@CCMenuItem@cocos2d@@UEAAXH@Z
+                         96C ?activate@CCMenuItem@cocos2d@@UEAAXXZ
+                         BB7 ?create@CCScaleTo@cocos2d@@SAPEAV12@MM@Z
+                         39A ??1CCMenuItemSprite@cocos2d@@UEAA@XZ
+                         17C ??0CCMenuItemSprite@cocos2d@@QEAA@XZ
+                        1074 ?isOpacityModifyRGB@CCNodeRGBA@cocos2d@@UEAA_NXZ
+                        1394 ?setOpacityModifyRGB@CCNodeRGBA@cocos2d@@UEAAX_N@Z
+                         214 ??0CCSize@cocos2d@@QEAA@AEBV01@@Z
+                        130E ?setEnabled@CCMenuItem@cocos2d@@UEAAX_N@Z
+                        1579 ?unselected@CCMenuItem@cocos2d@@UEAAXXZ
+                        127B ?selected@CCMenuItem@cocos2d@@UEAAXXZ
+                        1007 ?initWithTarget@CCMenuItem@cocos2d@@QEAA_NPEAVCCObject@2@P832@EAAX0@Z@Z
+                         395 ??1CCMenuItem@cocos2d@@UEAA@XZ
+                         171 ??0CCMenuItem@cocos2d@@QEAA@XZ
+                         BB3 ?create@CCRotateTo@cocos2d@@SAPEAV12@MM@Z
+                        1329 ?setFlipY@CCSprite@cocos2d@@QEAAX_N@Z
+                        1066 ?isFlipY@CCSprite@cocos2d@@QEAA_NXZ
+                         BB8 ?create@CCScaleTo@cocos2d@@SAPEAV12@MMM@Z
+                         DA4 ?getFrameName@CCSpriteFrame@cocos2d@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                        14B6 ?sharedOpenGLView@CCEGLView@cocos2d@@SAPEAV12@XZ
+                         65E ??GCCPoint@cocos2d@@QEBA?AV01@AEBV01@@Z
+                         D48 ?getContentScaleFactor@CCDirector@cocos2d@@QEAAMXZ
+                         A6E ?ccpDistance@cocos2d@@YAMAEBVCCPoint@1@0@Z
+                         AA2 ?convertToWorldSpace@CCNode@cocos2d@@QEAA?AVCCPoint@2@AEBV32@@Z
+                        1549 ?timersubCocos2d@CCTime@cocos2d@@SANPEAUcc_timeval@2@0@Z
+                         F17 ?gettimeofdayCocos2d@CCTime@cocos2d@@SAHPEAUcc_timeval@2@PEAX@Z
+                         9A3 ?addProgram@CCShaderCache@cocos2d@@QEAAXPEAVCCGLProgram@2@PEBD@Z
+                        1153 ?programForKey@CCShaderCache@cocos2d@@QEAAPEAVCCGLProgram@2@PEBD@Z
+                        14B9 ?sharedShaderCache@CCShaderCache@cocos2d@@SAPEAV12@XZ
+                         ECE ?getTexture@CCSpriteFrame@cocos2d@@QEAAPEAVCCTexture2D@2@XZ
+                        147D ?setUniformsForBuiltins@CCGLProgram@cocos2d@@QEAAXXZ
+                        147B ?setUniformLocationWithMatrix3fv@CCGLProgram@cocos2d@@QEAAXHPEAMI@Z
+                        1473 ?setUniformLocationWith3f@CCGLProgram@cocos2d@@QEAAXHMMM@Z
+                        146D ?setUniformLocationWith1f@CCGLProgram@cocos2d@@QEAAXHM@Z
+                        162E ?updateUniforms@CCGLProgram@cocos2d@@QEAAXXZ
+                        1634 ?use@CCGLProgram@cocos2d@@QEAAXXZ
+                        10A9 ?link@CCGLProgram@cocos2d@@QEAA_NXZ
+                         976 ?addAttribute@CCGLProgram@cocos2d@@QEAAXPEBDI@Z
+                        102A ?initWithVertexShaderByteArray@CCGLProgram@cocos2d@@QEAA_NPEBD0@Z
+                         379 ??1CCGLProgram@cocos2d@@UEAA@XZ
+                         129 ??0CCGLProgram@cocos2d@@QEAA@XZ
+                         A39 ?ccPositionTextureColor_vert@cocos2d@@3PEBDEB
+                        1605 ?updateColor@CCSprite@cocos2d@@IEAAXXZ
+                         A1F ?ccGLBindTexture2D@cocos2d@@YAXI@Z
+                         A28 ?ccGLEnableVertexAttribs@cocos2d@@YAXI@Z
+                         A27 ?ccGLEnable@cocos2d@@YAXW4ccGLServerState@1@@Z
+                         CEA ?g_uNumberOfDraws@@3IA
+                         DDB ?getLetterPosXRight@CCLabelBMFont@cocos2d@@QEAAMPEAVCCSprite@2@M_N@Z
+                         DDA ?getLetterPosXLeft@CCLabelBMFont@cocos2d@@QEAAMPEAVCCSprite@2@M_N@Z
+                         136 ??0CCIMEDelegate@cocos2d@@IEAA@XZ
+                         C64 ?detachWithIME@CCIMEDelegate@cocos2d@@UEAA_NXZ
+                         9D8 ?attachWithIME@CCIMEDelegate@cocos2d@@UEAA_NXZ
+                         37F ??1CCIMEDelegate@cocos2d@@UEAA@XZ
+                         B15 ?create@CCArray@cocos2d@@SAPEAV12@PEAVCCObject@2@ZZ
+                        103F ?intersectsRect@CCRect@cocos2d@@QEBA_NAEBV12@@Z
+                         DF0 ?getMaxY@CCRect@cocos2d@@QEBAMXZ
+                         DF6 ?getMinY@CCRect@cocos2d@@QEBAMXZ
+                        1539 ?textFieldWithPlaceHolder@CCTextFieldTTF@cocos2d@@SAPEAV12@PEBD0M@Z
+                         255 ??0CCTextFieldDelegate@cocos2d@@QEAA@XZ
+                        10DE ?onDraw@CCTextFieldDelegate@cocos2d@@UEAA_NPEAVCCTextFieldTTF@2@@Z
+                        1113 ?onTextFieldDeleteBackward@CCTextFieldDelegate@cocos2d@@UEAA_NPEAVCCTextFieldTTF@2@PEBDH@Z
+                        109D ?keyboardDidHide@CCIMEDelegate@cocos2d@@MEAAXAEAUCCIMEKeyboardNotificationInfo@2@@Z
+                        109E ?keyboardDidShow@CCIMEDelegate@cocos2d@@MEAAXAEAUCCIMEKeyboardNotificationInfo@2@@Z
+                         D4C ?getContentText@CCIMEDelegate@cocos2d@@MEAAPEBDXZ
+                         C55 ?deleteForward@CCIMEDelegate@cocos2d@@MEAAXXZ
+                         C53 ?deleteBackward@CCIMEDelegate@cocos2d@@MEAAXXZ
+                        103A ?insertText@CCIMEDelegate@cocos2d@@MEAAXPEBDHW4enumKeyCodes@2@@Z
+                         C69 ?didDetachWithIME@CCIMEDelegate@cocos2d@@MEAAXXZ
+                         A01 ?canDetachWithIME@CCIMEDelegate@cocos2d@@MEAA_NXZ
+                         C68 ?didAttachWithIME@CCIMEDelegate@cocos2d@@MEAAXXZ
+                         9FF ?canAttachWithIME@CCIMEDelegate@cocos2d@@MEAA_NXZ
+                         9BD ?alignItemsHorizontallyWithPadding@CCMenu@cocos2d@@QEAAXM@Z
+                         B78 ?create@CCMenu@cocos2d@@SAPEAV12@XZ
+                         B4F ?create@CCFadeTo@cocos2d@@SAPEAV12@ME@Z
+                         DBC ?getHighestChildZ@CCScene@cocos2d@@QEAAHXZ
+                         B6B ?create@CCLayer@cocos2d@@SAPEAV12@XZ
+                        14B2 ?sharedFileUtils@CCFileUtils@cocos2d@@SAPEAV12@XZ
+                        112F ?pauseSchedulerAndActions@CCNode@cocos2d@@QEAAXXZ
+                         CB6 ?equals@CCPoint@cocos2d@@QEBA_NAEBV12@@Z
+                         E70 ?getScreenRight@CCDirector@cocos2d@@QEAAMXZ
+                        10A8 ?limitLabelWidth@CCLabelBMFont@cocos2d@@QEAAXMMM@Z
+                         C44 ?createWithTotalParticles@CCParticleSystemQuad@cocos2d@@SAPEAV12@I_N@Z
+                        12FE ?setDisplayFrame@CCParticleSystemQuad@cocos2d@@QEAAXPEAVCCSpriteFrame@2@@Z
+                         B41 ?create@CCEaseExponentialOut@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@@Z
+                         B3A ?create@CCEaseElasticIn@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@M@Z
+                         B3F ?create@CCEaseExponentialIn@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@@Z
+                         B32 ?create@CCEaseBackOut@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@@Z
+                        1258 ?saveDefaults@CCParticleSystem@cocos2d@@QEAAXXZ
+                        11F9 ?resetSystem@CCParticleSystem@cocos2d@@QEAAXXZ
+                         653 ??6?$BasicWriter@D@fmt@@QEAAAEAV01@N@Z
+                         EA8 ?getStartSizeEqualToEnd@CCParticleSystem@cocos2d@@QEBA_NXZ
+                         C31 ?createWithTexture@CCSprite@cocos2d@@SAPEAV12@PEAVCCTexture2D@2@@Z
+                         C50 ?decompressString@ZipUtils@cocos2d@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@_NH@Z
+                         A93 ?compressString@ZipUtils@cocos2d@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@_NH@Z
+                         AA8 ?copyFile@DS_Dictionary@@SAXPEBD0@Z
+                        125B ?saveRootSubDictToString@DS_Dictionary@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                        1259 ?saveRootSubDictToCompressedFile@DS_Dictionary@@QEAA_NPEBD@Z
+                        10B9 ?loadRootSubDictFromString@DS_Dictionary@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                        1453 ?setTextureRect@CCSprite@cocos2d@@UEAAXAEBVCCRect@2@_NAEBVCCSize@2@@Z
+                         42A ??1DS_Dictionary@@QEAA@XZ
+                         E6E ?getScreenBottom@CCDirector@cocos2d@@QEAAMXZ
+                         BAD ?create@CCRepeatForever@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@@Z
+                         BB1 ?create@CCRotateBy@cocos2d@@SAPEAV12@MM@Z
+                         C1C ?createWithContentsOfFile@CCDictionary@cocos2d@@SAPEAV12@PEBD@Z
+                         C21 ?createWithDictionary@CCDictionary@cocos2d@@SAPEAV12@PEAV12@@Z
+                         A1B ?ccDrawRect@cocos2d@@YAXVCCPoint@1@0@Z
+                         E74 ?getScreenScaleFactorW@CCDirector@cocos2d@@QEAAMXZ
+                         E73 ?getScreenScaleFactorMax@CCDirector@cocos2d@@QEAAMXZ
+                        10FC ?onExit@CCMenu@cocos2d@@UEAAXXZ
+                         A48 ?ccTouchCancelled@CCMenu@cocos2d@@UEAAXPEAVCCTouch@2@PEAVCCEvent@2@@Z
+                         A4C ?ccTouchEnded@CCMenu@cocos2d@@UEAAXPEAVCCTouch@2@PEAVCCEvent@2@@Z
+                         A44 ?ccTouchBegan@CCMenu@cocos2d@@UEAA_NPEAVCCTouch@2@PEAVCCEvent@2@@Z
+                        11AE ?removeChild@CCMenu@cocos2d@@UEAAXPEAVCCNode@2@_N@Z
+                         979 ?addChild@CCMenu@cocos2d@@UEAAXPEAVCCNode@2@@Z
+                         97A ?addChild@CCMenu@cocos2d@@UEAAXPEAVCCNode@2@H@Z
+                         97B ?addChild@CCMenu@cocos2d@@UEAAXPEAVCCNode@2@HH@Z
+                         F52 ?init@CCMenu@cocos2d@@UEAA_NXZ
+                         AA4 ?convertTouchToNodeSpace@CCNode@cocos2d@@QEAA?AVCCPoint@2@PEAVCCTouch@2@@Z
+                        12D8 ?setColor@CCLayerRGBA@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                        1389 ?setOpacity@CCLayerRGBA@cocos2d@@UEAAXE@Z
+                         FE0 ?initWithNormalImage@CCMenuItemImage@cocos2d@@QEAA_NPEBD00PEAVCCObject@2@P832@EAAX1@Z@Z
+                         F53 ?init@CCMenuItemImage@cocos2d@@UEAA_NXZ
+                        1441 ?setTexParameters@CCTexture2D@cocos2d@@QEAAXPEAU_ccTexParams@2@@Z
+                        130D ?setEnabled@CCMenu@cocos2d@@UEAAX_N@Z
+                        105E ?isEnabled@CCMenu@cocos2d@@UEAA_NXZ
+                        1072 ?isOpacityModifyRGB@CCMenu@cocos2d@@UEAA_NXZ
+                        1392 ?setOpacityModifyRGB@CCMenu@cocos2d@@UEAAX_N@Z
+                         394 ??1CCMenu@cocos2d@@UEAA@XZ
+                         16F ??0CCMenu@cocos2d@@QEAA@XZ
+                         398 ??1CCMenuItemImage@cocos2d@@UEAA@XZ
+                         177 ??0CCMenuItemImage@cocos2d@@QEAA@XZ
+                         C2D ?createWithSpriteFrames@CCAnimation@cocos2d@@SAPEAV12@PEAVCCArray@2@M@Z
+                         B11 ?create@CCAnimate@cocos2d@@SAPEAV12@PEAVCCAnimation@2@@Z
+                         9CA ?animationByName@CCAnimationCache@cocos2d@@QEAAPEAVCCAnimation@2@PEBD@Z
+                         973 ?addAnimation@CCAnimationCache@cocos2d@@QEAAXPEAVCCAnimation@2@PEBD@Z
+                        14AC ?sharedAnimationCache@CCAnimationCache@cocos2d@@SAPEAV12@XZ
+                        11A6 ?removeAllObjects@CCArray@cocos2d@@QEAAXXZ
+                         577 ??4CCObject@cocos2d@@QEAAAEAV01@AEBV01@@Z
+                        1577 ?unscheduleUpdate@CCNode@cocos2d@@QEAAXXZ
+                        1275 ?scheduleUpdate@CCNode@cocos2d@@QEAAXXZ
+                        137D ?setObject@CCDictionary@cocos2d@@QEAAXPEAVCCObject@2@_J@Z
+                        10DA ?objectForKey@CCDictionary@cocos2d@@QEAAPEAVCCObject@2@_J@Z
+                        154D ?toggleLockCursor@CCEGLView@cocos2d@@QEAAX_N@Z
+                        14BE ?showCursor@CCEGLView@cocos2d@@QEAAX_N@Z
+                        10C9 ?makeBorderlessTop@CCEGLView@cocos2d@@QEAAXXZ
+                        154B ?toggleFullScreen@CCEGLView@cocos2d@@QEAAX_N00@Z
+                         A7A ?centerWindow@CCEGLView@cocos2d@@QEAAXXZ
+                        11FC ?resizeWindow@CCEGLView@cocos2d@@QEAAXHH@Z
+                         D6E ?getDisplaySize@CCEGLView@cocos2d@@QEAA?AVCCSize@2@XZ
+                        1551 ?toggleVerticalSync@CCApplication@cocos2d@@QEAAX_N@Z
+                        154E ?toggleMouseControl@CCApplication@cocos2d@@QEAAX_N@Z
+                        161A ?updateMouseControl@CCApplication@cocos2d@@QEAAXXZ
+                         3A2 ??1CCNodeRGBA@cocos2d@@UEAA@XZ
+                         191 ??0CCNodeRGBA@cocos2d@@QEAA@XZ
+                         E6F ?getScreenLeft@CCDirector@cocos2d@@QEAAMXZ
+                         E75 ?getScreenTop@CCDirector@cocos2d@@QEAAMXZ
+                         C24 ?createWithFullScreen@CCEGLView@cocos2d@@SAPEAV12@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N1@Z
+                         C2A ?createWithRect@CCEGLView@cocos2d@@SAPEAV12@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VCCRect@2@M@Z
+                        1199 ?removeActionByTag@CCActionManager@cocos2d@@QEAAXIPEAVCCObject@2@@Z
+                        14A3 ?setupScreenScale@CCDirector@cocos2d@@QEAAXVCCSize@2@0W4TextureQuality@2@@Z
+                        12F2 ?setDepthTest@CCDirector@cocos2d@@QEAAX_N@Z
+                        11FE ?resume@CCDirector@cocos2d@@QEAAXXZ
+                        112B ?pause@CCDirector@cocos2d@@QEAAXXZ
+                        124E ?runWithScene@CCDirector@cocos2d@@QEAAXPEAVCCScene@2@@Z
+                        13B9 ?setProjection@CCDirector@cocos2d@@QEAAXW4ccDirectorProjection@2@@Z
+                        1397 ?setOpenGLView@CCDirector@cocos2d@@QEAAXPEAVCCEGLView@2@@Z
+                         F16 ?gettimeofday@cocos2d@@YAHPEAUtimeval@@PEAUtimezone@1@@Z
+                         CEB ?gameDidSave@CCApplication@cocos2d@@UEAAXXZ
+                        1116 ?openURL@CCApplication@cocos2d@@UEAAXPEBD@Z
+                         EC5 ?getTargetPlatform@CCApplication@cocos2d@@UEAA?AW4TargetPlatform@2@XZ
+                         D55 ?getCurrentLanguage@CCApplication@cocos2d@@UEAA?AW4LanguageType@2@XZ
+                        12A8 ?setAnimationInterval@CCApplication@cocos2d@@UEAAXN@Z
+                        124C ?run@CCApplication@cocos2d@@UEAAHXZ
+                         330 ??1CCApplication@cocos2d@@UEAA@XZ
+                        14B3 ?sharedManager@CCContentManager@@SAPEAV1@XZ
+                        14AF ?sharedDecoder@ObjectDecoder@@SAPEAV1@XZ
+                        12A4 ?setAndroidPath@CCFileUtils@cocos2d@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         C16 ?createWithArray@CCArray@cocos2d@@SAPEAV12@PEAV12@@Z
+                         C33 ?createWithTexture@CCSpriteBatchNode@cocos2d@@SAPEAV12@PEAVCCTexture2D@2@@Z
+                         C26 ?createWithItem@CCMenu@cocos2d@@SAPEAV12@PEAVCCMenuItem@2@@Z
+                        11D2 ?removeObjectForKey@CCDictionary@cocos2d@@QEAAX_J@Z
+                        1089 ?isUsingForcePrio@CCTouchDispatcher@cocos2d@@QEAA_NXZ
+                         C29 ?createWithObject@CCArray@cocos2d@@SAPEAV12@PEAVCCObject@2@@Z
+                         A85 ?clampf@cocos2d@@YAMMMM@Z
+                         BDB ?create@CCTintTo@cocos2d@@SAPEAV12@MEEE@Z
+                        11F1 ?replaceScene@CCDirector@cocos2d@@QEAA_NPEAVCCScene@2@@Z
+                        1173 ?pushScene@CCDirector@cocos2d@@QEAA_NPEAVCCScene@2@@Z
+                         BB9 ?create@CCScene@cocos2d@@SAPEAV12@XZ
+                         BDE ?create@CCTransitionFade@cocos2d@@SAPEAV12@MPEAVCCScene@2@@Z
+                         1FB ??0CCSceneTransitionDelegate@cocos2d@@QEAA@XZ
+                         BA1 ?create@CCParticleSystemQuad@cocos2d@@SAPEAV12@PEBD_N@Z
+                        1175 ?randomObject@CCArray@cocos2d@@QEAAPEAVCCObject@2@XZ
+                        1522 ?stopSystem@CCParticleSystem@cocos2d@@QEAAXXZ
+                        1142 ?popToSceneInStack@CCDirector@cocos2d@@QEAAXPEAVCCScene@2@@Z
+                         B5B ?create@CCHide@cocos2d@@SAPEAV12@XZ
+                         99E ?addObjectsFromArray@CCArray@cocos2d@@QEAAXPEAV12@@Z
+                         9BC ?alignItemsHorizontally@CCMenu@cocos2d@@QEAAXXZ
+                         9C5 ?alignItemsVerticallyWithPadding@CCMenu@cocos2d@@QEAAXM@Z
+                         A0D ?ccDrawCircle@cocos2d@@YAXAEBVCCPoint@1@MMI_NMM@Z
+                         65F ??GCCPoint@cocos2d@@QEBA?AV01@XZ
+                         9EE ?boundingBox@CCNode@cocos2d@@QEAA?AVCCRect@2@XZ
+                         BCB ?create@CCSprite@cocos2d@@SAPEAV12@XZ
+                         A94 ?containsObject@CCArray@cocos2d@@QEBA_NPEAVCCObject@2@@Z
+                         C19 ?createWithCapacity@CCArray@cocos2d@@SAPEAV12@I@Z
+                         DEF ?getMaxX@CCRect@cocos2d@@QEBAMXZ
+                         DF5 ?getMinX@CCRect@cocos2d@@QEBAMXZ
+                         DDF ?getLocation@CCTouch@cocos2d@@QEBA?AVCCPoint@2@XZ
+                         B22 ?create@CCCallFuncO@cocos2d@@SAPEAV12@PEAVCCObject@2@P832@EAAX0@Z0@Z
+                         9DC ?base64EncodeEnc@ZipUtils@cocos2d@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@V34@@Z
+                         9DB ?base64DecodeEnc@ZipUtils@cocos2d@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@V34@@Z
+                        1638 ?valueForKey@CCDictionary@cocos2d@@QEAAPEBVCCString@2@_J@Z
+                         D9B ?getFirstKey@CCDictionary@cocos2d@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         C7D ?doubleValue@CCString@cocos2d@@QEBANXZ
+                         978 ?addBoolValuesToMapForKeySpecial@DS_Dictionary@@QEAAXAEAV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_NU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@std@@@2@@std@@PEBD_N@Z
+                         977 ?addBoolValuesToMapForKey@DS_Dictionary@@QEAAXAEAV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_NU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@std@@@2@@std@@PEBD_N@Z
+                        12C3 ?setBoolMapForKey@DS_Dictionary@@QEAAXPEBDAEAV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_NU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@std@@@2@@std@@@Z
+                         D11 ?getArrayForKey@DS_Dictionary@@QEAAPEAVCCArray@cocos2d@@PEBD_N@Z
+                        12AA ?setArrayForKey@DS_Dictionary@@QEAAXPEBDPEAVCCArray@cocos2d@@@Z
+                        1430 ?setStringForKey@DS_Dictionary@@QEAAXPEBDAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                        132B ?setFloatForKey@DS_Dictionary@@QEAAXPEBDM@Z
+                        12C2 ?setBoolForKey@DS_Dictionary@@QEAAXPEBD_N@Z
+                        1353 ?setIntegerForKey@DS_Dictionary@@QEAAXPEBDH@Z
+                         D9E ?getFloatForKey@DS_Dictionary@@QEAAMPEBD@Z
+                         D28 ?getBoolForKey@DS_Dictionary@@QEAA_NPEBD@Z
+                         DC8 ?getIntegerForKey@DS_Dictionary@@QEAAHPEBD@Z
+                        1193 ?reloadDefaultShaders@CCShaderCache@cocos2d@@QEAAXXZ
+                        116E ?purgeSharedShaderCache@CCShaderCache@cocos2d@@SAXXZ
+                        11E2 ?removeStatsLabel@CCDirector@cocos2d@@QEAAXXZ
+                        1262 ?sceneCount@CCDirector@cocos2d@@QEAAHXZ
+                        1141 ?popToRootScene@CCDirector@cocos2d@@QEAAXXZ
+                        1140 ?popSceneWithTransition@CCDirector@cocos2d@@QEAA_NMW4PopTransition@2@@Z
+                        1167 ?purgeFileUtils@CCFileUtils@cocos2d@@SAXXZ
+                        116F ?purgeSharedSpriteFrameCache@CCSpriteFrameCache@cocos2d@@SAXXZ
+                         9AD ?addSpriteFramesWithFile@CCSpriteFrameCache@cocos2d@@QEAAXPEBD@Z
+                        1163 ?purgeCachedData@CCLabelBMFont@cocos2d@@SAXXZ
+                         A13 ?ccDrawFree@cocos2d@@YAXXZ
+                         A29 ?ccGLInvalidateStateCache@cocos2d@@YAXXZ
+                        11E4 ?removeTextureForKey@CCTextureCache@cocos2d@@QEAAXPEBD@Z
+                        153E ?textureForKey@CCTextureCache@cocos2d@@QEAAPEAVCCTexture2D@2@PEBD@Z
+                         996 ?addImageAsync@CCTextureCache@cocos2d@@QEAAXPEBDPEAVCCObject@2@P832@EAAX1@ZHW4CCTexture2DPixelFormat@2@@Z
+                        1170 ?purgeSharedTextureCache@CCTextureCache@cocos2d@@SAXXZ
+                        1273 ?scheduleSelector@CCScheduler@cocos2d@@QEAAXP8CCObject@2@EAAXM@ZPEAV32@MIM_N@Z
+                        116C ?purgeSharedAnimationCache@CCAnimationCache@cocos2d@@SAXXZ
+                         A8D ?clearCache@CCContentManager@@QEAAXXZ
+                           8 ??0?$BasicStringRef@D@fmt@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         C11 ?createBatched@CCLabelBMFont@cocos2d@@SAPEAV12@PEBD0PEAVCCArray@2@H@Z
+                        10BA ?loadScaledDefaults@CCParticleSystem@cocos2d@@QEAAXM@Z
+                        1201 ?resumeSystem@CCParticleSystem@cocos2d@@QEAAXXZ
+                         B1A ?create@CCBezierTo@cocos2d@@SAPEAV12@MAEBU_ccBezierConfig@2@@Z
+                         B54 ?create@CCFloat@cocos2d@@SAPEAV12@M@Z
+                         EF8 ?getValue@CCFloat@cocos2d@@QEBAMXZ
+                         B5C ?create@CCInteger@cocos2d@@SAPEAV12@H@Z
+                         5C0 ??4CCSize@cocos2d@@QEAAAEAV01@AEBVCCPoint@1@@Z
+                        146B ?setTrVertexMod@CCSprite@cocos2d@@QEAAXM@Z
+                        1462 ?setTlVertexMod@CCSprite@cocos2d@@QEAAXM@Z
+                        11DF ?removeSpriteFramesFromFile@CCSpriteFrameCache@cocos2d@@QEAAXPEBD@Z
+                         A76 ?ccpNormalize@cocos2d@@YA?AVCCPoint@1@AEBV21@@Z
+                         EF1 ?getUsedAtlasCapacity@CCSpriteBatchNode@cocos2d@@QEAAHXZ
+                         D12 ?getAtlasCapacity@CCSpriteBatchNode@cocos2d@@QEAAHXZ
+                         F38 ?increaseAtlasCapacity@CCSpriteBatchNode@cocos2d@@QEAAXI@Z
+                        108C ?isZero@CCPoint@cocos2d@@QEBA_NXZ
+                         663 ??KCCPoint@cocos2d@@QEBA?AV01@M@Z
+                         1BE ??0CCPoint@cocos2d@@QEAA@AEBVCCSize@1@@Z
+                         E72 ?getScreenScaleFactorH@CCDirector@cocos2d@@QEAAMXZ
+                         9B4 ?addToVertices@CCLayerColor@cocos2d@@QEAAXVCCPoint@2@00@Z
+                        1493 ?setVertices@CCLayerColor@cocos2d@@QEAAXVCCPoint@2@00@Z
+                        1603 ?updateColor@CCLayerGradient@cocos2d@@UEAAXXZ
+                        104F ?isCompressedInterpolation@CCLayerGradient@cocos2d@@UEAA_NXZ
+                        12DD ?setCompressedInterpolation@CCLayerGradient@cocos2d@@UEAAX_N@Z
+                        1487 ?setValues@CCLayerGradient@cocos2d@@QEAAXAEBU_ccColor3B@2@E0EAEBVCCPoint@2@@Z
+                        1649 ?visit@CCLayerGradient@cocos2d@@UEAAXXZ
+                        148C ?setVector@CCLayerGradient@cocos2d@@UEAAXAEBVCCPoint@2@@Z
+                         EFC ?getVector@CCLayerGradient@cocos2d@@UEAAAEBVCCPoint@2@XZ
+                        1317 ?setEndOpacity@CCLayerGradient@cocos2d@@UEAAXE@Z
+                         D89 ?getEndOpacity@CCLayerGradient@cocos2d@@UEAAEXZ
+                        1416 ?setStartOpacity@CCLayerGradient@cocos2d@@UEAAXE@Z
+                         EA2 ?getStartOpacity@CCLayerGradient@cocos2d@@UEAAEXZ
+                        1314 ?setEndColor@CCLayerGradient@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                         D86 ?getEndColor@CCLayerGradient@cocos2d@@UEAAAEBU_ccColor3B@2@XZ
+                        1413 ?setStartColor@CCLayerGradient@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                         E9D ?getStartColor@CCLayerGradient@cocos2d@@UEAAAEBU_ccColor3B@2@XZ
+                         F8E ?initWithColor@CCLayerGradient@cocos2d@@UEAA_NAEBU_ccColor4B@2@0@Z
+                         F8F ?initWithColor@CCLayerGradient@cocos2d@@UEAA_NAEBU_ccColor4B@2@0AEBVCCPoint@2@@Z
+                        11F7 ?resetGlobalOrderOfArrival@CCNode@cocos2d@@KAXXZ
+                        147F ?setUseChildIndex@CCNode@cocos2d@@QEAAX_N@Z
+                        1601 ?updateChildIndexes@CCNode@cocos2d@@QEAAXXZ
+                         94A ?__CCPointApplyAffineTransform@cocos2d@@YA?AVCCPoint@1@AEBV21@AEBUCCAffineTransform@1@@Z
+                         808 ?CCAffineTransformConcat@cocos2d@@YA?AUCCAffineTransform@1@AEBU21@0@Z
+                         CC4 ?fastRemoveObjectAtIndex@CCArray@cocos2d@@QEAAXI@Z
+                         215 ??0CCSize@cocos2d@@QEAA@AEBVCCPoint@1@@Z
+                         A6F ?ccpForAngle@cocos2d@@YA?AVCCPoint@1@M@Z
+                         B1B ?create@CCBlink@cocos2d@@SAPEAV12@MI@Z
+                         A8A ?clear@CCDrawNode@cocos2d@@QEAAXXZ
+                         C96 ?drawPolygon@CCDrawNode@cocos2d@@QEAA_NPEAVCCPoint@2@IAEBU_ccColor4F@2@M1W4BorderAlignment@2@@Z
+                         C8E ?drawCircle@CCDrawNode@cocos2d@@QEAA_NAEBVCCPoint@2@MAEBU_ccColor4F@2@M1I@Z
+                         C99 ?drawRect@CCDrawNode@cocos2d@@QEAA_NAEBVCCPoint@2@0AEBU_ccColor4F@2@M1W4BorderAlignment@2@@Z
+                         C9A ?drawRect@CCDrawNode@cocos2d@@QEAA_NAEBVCCRect@2@AEBU_ccColor4F@2@M1W4BorderAlignment@2@@Z
+                         CA6 ?enableDrawArea@CCDrawNode@cocos2d@@QEAAXAEAVCCRect@2@@Z
+                        128D ?setAliasTexParameters@CCTexture2D@cocos2d@@QEAAXXZ
+                         A72 ?ccpIntersectPoint@cocos2d@@YA?AVCCPoint@1@AEBV21@000@Z
+                         38F ??1CCLayerGradient@cocos2d@@UEAA@XZ
+                         163 ??0CCLayerGradient@cocos2d@@QEAA@XZ
+                        113F ?popScene@CCDirector@cocos2d@@QEAAXXZ
+                         BEE ?create@CCTransitionMoveInT@cocos2d@@SAPEAV12@MPEAVCCScene@2@@Z
+                         C52 ?defaultAlphaPixelFormat@CCTexture2D@cocos2d@@SA?AW4CCTexture2DPixelFormat@2@XZ
+                        12E4 ?setDefaultAlphaPixelFormat@CCTexture2D@cocos2d@@SAXW4CCTexture2DPixelFormat@2@@Z
+                         C1A ?createWithCoder@CCObject@cocos2d@@SAPEAV12@PEAVDS_Dictionary@@@Z
+                         BBA ?create@CCSequence@cocos2d@@SAPEAV12@PEAVCCArray@2@@Z
+                         C2B ?createWithSpriteFrame@CCSprite@cocos2d@@SAPEAV12@PEAVCCSpriteFrame@2@@Z
+                          B4 ??0CCDrawNode@cocos2d@@QEAA@XZ
+                        12B8 ?setBlendFunc@CCDrawNode@cocos2d@@QEAAXAEBU_ccBlendFunc@2@@Z
+                         D1D ?getBlendFunc@CCDrawNode@cocos2d@@QEBA?AU_ccBlendFunc@2@XZ
+                         C7F ?draw@CCDrawNode@cocos2d@@UEAAXXZ
+                         F49 ?init@CCDrawNode@cocos2d@@UEAA_NXZ
+                         34F ??1CCDrawNode@cocos2d@@UEAA@XZ
+                         B6F ?create@CCLayerGradient@cocos2d@@SAPEAV12@AEBU_ccColor4B@2@0@Z
+                        10CA ?manualSortAllChildren@CCSpriteBatchNode@cocos2d@@QEAAXXZ
+                        11F8 ?resetSmoothFixCounter@CCDirector@cocos2d@@QEAAXXZ
+                        1247 ?reverseObjects@CCArray@cocos2d@@QEAAXXZ
+                         C93 ?drawLines@CCDrawNode@cocos2d@@QEAA_NPEAVCCPoint@2@IMAEBU_ccColor4F@2@@Z
+                         C9D ?drawSegmentEx@CCDrawNode@cocos2d@@QEAA_NAEBVCCPoint@2@0MAEBU_ccColor4F@2@_N2@Z
+                         C9C ?drawSegment@CCDrawNode@cocos2d@@QEAA_NAEBVCCPoint@2@0MAEBU_ccColor4F@2@@Z
+                         C8C ?drawArchLikeHalfCircle@CCDrawNode@cocos2d@@QEAAXAEBVCCPoint@2@0MIAEBU_ccColor4F@2@M@Z
+                         C6A ?disableDrawArea@CCDrawNode@cocos2d@@QEAAXXZ
+                         B2E ?create@CCDrawNode@cocos2d@@SAPEAV12@XZ
+                         F3E ?inflateRect@CCRect@cocos2d@@QEAAXM@Z
+                         9DE ?base64URLEncode@ZipUtils@cocos2d@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@@Z
+                         9DD ?base64URLDecode@ZipUtils@cocos2d@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@@Z
+                        154F ?toggleShowFPS@CCDirector@cocos2d@@QEAAX_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VCCPoint@2@@Z
+                        1151 ?prepareAsyncLoading@CCTextureCache@cocos2d@@QEAAXXZ
+                         992 ?addDict@CCContentManager@@QEAAPEAVCCDictionary@cocos2d@@PEBD_N@Z
+                         CB0 ?end@CCRenderTexture@cocos2d@@QEAAXXZ
+                         9E3 ?beginWithClear@CCRenderTexture@cocos2d@@QEAAXMMMM@Z
+                         BA9 ?create@CCRenderTexture@cocos2d@@SAPEAV12@HH@Z
+                         CAE ?end@CCDirector@cocos2d@@QEAAXXZ
+                        1633 ?urlDecode@ZipUtils@cocos2d@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@@Z
+                         C4F ?decompressString2@ZipUtils@cocos2d@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAE_NHH@Z
+                        1606 ?updateContentScale@CCDirector@cocos2d@@QEAAXW4TextureQuality@2@@Z
+                         C34 ?createWithTexture@CCSpriteBatchNode@cocos2d@@SAPEAV12@PEAVCCTexture2D@2@I@Z
+                         CB7 ?equals@CCRect@cocos2d@@QEBA_NAEBV12@@Z
+                        1432 ?setStroke@CCMotionStreak@cocos2d@@QEAAXM@Z
+                        1200 ?resumeStroke@CCMotionStreak@cocos2d@@QEAAXXZ
+                        1521 ?stopStroke@CCMotionStreak@cocos2d@@QEAAXXZ
+                        1614 ?updateFade@CCMotionStreak@cocos2d@@QEAAXM@Z
+                         CA7 ?enableRepeatMode@CCMotionStreak@cocos2d@@QEAAXM@Z
+                        11F3 ?reset@CCMotionStreak@cocos2d@@QEAAXXZ
+                         B8C ?create@CCMotionStreak@cocos2d@@SAPEAV12@MMMAEBU_ccColor3B@2@PEBD@Z
+                         B8B ?create@CCMotionStreak@cocos2d@@SAPEAV12@MMMAEBU_ccColor3B@2@PEAVCCTexture2D@2@@Z
+                         B3D ?create@CCEaseElasticOut@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@@Z
+                         BCD ?create@CCSpriteBatchNode@cocos2d@@SAPEAV12@PEBDI@Z
+                        1174 ?qsortAllChildrenWithIndex@CCNode@cocos2d@@QEAAXXZ
+                         F18 ?giveMenuTouchPriority@CCMenu@cocos2d@@QEAAXXZ
+                         C46 ?createWithTwoActions@CCSpawn@cocos2d@@SAPEAV12@PEAVCCFiniteTimeAction@2@0@Z
+                         B0F ?create@CCActionTween@cocos2d@@SAPEAV12@MHMM@Z
+                         A73 ?ccpLength@cocos2d@@YAMAEBVCCPoint@1@@Z
+                         A0E ?ccDrawCircleSegment@cocos2d@@YAXAEBVCCPoint@1@MMMI_NMM@Z
+                         E23 ?getParticleDrawCost@CCParticleSystem@cocos2d@@QEAAHXZ
+                        1671 kmGLPopMatrix
+                        1672 kmGLPushMatrix
+                        11F2 ?reset@CCGLProgram@cocos2d@@QEAAXXZ
+                        1477 ?setUniformLocationWith4f@CCGLProgram@cocos2d@@QEAAXHMMMM@Z
+                        146F ?setUniformLocationWith2f@CCGLProgram@cocos2d@@QEAAXHMM@Z
+                        12DF ?setContentScaleFactor@CCDirector@cocos2d@@QEAAXM@Z
+                        1557 ?transform@CCNode@cocos2d@@QEAAXXZ
+                         9B6 ?afterDraw@CCGridBase@cocos2d@@QEAAXPEAVCCNode@2@@Z
+                         9DF ?beforeDraw@CCGridBase@cocos2d@@QEAAXXZ
+                         810 ?CCLog@cocos2d@@YAXPEBDZZ
+                        12A9 ?setAntiAliasTexParameters@CCTexture2D@cocos2d@@QEAAXXZ
+                        1617 ?updateInternalScale@CCRenderTexture@cocos2d@@QEAAXMM@Z
+                         BAA ?create@CCRenderTexture@cocos2d@@SAPEAV12@HHW4CCTexture2DPixelFormat@2@@Z
+                         EDC ?getTimeElapsed@CCParticleSystem@cocos2d@@QEAAMXZ
+                         148 ??0CCKeyboardDelegate@cocos2d@@QEAA@XZ
+                          63 ??0CCApplication@cocos2d@@QEAA@XZ
+                        1180 ?refreshTextureRect@CCSprite@cocos2d@@UEAAXXZ
+                        1452 ?setTextureRect@CCSprite@cocos2d@@UEAAXAEBVCCRect@2@@Z
+                        148F ?setVertexRect@CCSprite@cocos2d@@UEAAXAEBVCCRect@2@@Z
+                        12FF ?setDisplayFrame@CCSprite@cocos2d@@UEAAXPEAVCCSpriteFrame@2@@Z
+                        1067 ?isFrameDisplayed@CCSprite@cocos2d@@UEAA_NPEAVCCSpriteFrame@2@@Z
+                         C79 ?displayFrame@CCSprite@cocos2d@@UEAAPEAVCCSpriteFrame@2@XZ
+                        1300 ?setDisplayFrameWithAnimationName@CCSprite@cocos2d@@UEAAXPEBDH@Z
+                        1450 ?setTextureCoords@CCSprite@cocos2d@@MEAAXAEBVCCRect@2@@Z
+                        15FF ?updateBlendFunc@CCSprite@cocos2d@@MEAAXXZ
+                        13D0 ?setReorderChildDirtyRecursively@CCSprite@cocos2d@@MEAAXXZ
+                         1BF ??0CCPoint@cocos2d@@QEAA@MM@Z
+                         AB9 ?copyWithZone@CCCopying@cocos2d@@UEAAPEAVCCObject@2@PEAVCCZone@2@@Z
+                        162C ?updateTweenActionInt@CCNode@cocos2d@@UEAAXMH@Z
+                        162B ?updateTweenAction@CCNode@cocos2d@@UEAAXMPEBD@Z
+                        11A3 ?removeAllComponents@CCNode@cocos2d@@UEAAXXZ
+                        11BB ?removeComponent@CCNode@cocos2d@@UEAA_NPEBD@Z
+                        11BA ?removeComponent@CCNode@cocos2d@@UEAA_NPEAVCCComponent@2@@Z
+                         98C ?addComponent@CCNode@cocos2d@@UEAA_NPEAVCCComponent@2@@Z
+                        165F ?worldToNodeTransform@CCNode@cocos2d@@UEAA?AUCCAffineTransform@2@XZ
+                        12F9 ?setDirtyRecursively@CCSprite@cocos2d@@MEAAX_N@Z
+                         E12 ?getOpacity@CCNodeRGBA@cocos2d@@UEAAEXZ
+                         D74 ?getDisplayedOpacity@CCNodeRGBA@cocos2d@@UEAAEXZ
+                        104E ?isCascadeOpacityEnabled@CCNodeRGBA@cocos2d@@UEAA_NXZ
+                        12CD ?setCascadeOpacityEnabled@CCNodeRGBA@cocos2d@@UEAAX_N@Z
+                         D42 ?getColor@CCNodeRGBA@cocos2d@@UEAAAEBU_ccColor3B@2@XZ
+                         D71 ?getDisplayedColor@CCNodeRGBA@cocos2d@@UEAAAEBU_ccColor3B@2@XZ
+                        104B ?isCascadeColorEnabled@CCNodeRGBA@cocos2d@@UEAA_NXZ
+                        12CA ?setCascadeColorEnabled@CCNodeRGBA@cocos2d@@UEAAX_N@Z
+                         BCC ?create@CCSpriteBatchNode@cocos2d@@SAPEAV12@PEBD@Z
+                         DE0 ?getLocationInView@CCTouch@cocos2d@@QEBA?AVCCPoint@2@XZ
+                         B3E ?create@CCEaseElasticOut@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@M@Z
+                         204 ??0CCSet@cocos2d@@QEAA@XZ
+                         3D0 ??1CCSet@cocos2d@@UEAA@XZ
+                         99C ?addObject@CCSet@cocos2d@@QEAAXPEAVCCObject@2@@Z
+                         A95 ?containsObject@CCSet@cocos2d@@QEAA_NPEAVCCObject@2@@Z
+                         95D ?acceptVisitor@CCSet@cocos2d@@UEAAXAEAVCCDataVisitor@2@@Z
+                         1D4 ??0CCRect@cocos2d@@QEAA@AEBV01@@Z
+                         1D6 ??0CCRect@cocos2d@@QEAA@XZ
+                         599 ??4CCRect@cocos2d@@QEAAAEAV01@AEBV01@@Z
+                         A96 ?containsPoint@CCRect@cocos2d@@QEBA_NAEBVCCPoint@2@@Z
+                        10A1 ?lastObject@CCArray@cocos2d@@QEAAPEAVCCObject@2@XZ
+                        1035 ?insertObject@CCArray@cocos2d@@QEAAXPEAVCCObject@2@I@Z
+                        11C8 ?removeLastObject@CCArray@cocos2d@@QEAAX_N@Z
+                        11CA ?removeObject@CCArray@cocos2d@@QEAAXPEAVCCObject@2@_N@Z
+                         D35 ?getClaimedTouches@CCTargetedTouchHandler@cocos2d@@QEAAPEAVCCSet@2@XZ
+                        151F ?stopActionByTag@CCNode@cocos2d@@QEAAXH@Z
+                        126F ?schedule@CCNode@cocos2d@@QEAAXP8CCObject@2@EAAXM@ZM@Z
+                         A9D ?convertToGL@CCDirector@cocos2d@@QEAA?AVCCPoint@2@AEBV32@@Z
+                         1BD ??0CCPoint@cocos2d@@QEAA@AEBV01@@Z
+                         1C0 ??0CCPoint@cocos2d@@QEAA@XZ
+                         58B ??4CCPoint@cocos2d@@QEAAAEAV01@AEBV01@@Z
+                         B8E ?create@CCMoveTo@cocos2d@@SAPEAV12@MAEBVCCPoint@2@@Z
+                         CCF ?findHandler@CCTouchDispatcher@cocos2d@@QEAAPEAVCCTouchHandler@2@PEAVCCTouchDelegate@2@@Z
+                         9A2 ?addPrioTargetedDelegate@CCTouchDispatcher@cocos2d@@QEAAXPEAVCCTouchDelegate@2@H_N@Z
+                        14AD ?sharedApplication@CCApplication@cocos2d@@SAPEAV12@XZ
+                         15E ??0CCLayer@cocos2d@@QEAA@XZ
+                         38D ??1CCLayer@cocos2d@@UEAA@XZ
+                         F4E ?init@CCLayer@cocos2d@@UEAA_NXZ
+                         A15 ?ccDrawLine@cocos2d@@YAXAEBVCCPoint@1@0@Z
+                         A0F ?ccDrawColor4B@cocos2d@@YAXEEEE@Z
+                         BC9 ?create@CCSprite@cocos2d@@SAPEAV12@PEBD@Z
+                         B77 ?create@CCMenu@cocos2d@@SAPEAV12@PEAVCCMenuItem@2@ZZ
+                        109C ?keyUp@CCKeyboardDelegate@cocos2d@@UEAAXW4enumKeyCodes@2@N@Z
+                        1248 ?rightKeyDown@CCMouseDelegate@cocos2d@@UEAAXXZ
+                        1249 ?rightKeyUp@CCMouseDelegate@cocos2d@@UEAAXXZ
+                        1279 ?scrollWheel@CCMouseDelegate@cocos2d@@UEAAXMM@Z
+                         ED4 ?getTextureRect@CCSprite@cocos2d@@QEAAAEBVCCRect@2@XZ
+                        13B5 ?setPreviousPriority@CCLayer@cocos2d@@UEAAXH@Z
+                         E3B ?getPreviousPriority@CCLayer@cocos2d@@UEAAHXZ
+                        1391 ?setOpacityModifyRGB@CCLayerRGBA@cocos2d@@UEAAX_N@Z
+                        1071 ?isOpacityModifyRGB@CCLayerRGBA@cocos2d@@UEAA_NXZ
+                        10E1 ?onEnter@CCLayer@cocos2d@@UEAAXXZ
+                        10FB ?onExit@CCLayer@cocos2d@@UEAAXXZ
+                        10F7 ?onEnterTransitionDidFinish@CCLayer@cocos2d@@UEAAXXZ
+                         A43 ?ccTouchBegan@CCLayer@cocos2d@@UEAA_NPEAVCCTouch@2@PEAVCCEvent@2@@Z
+                         A4F ?ccTouchMoved@CCLayer@cocos2d@@UEAAXPEAVCCTouch@2@PEAVCCEvent@2@@Z
+                         A4B ?ccTouchEnded@CCLayer@cocos2d@@UEAAXPEAVCCTouch@2@PEAVCCEvent@2@@Z
+                         A47 ?ccTouchCancelled@CCLayer@cocos2d@@UEAAXPEAVCCTouch@2@PEAVCCEvent@2@@Z
+                         A53 ?ccTouchesBegan@CCLayer@cocos2d@@UEAAXPEAVCCSet@2@PEAVCCEvent@2@@Z
+                         A5C ?ccTouchesMoved@CCLayer@cocos2d@@UEAAXPEAVCCSet@2@PEAVCCEvent@2@@Z
+                         A59 ?ccTouchesEnded@CCLayer@cocos2d@@UEAAXPEAVCCSet@2@PEAVCCEvent@2@@Z
+                         A56 ?ccTouchesCancelled@CCLayer@cocos2d@@UEAAXPEAVCCSet@2@PEAVCCEvent@2@@Z
+                         C67 ?didAccelerate@CCLayer@cocos2d@@UEAAXPEAVCCAcceleration@2@@Z
+                        1188 ?registerWithTouchDispatcher@CCLayer@cocos2d@@UEAAXXZ
+                        1187 ?registerScriptTouchHandler@CCLayer@cocos2d@@UEAAXH_NH0@Z
+                        156E ?unregisterScriptTouchHandler@CCLayer@cocos2d@@UEAAXXZ
+                        1088 ?isTouchEnabled@CCLayer@cocos2d@@UEAA_NXZ
+                        1467 ?setTouchEnabled@CCLayer@cocos2d@@UEAAX_N@Z
+                        1469 ?setTouchMode@CCLayer@cocos2d@@UEAAXW4ccTouchesMode@2@@Z
+                         EE5 ?getTouchMode@CCLayer@cocos2d@@UEAAHXZ
+                        146A ?setTouchPriority@CCLayer@cocos2d@@UEAAXH@Z
+                         EE6 ?getTouchPriority@CCLayer@cocos2d@@UEAAHXZ
+                        1042 ?isAccelerometerEnabled@CCLayer@cocos2d@@UEAA_NXZ
+                        1285 ?setAccelerometerEnabled@CCLayer@cocos2d@@UEAAX_N@Z
+                        1287 ?setAccelerometerInterval@CCLayer@cocos2d@@UEAAXN@Z
+                        106C ?isKeypadEnabled@CCLayer@cocos2d@@UEAA_NXZ
+                        135B ?setKeypadEnabled@CCLayer@cocos2d@@UEAAX_N@Z
+                        106B ?isKeyboardEnabled@CCLayer@cocos2d@@UEAA_NXZ
+                        1359 ?setKeyboardEnabled@CCLayer@cocos2d@@UEAAX_N@Z
+                        106D ?isMouseEnabled@CCLayer@cocos2d@@UEAA_NXZ
+                        1371 ?setMouseEnabled@CCLayer@cocos2d@@UEAAX_N@Z
+                        1096 ?keyBackClicked@CCLayer@cocos2d@@UEAAXXZ
+                        109A ?keyMenuClicked@CCLayer@cocos2d@@UEAAXXZ
+                        1098 ?keyDown@CCLayer@cocos2d@@UEAAXW4enumKeyCodes@2@N@Z
+                         E10 ?getOpacity@CCLayerRGBA@cocos2d@@UEAAEXZ
+                         D73 ?getDisplayedOpacity@CCLayerRGBA@cocos2d@@UEAAEXZ
+                        1610 ?updateDisplayedOpacity@CCLayerRGBA@cocos2d@@UEAAXE@Z
+                        104D ?isCascadeOpacityEnabled@CCLayerRGBA@cocos2d@@UEAA_NXZ
+                        12CC ?setCascadeOpacityEnabled@CCLayerRGBA@cocos2d@@UEAAX_N@Z
+                         D41 ?getColor@CCLayerRGBA@cocos2d@@UEAAAEBU_ccColor3B@2@XZ
+                         D70 ?getDisplayedColor@CCLayerRGBA@cocos2d@@UEAAAEBU_ccColor3B@2@XZ
+                        160C ?updateDisplayedColor@CCLayerRGBA@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                        104A ?isCascadeColorEnabled@CCLayerRGBA@cocos2d@@UEAA_NXZ
+                        12C9 ?setCascadeColorEnabled@CCLayerRGBA@cocos2d@@UEAAX_N@Z
+                        1328 ?setFlipX@CCSprite@cocos2d@@QEAAX_N@Z
+                         160 ??0CCLayerColor@cocos2d@@QEAA@XZ
+                         38E ??1CCLayerColor@cocos2d@@UEAA@XZ
+                         C80 ?draw@CCLayerColor@cocos2d@@UEAAXXZ
+                        12E0 ?setContentSize@CCLayerColor@cocos2d@@UEAAXAEBVCCSize@2@@Z
+                         F4F ?init@CCLayerColor@cocos2d@@UEAA_NXZ
+                         F8C ?initWithColor@CCLayerColor@cocos2d@@UEAA_NAEBU_ccColor4B@2@@Z
+                         F8D ?initWithColor@CCLayerColor@cocos2d@@UEAA_NAEBU_ccColor4B@2@MM@Z
+                         D1E ?getBlendFunc@CCLayerColor@cocos2d@@UEAA?AU_ccBlendFunc@2@XZ
+                        12B9 ?setBlendFunc@CCLayerColor@cocos2d@@UEAAXU_ccBlendFunc@2@@Z
+                        12D7 ?setColor@CCLayerColor@cocos2d@@UEAAXAEBU_ccColor3B@2@@Z
+                        1388 ?setOpacity@CCLayerColor@cocos2d@@UEAAXE@Z
+                        1602 ?updateColor@CCLayerColor@cocos2d@@MEAAXXZ
+                         B8D ?create@CCMoveBy@cocos2d@@SAPEAV12@MAEBVCCPoint@2@@Z
+                         B43 ?create@CCEaseInOut@cocos2d@@SAPEAV12@PEAVCCActionInterval@2@M@Z
+                         B1E ?create@CCCallFunc@cocos2d@@SAPEAV12@PEAVCCObject@2@P832@EAAXXZ@Z
+                         BBB ?create@CCSequence@cocos2d@@SAPEAV12@PEAVCCFiniteTimeAction@2@ZZ
+                         C2C ?createWithSpriteFrameName@CCSprite@cocos2d@@SAPEAV12@PEBD@Z
+                         F54 ?init@CCNode@cocos2d@@UEAA_NXZ
+                        124D ?runAction@CCNode@cocos2d@@QEAAPEAVCCAction@2@PEAV32@@Z
+                         B62 ?create@CCLabelBMFont@cocos2d@@SAPEAV12@PEBD0@Z
+                         B2B ?create@CCDelayTime@cocos2d@@SAPEAV12@M@Z
+                         B6D ?create@CCLayerColor@cocos2d@@SAPEAV12@AEBU_ccColor4B@2@MM@Z
+                         F09 ?getWinSize@CCDirector@cocos2d@@QEAA?AVCCSize@2@XZ
+                        14B0 ?sharedDirector@CCDirector@cocos2d@@SAPEAV12@XZ
+                         661 ??HCCPoint@cocos2d@@QEBA?AV01@AEBV01@@Z
+                        15D2 ?update@CCObject@cocos2d@@UEAAXM@Z
+                         C1D ?createWithContentsOfFile@CCString@cocos2d@@SAPEAV12@PEBD@Z
+                         197 ??0CCObject@cocos2d@@QEAA@XZ
+                         3A5 ??1CCObject@cocos2d@@UEAA@XZ
+                         9DA ?autorelease@CCObject@cocos2d@@QEAAPEAV12@XZ
+                        11CE ?removeObjectAtIndex@CCArray@cocos2d@@QEAAXI_N@Z
+                        11FF ?resumeSchedulerAndActions@CCNode@cocos2d@@QEAAXXZ
+                         315 ??1?$BasicWriter@D@fmt@@QEAA@XZ
+                         654 ??6?$BasicWriter@D@fmt@@QEAAAEAV01@V?$BasicStringRef@D@1@@Z
+                         652 ??6?$BasicWriter@D@fmt@@QEAAAEAV01@H@Z
+                         9F2 ?c_str@?$BasicWriter@D@fmt@@QEBAPEBDXZ
+                           B ??0?$BasicWriter@D@fmt@@QEAA@XZ
+                        12F4 ?setDictForKey@DS_Dictionary@@QEAAXPEBDPEAVCCDictionary@cocos2d@@@Z
+                         D6A ?getDictForKey@DS_Dictionary@@QEAAPEAVCCDictionary@cocos2d@@PEBD_N@Z
+                        103D ?intValue@CCString@cocos2d@@QEBAHXZ
+                         CD1 ?floatValue@CCString@cocos2d@@QEBAMXZ
+                         D2C ?getCString@CCString@cocos2d@@QEBAPEBDXZ
+                         BD1 ?create@CCString@cocos2d@@SAPEAV12@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         C23 ?createWithFormat@CCString@cocos2d@@SAPEAV12@PEBDZZ
+                         9C6 ?allKeys@CCDictionary@cocos2d@@QEAAPEAVCCArray@2@XZ
+                        10D9 ?objectForKey@CCDictionary@cocos2d@@QEAAPEAVCCObject@2@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                        1637 ?valueForKey@CCDictionary@cocos2d@@QEAAPEBVCCString@2@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                        137C ?setObject@CCDictionary@cocos2d@@QEAAXPEAVCCObject@2@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                        11D1 ?removeObjectForKey@CCDictionary@cocos2d@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                        11A7 ?removeAllObjects@CCDictionary@cocos2d@@QEAAXXZ
+                         B2C ?create@CCDictionary@cocos2d@@SAPEAV12@XZ
+                        118A ?release@CCObject@cocos2d@@QEAAXXZ
+                        1206 ?retain@CCObject@cocos2d@@QEAAXXZ
+                        1060 ?isEqual@CCObject@cocos2d@@UEAA_NPEBV12@@Z
+                         95C ?acceptVisitor@CCObject@cocos2d@@UEAAXAEAVCCDataVisitor@2@@Z
+                         CAB ?encodeWithCoder@CCObject@cocos2d@@UEAAXPEAVDS_Dictionary@@@Z
+                         A03 ?canEncode@CCObject@cocos2d@@UEAA_NXZ
+                         EBE ?getTag@CCObject@cocos2d@@UEBAHXZ
+                        143A ?setTag@CCObject@cocos2d@@UEAAXH@Z
+                         1D5 ??0CCRect@cocos2d@@QEAA@MMMM@Z
+                         216 ??0CCSize@cocos2d@@QEAA@MM@Z
+                         B16 ?create@CCArray@cocos2d@@SAPEAV12@XZ
+                         B06 ?count@CCArray@cocos2d@@QEBAIXZ
+                        10D8 ?objectAtIndex@CCArray@cocos2d@@QEAAPEAVCCObject@2@I@Z
+                         999 ?addObject@CCArray@cocos2d@@QEAAXPEAVCCObject@2@@Z
+                        1528 ?stringAtIndex@CCArray@cocos2d@@QEAAPEAVCCString@2@I@Z
+                         18F ??0CCNode@cocos2d@@QEAA@XZ
+                         3A1 ??1CCNode@cocos2d@@UEAA@XZ
+                        14A0 ?setZOrder@CCNode@cocos2d@@UEAAXH@Z
+                         953 ?_setZOrder@CCNode@cocos2d@@UEAAXH@Z
+                         F15 ?getZOrder@CCNode@cocos2d@@UEAAHXZ
+                        1490 ?setVertexZ@CCNode@cocos2d@@UEAAXM@Z
+                         EFD ?getVertexZ@CCNode@cocos2d@@UEAAMXZ
+                        13E9 ?setScaleX@CCNode@cocos2d@@UEAAXM@Z
+                         E65 ?getScaleX@CCNode@cocos2d@@UEAAMXZ
+                        13ED ?setScaleY@CCNode@cocos2d@@UEAAXM@Z
+                         E67 ?getScaleY@CCNode@cocos2d@@UEAAMXZ
+                        13E5 ?setScale@CCNode@cocos2d@@UEAAXMM@Z
+                        13E4 ?setScale@CCNode@cocos2d@@UEAAXM@Z
+                         E63 ?getScale@CCNode@cocos2d@@UEAAMXZ
+                        13AD ?setPosition@CCNode@cocos2d@@UEAAXMM@Z
+                        13AC ?setPosition@CCNode@cocos2d@@UEAAXAEBVCCPoint@2@@Z
+                         E32 ?getPosition@CCNode@cocos2d@@UEAAXPEAM0@Z
+                         E31 ?getPosition@CCNode@cocos2d@@UEAAAEBVCCPoint@2@XZ
+                        13B3 ?setPositionX@CCNode@cocos2d@@UEAAXM@Z
+                         E37 ?getPositionX@CCNode@cocos2d@@UEAAMXZ
+                        13B4 ?setPositionY@CCNode@cocos2d@@UEAAXM@Z
+                         E38 ?getPositionY@CCNode@cocos2d@@UEAAMXZ
+                        1402 ?setSkewX@CCNode@cocos2d@@UEAAXM@Z
+                         E8E ?getSkewX@CCNode@cocos2d@@UEAAMXZ
+                        1404 ?setSkewY@CCNode@cocos2d@@UEAAXM@Z
+                         E8F ?getSkewY@CCNode@cocos2d@@UEAAMXZ
+                        12A1 ?setAnchorPoint@CCNode@cocos2d@@UEAAXAEBVCCPoint@2@@Z
+                         D08 ?getAnchorPoint@CCNode@cocos2d@@UEAAAEBVCCPoint@2@XZ
+                         D09 ?getAnchorPointInPoints@CCNode@cocos2d@@UEAAAEBVCCPoint@2@XZ
+                        12E1 ?setContentSize@CCNode@cocos2d@@UEAAXAEBVCCSize@2@@Z
+                         D49 ?getContentSize@CCNode@cocos2d@@UEBAAEBVCCSize@2@XZ
+                         E68 ?getScaledContentSize@CCNode@cocos2d@@UEAA?AVCCSize@2@XZ
+                        1498 ?setVisible@CCNode@cocos2d@@UEAAX_N@Z
+                        108A ?isVisible@CCNode@cocos2d@@UEAA_NXZ
+                        13DB ?setRotation@CCNode@cocos2d@@UEAAXM@Z
+                         E5E ?getRotation@CCNode@cocos2d@@UEAAMXZ
+                        13DF ?setRotationX@CCNode@cocos2d@@UEAAXM@Z
+                         E60 ?getRotationX@CCNode@cocos2d@@UEAAMXZ
+                        13E1 ?setRotationY@CCNode@cocos2d@@UEAAXM@Z
+                         E61 ?getRotationY@CCNode@cocos2d@@UEAAMXZ
+                        1398 ?setOrderOfArrival@CCNode@cocos2d@@UEAAXI@Z
+                         E17 ?getOrderOfArrival@CCNode@cocos2d@@UEAAIXZ
+                        1344 ?setGLServerState@CCNode@cocos2d@@UEAAXW4ccGLServerState@2@@Z
+                         DB0 ?getGLServerState@CCNode@cocos2d@@UEAA?AW4ccGLServerState@2@XZ
+                         F36 ?ignoreAnchorPointForPosition@CCNode@cocos2d@@UEAAX_N@Z
+                        1069 ?isIgnoreAnchorPointForPosition@CCNode@cocos2d@@UEAA_NXZ
+                         97E ?addChild@CCNode@cocos2d@@UEAAXPEAV12@HH@Z
+                         97D ?addChild@CCNode@cocos2d@@UEAAXPEAV12@H@Z
+                         97C ?addChild@CCNode@cocos2d@@UEAAXPEAV12@@Z
+                         D32 ?getChildByTag@CCNode@cocos2d@@UEAAPEAV12@H@Z
+                         D33 ?getChildren@CCNode@cocos2d@@UEAAPEAVCCArray@2@XZ
+                         D34 ?getChildrenCount@CCNode@cocos2d@@UEBAIXZ
+                        13A0 ?setParent@CCNode@cocos2d@@UEAAXPEAV12@@Z
+                         E1F ?getParent@CCNode@cocos2d@@UEAAPEAV12@XZ
+                        11C2 ?removeFromParent@CCNode@cocos2d@@UEAAXXZ
+                        11C3 ?removeFromParentAndCleanup@CCNode@cocos2d@@UEAAX_N@Z
+                        11C9 ?removeMeAndCleanup@CCNode@cocos2d@@UEAAXXZ
+                        11B0 ?removeChild@CCNode@cocos2d@@UEAAXPEAV12@_N@Z
+                        11AF ?removeChild@CCNode@cocos2d@@UEAAXPEAV12@@Z
+                        11B9 ?removeChildByTag@CCNode@cocos2d@@UEAAXH_N@Z
+                        11B8 ?removeChildByTag@CCNode@cocos2d@@UEAAXH@Z
+                        119D ?removeAllChildren@CCNode@cocos2d@@UEAAXXZ
+                        119E ?removeAllChildrenWithCleanup@CCNode@cocos2d@@UEAAX_N@Z
+                        11EB ?reorderChild@CCNode@cocos2d@@UEAAXPEAV12@H@Z
+                        14D3 ?sortAllChildren@CCNode@cocos2d@@UEAAXXZ
+                         DB5 ?getGrid@CCNode@cocos2d@@UEAAPEAVCCGridBase@2@XZ
+                        1346 ?setGrid@CCNode@cocos2d@@UEAAXPEAVCCGridBase@2@@Z
+                         EF2 ?getUserData@CCNode@cocos2d@@UEAAPEAXXZ
+                        1481 ?setUserData@CCNode@cocos2d@@UEAAXPEAX@Z
+                         EF4 ?getUserObject@CCNode@cocos2d@@UEAAPEAVCCObject@2@XZ
+                        1483 ?setUserObject@CCNode@cocos2d@@UEAAXPEAVCCObject@2@@Z
+                         E88 ?getShaderProgram@CCNode@cocos2d@@UEAAPEAVCCGLProgram@2@XZ
+                        13FD ?setShaderProgram@CCNode@cocos2d@@UEAAXPEAVCCGLProgram@2@@Z
+                         D2D ?getCamera@CCNode@cocos2d@@UEAAPEAVCCCamera@2@XZ
+                        107D ?isRunning@CCNode@cocos2d@@UEAA_NXZ
+                        1183 ?registerScriptHandler@CCNode@cocos2d@@UEAAXH@Z
+                        156A ?unregisterScriptHandler@CCNode@cocos2d@@UEAAXXZ
+                        10E2 ?onEnter@CCNode@cocos2d@@UEAAXXZ
+                        10F8 ?onEnterTransitionDidFinish@CCNode@cocos2d@@UEAAXXZ
+                        10FD ?onExit@CCNode@cocos2d@@UEAAXXZ
+                        1103 ?onExitTransitionDidStart@CCNode@cocos2d@@UEAAXXZ
+                         A87 ?cleanup@CCNode@cocos2d@@UEAAXXZ
+                         C82 ?draw@CCNode@cocos2d@@UEAAXXZ
+                        164A ?visit@CCNode@cocos2d@@UEAAXXZ
+                        1289 ?setActionManager@CCNode@cocos2d@@UEAAXPEAVCCActionManager@2@@Z
+                         CF4 ?getActionManager@CCNode@cocos2d@@UEAAPEAVCCActionManager@2@XZ
+                        13F3 ?setScheduler@CCNode@cocos2d@@UEAAXPEAVCCScheduler@2@@Z
+                         E6C ?getScheduler@CCNode@cocos2d@@UEAAPEAVCCScheduler@2@XZ
+                        15D1 ?update@CCNode@cocos2d@@UEAAXM@Z
+                        1629 ?updateTransform@CCNode@cocos2d@@UEAAXXZ
+                        10D1 ?nodeToParentTransform@CCNode@cocos2d@@UEAA?BUCCAffineTransform@2@XZ
+                        10D2 ?nodeToParentTransformFast@CCNode@cocos2d@@UEAA?BUCCAffineTransform@2@XZ
+                        111C ?parentToNodeTransform@CCNode@cocos2d@@UEAA?BUCCAffineTransform@2@XZ
+                        10D3 ?nodeToWorldTransform@CCNode@cocos2d@@UEAA?AUCCAffineTransform@2@XZ
+                        10D4 ?nodeToWorldTransformFast@CCNode@cocos2d@@UEAA?AUCCAffineTransform@2@XZ
+                        10B7 ?loadRootSubDictFromCompressedFile@DS_Dictionary@@QEAA_NPEBD@Z
+
+    OPENGL32.dll
+             1405151D0 Import Address Table
+             1406AA5F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          46 glDisable
+                          4F glEnable
+                          A2 glLineWidth
+                          48 glDrawArrays
+
+    glew32.dll
+             140515730 Import Address Table
+             1406AAB58 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         80A __glewGetUniformLocation
+                         E02 __glewVertexAttribPointer
+
+    steam_api64.dll
+             140517128 Import Address Table
+             1406AC550 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         3B5 SteamAPI_RegisterCallback
+                         434 SteamInternal_SteamAPI_Init
+                         3B8 SteamAPI_RunCallbacks
+                         3BC SteamAPI_Shutdown
+                         42F SteamInternal_ContextInit
+                         414 SteamAPI_UnregisterCallback
+                           3 SteamAPI_GetHSteamUser
+                         432 SteamInternal_FindOrCreateUserInterface
+
+    fmod.dll
+             140515518 Import Address Table
+             1406AA940 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          C4 ?lockDSP@System@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                         142 ?unlockDSP@System@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                           9 ?createChannelGroup@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEBDPEAPEAVChannelGroup@2@@Z
+                           D ?createDSPByType@System@FMOD@@QEAA?AW4FMOD_RESULT@@W4FMOD_DSP_TYPE@@PEAPEAVDSP@2@@Z
+                         431 FMOD_System_LockDSP
+                         31E FMOD_Channel_GetFadePoints
+                         452 FMOD_System_UnlockDSP
+                          C8 ?playSound@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEAVSound@2@PEAVChannelGroup@2@_NPEAPEAVChannel@2@@Z
+                         3FA FMOD_System_Create
+                          14 ?createStream@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEBDIPEAUFMOD_CREATESOUNDEXINFO@@PEAPEAVSound@2@@Z
+                          12 ?createSound@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEBDIPEAUFMOD_CREATESOUNDEXINFO@@PEAPEAVSound@2@@Z
+                          31 ?getCPUUsage@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEAUFMOD_CPU_USAGE@@@Z
+                          B8 ?getVersion@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEAI@Z
+                          C5 ?mixerResume@System@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                          C6 ?mixerSuspend@System@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                          A2 ?getStreamBufferSize@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEAI0@Z
+                         143 ?update@System@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                           8 ?close@System@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                          BD ?init@System@FMOD@@QEAA?AW4FMOD_RESULT@@HIPEAX@Z
+                          39 ?getDSPBufferSize@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEAIPEAH@Z
+                          F7 ?setDSPBufferSize@System@FMOD@@QEAA?AW4FMOD_RESULT@@IH@Z
+                          9D ?getSoftwareFormat@System@FMOD@@QEAA?AW4FMOD_RESULT@@PEAHPEAW4FMOD_SPEAKERMODE@@0@Z
+                         12B ?setSoftwareFormat@System@FMOD@@QEAA?AW4FMOD_RESULT@@HW4FMOD_SPEAKERMODE@@H@Z
+                         31B FMOD_Channel_GetDSPClock
+                         31D FMOD_Channel_GetDelay
+                         389 FMOD_Debug_Initialize
+                         3A0 FMOD_Memory_GetStats
+                         334 FMOD_Channel_RemoveFadePoints
+                         122 ?setPosition@Channel@FMOD@@QEAA?AW4FMOD_RESULT@@II@Z
+                          91 ?getPosition@Channel@FMOD@@QEAA?AW4FMOD_RESULT@@PEAII@Z
+                         101 ?setLoopCount@Channel@FMOD@@QEAA?AW4FMOD_RESULT@@H@Z
+                         103 ?setLoopPoints@Channel@FMOD@@QEAA?AW4FMOD_RESULT@@IIII@Z
+                          54 ?getLoopPoints@Channel@FMOD@@QEAA?AW4FMOD_RESULT@@PEAII0I@Z
+                          37 ?getCurrentSound@Channel@FMOD@@QEAA?AW4FMOD_RESULT@@PEAPEAVSound@2@@Z
+                          CF ?release@ChannelGroup@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                           2 ?addGroup@ChannelGroup@FMOD@@QEAA?AW4FMOD_RESULT@@PEAV12@_NPEAPEAVDSPConnection@2@@Z
+                          6E ?getNumChannels@ChannelGroup@FMOD@@QEAA?AW4FMOD_RESULT@@PEAH@Z
+                          32 ?getChannel@ChannelGroup@FMOD@@QEAA?AW4FMOD_RESULT@@HPEAPEAVChannel@2@@Z
+                          D0 ?release@DSP@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                         11B ?setParameterFloat@DSP@FMOD@@QEAA?AW4FMOD_RESULT@@HM@Z
+                         119 ?setParameterBool@DSP@FMOD@@QEAA?AW4FMOD_RESULT@@H_N@Z
+                         108 ?setMeteringEnabled@DSP@FMOD@@QEAA?AW4FMOD_RESULT@@_N0@Z
+                          5D ?getMeteringInfo@DSP@FMOD@@QEAA?AW4FMOD_RESULT@@PEAUFMOD_DSP_METERING_INFO@@0@Z
+                         13E ?stop@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                         11D ?setPaused@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@_N@Z
+                          8A ?getPaused@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@PEA_N@Z
+                         139 ?setVolume@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@M@Z
+                          B9 ?getVolume@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@PEAM@Z
+                         13B ?setVolumeRamp@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@_N@Z
+                         11E ?setPitch@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@M@Z
+                          8B ?getPitch@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@PEAM@Z
+                          F2 ?setCallback@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@P6A?AW43@PEAUFMOD_CHANNELCONTROL@@W4FMOD_CHANNELCONTROL_TYPE@@W4FMOD_CHANNELCONTROL_CALLBACK_TYPE@@PEAX3@Z@Z
+                          3A ?getDSPClock@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@PEA_K0@Z
+                          FA ?setDelay@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@_K0_N@Z
+                           1 ?addFadePoint@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@_KM@Z
+                          38 ?getDSP@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@HPEAPEAVDSP@2@@Z
+                           0 ?addDSP@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@HPEAVDSP@2@@Z
+                          D6 ?removeDSP@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@PEAVDSP@2@@Z
+                          6F ?getNumDSPs@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@PEAH@Z
+                         12F ?setUserData@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@PEAX@Z
+                          AE ?getUserData@ChannelControl@FMOD@@QEAA?AW4FMOD_RESULT@@PEAPEAX@Z
+                          D3 ?release@Sound@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+                          51 ?getLength@Sound@FMOD@@QEAA?AW4FMOD_RESULT@@PEAII@Z
+                          7D ?getOpenState@Sound@FMOD@@QEAA?AW4FMOD_RESULT@@PEAW4FMOD_OPENSTATE@@PEAIPEA_N2@Z
+                         102 ?setLoopCount@Sound@FMOD@@QEAA?AW4FMOD_RESULT@@H@Z
+                          D5 ?release@System@FMOD@@QEAA?AW4FMOD_RESULT@@XZ
+
+    KERNEL32.dll
+             140515028 Import Address Table
+             1406AA450 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         232 GetCurrentProcess
+                         3ED LocalAlloc
+                         27D GetLastError
+                         236 GetCurrentThread
+                         354 GlobalAlloc
+                          94 CloseHandle
+                         5C4 TerminateProcess
+                         3F2 LocalFree
+                         366 GlobalUnlock
+                         471 QueryPerformanceFrequency
+                         470 QueryPerformanceCounter
+                         1F1 GetCommandLineW
+                         3A8 IsProcessorFeaturePresent
+                         5A4 SetUnhandledExceptionFilter
+                         5E6 UnhandledExceptionFilter
+                         504 RtlVirtualUnwind
+                         35F GlobalLock
+                         4F5 RtlCaptureContext
+                         3A0 IsDebuggerPresent
+                         2F1 GetStartupInfoW
+                         295 GetModuleHandleW
+                         233 GetCurrentProcessId
+                         237 GetCurrentThreadId
+                         30A GetSystemTimeAsFileTime
+                         38A InitializeSListHead
+                         4FD RtlLookupFunctionEntry
+
+    USER32.dll
+             140515208 Import Address Table
+             1406AA630 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         29C OpenClipboard
+                          4F CloseClipboard
+                         328 SetClipboardData
+                          E8 EmptyClipboard
+
+    ADVAPI32.dll
+             140515000 Import Address Table
+             1406AA428 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         20B OpenProcessToken
+                         210 OpenThreadToken
+                         15B GetTokenInformation
+                          7A ConvertSidToStringSidA
+
+    SHELL32.dll
+             1405151F8 Import Address Table
+             1406AA620 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           9 CommandLineToArgvW
+
+    MSVCP140.dll
+             140515100 Import Address Table
+             1406AA528 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         4C5 ?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z
+                         28B ?_Xbad_alloc@std@@YAXXZ
+                         219 ?_Ipfx@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA_N_N@Z
+                         4D8 ?snextc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHXZ
+                         495 ?sbumpc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHXZ
+                         4CF ?sgetc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHXZ
+                          2F ??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                         28F ?_Xout_of_range@std@@YAXPEBD@Z
+                         28E ?_Xlength_error@std@@YAXPEBD@Z
+                           C ??0?$basic_ios@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                          13 ??0?$basic_iostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@@Z
+                          89 ??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         228 ?_Lock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                         27F ?_Unlock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                         4D5 ?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JXZ
+                         51B ?uflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         543 ?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEAD_J@Z
+                         546 ?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEBD_J@Z
+                         4B5 ?setbuf@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAPEAV12@PEAD_J@Z
+                         4FD ?sync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         3F6 ?imbue@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAXAEBVlocale@2@@Z
+                          7D ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                          80 ??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         132 ??Bios_base@std@@QEBA_NXZ
+                         5CC _Xtime_get_ticks
+
+    VCRUNTIME140_1.dll
+             1405152A8 Import Address Table
+             1406AA6D0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    VCRUNTIME140.dll
+             140515230 Import Address Table
+             1406AA658 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          36 _purecall
+                           8 __C_specific_handler
+                          1B __current_exception
+                          21 __std_exception_copy
+                          1C __current_exception_context
+                           1 _CxxThrowException
+                          22 __std_exception_destroy
+                          3E memset
+                          3D memmove
+                          18 __RTDynamicCast
+                          3A memchr
+                          23 __std_terminate
+                          3B memcmp
+                          3C memcpy
+
+    api-ms-win-crt-utility-l1-1-0.dll
+             1405154F8 Import Address Table
+             1406AA920 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1D srand
+                          19 qsort
+                          1B rand
+
+    api-ms-win-crt-runtime-l1-1-0.dll
+             1405153E0 Import Address Table
+             1406AA808 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          55 exit
+                          23 _exit
+                          36 _initterm
+                          15 _c_exit
+                          3D _register_thread_local_exe_atexit_callback
+                          2F _get_wide_winmain_command_line
+                          35 _initialize_wide_environment
+                          19 _configure_wide_argv
+                          42 _set_app_type
+                          40 _seh_filter_exe
+                          67 terminate
+                          37 _initterm_e
+                          39 _invalid_parameter_noinfo_noreturn
+                          1E _crt_atexit
+                          34 _initialize_onexit_table
+                          3C _register_onexit_function
+                          16 _cexit
+
+    api-ms-win-crt-string-l1-1-0.dll
+             1405154A8 Import Address Table
+             1406AA8D0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          68 isdigit
+                          97 tolower
+                          98 toupper
+                          94 strtok
+
+    api-ms-win-crt-convert-l1-1-0.dll
+             1405152B8 Import Address Table
+             1406AA6E0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          50 atoi
+                          4F atof
+
+    api-ms-win-crt-time-l1-1-0.dll
+             1405154D0 Import Address Table
+             1406AA8F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          11 _difftime64
+                          14 _ftime64
+                          30 _time64
+                          45 clock
+
+    api-ms-win-crt-math-l1-1-0.dll
+             140515318 Import Address Table
+             1406AA740 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          BE floor
+                          C9 fmod
+                          CA fmodf
+                          FF powf
+                          52 asinhf
+                         10A roundf
+                         113 sinf
+                          C3 fmax
+                          C6 fmin
+                         117 sqrtf
+                          4B acosf
+                          55 atan2
+                         119 tanf
+                          BF floorf
+                         11B tanhf
+                         109 round
+                          56 atan2f
+                          57 atanf
+                          7C ceil
+                           9 __setusermatherr
+                          7D ceilf
+                          D7 llround
+                          30 _isnan
+                          91 cosf
+
+    api-ms-win-crt-stdio-l1-1-0.dll
+             140515470 Import Address Table
+             1406AA898 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           D __stdio_common_vsprintf
+                          74 fclose
+                           1 __p__commode
+                          54 _set_fmode
+                          8A fwrite
+                          7D fopen
+
+    api-ms-win-crt-heap-l1-1-0.dll
+             1405152E0 Import Address Table
+             1406AA708 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          18 free
+                          16 _set_new_mode
+                          19 malloc
+                           8 _callnewh
+
+    api-ms-win-crt-filesystem-l1-1-0.dll
+             1405152D0 Import Address Table
+             1406AA6F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          3F remove
+
+    api-ms-win-crt-locale-l1-1-0.dll
+             140515308 Import Address Table
+             1406AA730 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           8 _configthreadlocale
+
+  Summary
+
+        9000 .data
+       2C000 .pdata
+      1A5000 .rdata
+       27000 .reloc
+      324000 .rsrc
+      514000 .text

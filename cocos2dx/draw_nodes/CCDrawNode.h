@@ -27,6 +27,8 @@
  *
  */
 
+
+
 #ifndef __CCDRAWNODES_CCDRAW_NODE_H__
 #define __CCDRAWNODES_CCDRAW_NODE_H__
 
@@ -42,6 +44,15 @@ NS_CC_BEGIN
  @since v2.1
  @lua NA
  */
+
+// @note RobTop Addition
+// TODO: values are placeholders, reorder them later
+enum class BorderAlignment {
+    Outside = 0,
+    Center = 1,
+    Inside = 2
+};
+
 class CC_DLL CCDrawNode : public CCNodeRGBA
 {
     GEODE_FRIEND_MODIFY
@@ -84,8 +95,10 @@ public:
     bool drawDot(const CCPoint &pos, float radius, const ccColor4F &color);
     
     /** draw a segment with a radius and color */
+    bool drawSegmentEx(const CCPoint &from, const CCPoint &to, float radius, const ccColor4F &color, bool fill, bool close);
     bool drawSegment(const CCPoint &from, const CCPoint &to, float radius, const ccColor4F &color);
-    
+
+    void drawArchLikeHalfCircle(const CCPoint& p1, const CCPoint& p2, float radius, unsigned int segments, const ccColor4F& color, float width);
     /** draw a polygon with a fill color and line color 
      * @code
      * when this funciton bound to js,the input params are changed
@@ -98,8 +111,15 @@ public:
 	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
 	void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
 	bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&);
-	bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
-    bool drawRect(cocos2d::CCRect const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
+    void drawCubicBezierDashed( cocos2d::CCPoint const& origin, cocos2d::CCPoint const& control1, cocos2d::CCPoint const& control2, cocos2d::CCPoint const& destination, unsigned int segments, cocos2d::_ccColor4F const& color, float radius, unsigned int dashLength, unsigned int dashGap);
+    //TODO: add border alignment
+
+	bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, BorderAlignment);
+    bool drawRect(cocos2d::CCRect const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, BorderAlignment);
+
+
+    bool drawPolygon(cocos2d::CCPoint *verts, unsigned int count, const cocos2d::_ccColor4F &fillColor, float borderWidth, const cocos2d::_ccColor4F &borderColor, BorderAlignment borderAlignment);
+
     void disableDrawArea();
     void enableDrawArea(cocos2d::CCRect& rect);
 #else

@@ -627,4 +627,34 @@ CCMenuItem* CCMenu::itemForTouch(CCTouch *touch)
     return NULL;
 }
 
+void CCMenu::giveMenuTouchPriority()
+{
+    // If the menu is currently tracking a touch, cancel the selection
+    if (m_eState == kCCMenuStateTrackingTouch)
+    {
+        if (m_pSelectedItem)
+        {
+            m_pSelectedItem->unselected();
+            m_pSelectedItem = nullptr;
+        }
+        m_eState = kCCMenuStateWaiting;
+    }
+
+    // Temporarily disable touches while we adjust the priority
+    setTouchEnabled(false);
+
+    // Retrieve the touch dispatcher's current minimum priority.
+    // In many Cocos2d-x builds the field is at offset 0x7C inside CCTouchDispatcher.
+    CCDirector* director = CCDirector::sharedDirector();
+    CCTouchDispatcher* dispatcher = director->getTouchDispatcher();
+    int minPriority = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(dispatcher) + 0x7C);
+
+    // Set this menu's priority just above the current minimum
+    setTouchPriority(minPriority - 1);
+
+    // Re-enable touches
+    setTouchEnabled(true);
+}
+
+
 NS_CC_END

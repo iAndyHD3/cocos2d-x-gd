@@ -1111,9 +1111,9 @@ void CCDirector::setupScreenScale(CCSize someSize, CCSize pixelSize, TextureQual
 
 void CCDirector::updateScreenScale(CCSize size) {
     m_obResolutionInPixels = size;
-    ResolutionPolicy policy = kResolutionFixedWidth;
-    if (m_obScaleFactor.width / m_obResolutionInPixels.width > m_obScaleFactor.height / m_obResolutionInPixels.height) {
-        policy = kResolutionFixedHeight;
+    ResolutionPolicy policy = kResolutionFixedHeight;
+    if (m_obResolutionInPixels.height / m_obScaleFactor.height > m_obResolutionInPixels.width / m_obScaleFactor.width) {
+        policy = kResolutionFixedWidth;
     }
     m_pobOpenGLView->setDesignResolutionSize(m_obScaleFactor.width, m_obScaleFactor.height, policy);
     auto winSize = getWinSize();
@@ -1142,11 +1142,11 @@ void CCDirector::updateContentScale(TextureQuality qual) {
             scale = 4.0f;
             break;
         default:
-            if (m_obScaleFactor.width * 1.5f > m_obResolutionInPixels.width && m_obScaleFactor.height * 1.5f > m_obResolutionInPixels.height) {
+            if (m_obResolutionInPixels.height >= m_obScaleFactor.height * 3.0f || m_obResolutionInPixels.width >= m_obScaleFactor.width * 3.0f) {
                 scale = 4.f;
                 qual = kTextureQualityHigh;
             }
-            else if (m_obScaleFactor.width * 3.f > m_obResolutionInPixels.width && m_obScaleFactor.height * 3.f > m_obResolutionInPixels.height) {
+            else if (m_obResolutionInPixels.height >= m_obScaleFactor.height * 1.5f || m_obResolutionInPixels.width >= m_obScaleFactor.width * 1.5f) {
                 scale = 2.f;
                 qual = kTextureQualityMedium;
             }

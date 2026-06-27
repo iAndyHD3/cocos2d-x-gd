@@ -1172,7 +1172,7 @@ bool CCLayer::isMouseEnabled() {
 void CCLayer::setMouseEnabled(bool value) {
     m_bMouseEnabled = value;
 }
-void CCLayer::keyDown(enumKeyCodes key) {
+void CCLayer::keyDown(enumKeyCodes key, double unk) {
     if (key == KEY_Escape || key == CONTROLLER_B) {
         CCDirector::sharedDirector()->getKeypadDispatcher()->dispatchKeypadMSG(kTypeBackClicked);
     }

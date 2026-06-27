@@ -263,81 +263,174 @@ bool CCDrawNode::drawDot(const CCPoint &pos, float radius, const ccColor4F &colo
 
 bool CCDrawNode::drawSegment(const CCPoint &from, const CCPoint &to, float radius, const ccColor4F &color)
 {
+    return drawSegmentEx(from, to, radius, color, true, true);
+}
+
+bool CCDrawNode::drawSegmentEx(const CCPoint &from, const CCPoint &to, float radius, const ccColor4F &color, bool fill, bool close)
+{
     if (m_bUseArea && !is_segment_on_screen(m_rDrawArea, from, to))
         return false;
 
-    unsigned int vertex_count = 6*3;
+    // Base body is 6 vertices (2 triangles). Each cap adds 6 more.
+    unsigned int vertex_count = 6;
+    if (close) vertex_count += 6;
+    if (fill)  vertex_count += 6;
+
     ensureCapacity(vertex_count);
-	
-	ccVertex2F a = __v2f(from);
-	ccVertex2F b = __v2f(to);
-	
-	
-	ccVertex2F n = v2fnormalize(v2fperp(v2fsub(b, a)));
-	ccVertex2F t = v2fperp(n);
-	
-	ccVertex2F nw = v2fmult(n, radius);
-	ccVertex2F tw = v2fmult(t, radius);
-	ccVertex2F v0 = v2fsub(b, v2fadd(nw, tw));
-	ccVertex2F v1 = v2fadd(b, v2fsub(nw, tw));
-	ccVertex2F v2 = v2fsub(b, nw);
-	ccVertex2F v3 = v2fadd(b, nw);
-	ccVertex2F v4 = v2fsub(a, nw);
-	ccVertex2F v5 = v2fadd(a, nw);
-	ccVertex2F v6 = v2fsub(a, v2fsub(nw, tw));
-	ccVertex2F v7 = v2fadd(a, v2fadd(nw, tw));
-	
-	
-	ccV2F_C4B_T2F_Triangle *triangles = (ccV2F_C4B_T2F_Triangle *)(m_pBuffer + m_nBufferCount);
-	
-    ccV2F_C4B_T2F_Triangle triangles0 = {
-        {v0, ccc4BFromccc4F(color), __t(v2fneg(v2fadd(n, t)))},
-        {v1, ccc4BFromccc4F(color), __t(v2fsub(n, t))},
-        {v2, ccc4BFromccc4F(color), __t(v2fneg(n))},
-    };
-	triangles[0] = triangles0;
-	
-    ccV2F_C4B_T2F_Triangle triangles1 = {
-        {v3, ccc4BFromccc4F(color), __t(n)},
-        {v1, ccc4BFromccc4F(color), __t(v2fsub(n, t))},
-        {v2, ccc4BFromccc4F(color), __t(v2fneg(n))},
-    };
-	triangles[1] = triangles1;
-	
-    ccV2F_C4B_T2F_Triangle triangles2 = {
-        {v3, ccc4BFromccc4F(color), __t(n)},
-        {v4, ccc4BFromccc4F(color), __t(v2fneg(n))},
-        {v2, ccc4BFromccc4F(color), __t(v2fneg(n))},
-    };
-	triangles[2] = triangles2;
 
-    ccV2F_C4B_T2F_Triangle triangles3 = {
-        {v3, ccc4BFromccc4F(color), __t(n)},
-        {v4, ccc4BFromccc4F(color), __t(v2fneg(n))},
-        {v5, ccc4BFromccc4F(color), __t(n) },
-    };
-    triangles[3] = triangles3;
+    ccVertex2F a = __v2f(from);
+    ccVertex2F b = __v2f(to);
 
-    ccV2F_C4B_T2F_Triangle triangles4 = {
-        {v6, ccc4BFromccc4F(color), __t(v2fsub(t, n))},
-        {v4, ccc4BFromccc4F(color), __t(v2fneg(n)) },
-        {v5, ccc4BFromccc4F(color), __t(n)},
-    };
-	triangles[4] = triangles4;
+    ccVertex2F n = v2fnormalize(v2fperp(v2fsub(b, a)));
+    ccVertex2F t = v2fperp(n);
 
-    ccV2F_C4B_T2F_Triangle triangles5 = {
-        {v6, ccc4BFromccc4F(color), __t(v2fsub(t, n))},
-        {v7, ccc4BFromccc4F(color), __t(v2fadd(n, t))},
-        {v5, ccc4BFromccc4F(color), __t(n)},
-    };
-	triangles[5] = triangles5;
-	
-	m_nBufferCount += vertex_count;
-	
-	m_bDirty = true;
+    ccVertex2F nw = v2fmult(n, radius);
+    ccVertex2F tw = v2fmult(t, radius);
+    ccVertex2F v0 = v2fsub(b, v2fadd(nw, tw));
+    ccVertex2F v1 = v2fadd(b, v2fsub(nw, tw));
+    ccVertex2F v2 = v2fsub(b, nw);
+    ccVertex2F v3 = v2fadd(b, nw);
+    ccVertex2F v4 = v2fsub(a, nw);
+    ccVertex2F v5 = v2fadd(a, nw);
+    ccVertex2F v6 = v2fsub(a, v2fsub(nw, tw));
+    ccVertex2F v7 = v2fadd(a, v2fadd(nw, tw));
 
-    // TODO: implement
+    ccV2F_C4B_T2F_Triangle *triangles = (ccV2F_C4B_T2F_Triangle *)(m_pBuffer + m_nBufferCount);
+    ccColor4B c4b = ccc4BFromccc4F(color);
+    int triIndex = 0;
+
+    // Draw end cap
+    if (close)
+    {
+        triangles[triIndex++] = {
+            {v0, c4b, __t(v2fneg(v2fadd(n, t)))},
+            {v1, c4b, __t(v2fsub(n, t))},
+            {v2, c4b, __t(v2fneg(n))},
+        };
+        triangles[triIndex++] = {
+            {v3, c4b, __t(n)},
+            {v1, c4b, __t(v2fsub(n, t))},
+            {v2, c4b, __t(v2fneg(n))},
+        };
+    }
+
+    // Draw segment body
+    triangles[triIndex++] = {
+        {v3, c4b, __t(n)},
+        {v4, c4b, __t(v2fneg(n))},
+        {v2, c4b, __t(v2fneg(n))},
+    };
+    triangles[triIndex++] = {
+        {v3, c4b, __t(n)},
+        {v4, c4b, __t(v2fneg(n))},
+        {v5, c4b, __t(n)},
+    };
+
+    // Draw start cap
+    if (fill)
+    {
+        triangles[triIndex++] = {
+            {v6, c4b, __t(v2fsub(t, n))},
+            {v4, c4b, __t(v2fneg(n))},
+            {v5, c4b, __t(n)},
+        };
+        triangles[triIndex++] = {
+            {v6, c4b, __t(v2fsub(t, n))},
+            {v7, c4b, __t(v2fadd(n, t))},
+            {v5, c4b, __t(n)},
+        };
+    }
+
+    m_nBufferCount += vertex_count;
+    m_bDirty = true;
+
     return true;
+}
+
+void CCDrawNode::drawArchLikeHalfCircle(const CCPoint& p1, const CCPoint& p2, float radius, unsigned int segments, const ccColor4F& color, float width) {
+    CCPoint cp1;
+    CCPoint cp2;
+
+    CCPoint diff = p2 - p1;
+    float length = diff.getLength(); // Maps to ccpLength
+
+    // Epsilon check
+    if (length <= 0.0001f) {
+        cp1 = p1;
+        cp2 = p1;
+    } else {
+        // Normalize the direction vector
+        CCPoint dir = diff * (1.0f / length);
+        
+        // Calculate the normal perpendicular vector (-y, x)
+        CCPoint normal(-dir.y, dir.x);
+
+        // Control points are offset at 1/3 and 2/3 along the segment, then extruded by the radius
+        CCPoint offset1 = p1 + (dir * (length * 0.33333f));
+        CCPoint offset2 = p1 + (dir * (length * 0.66667f));
+
+        cp1 = offset1 + (normal * radius);
+        cp2 = offset2 + (normal * radius);
+    }
+
+    // Call the dashed cubic bezier function
+    drawCubicBezierDashed(p1, cp1, cp2, p2, segments, color, width, 1, 1);
+}
+
+void cocos2d::CCDrawNode::drawCubicBezierDashed(
+    cocos2d::CCPoint const& origin,
+    cocos2d::CCPoint const& control1,
+    cocos2d::CCPoint const& control2,
+    cocos2d::CCPoint const& destination,
+    unsigned int segments,
+    cocos2d::_ccColor4F const& color,
+    float radius,
+    unsigned int dashLength,
+    unsigned int dashGap)
+{
+    if (!segments) return;
+
+    unsigned int count = segments + 1;
+    CCPoint* points = new (std::nothrow) CCPoint[count];
+    if (!points) return;
+
+    // Compute cubic Bézier points
+    float t = 0.0f;
+    float step = 1.0f / static_cast<float>(segments);
+
+    for (unsigned int i = 0; i < segments; i++) {
+        float oneMinusT = 1.0f - t;
+        float oneMinusT2 = oneMinusT * oneMinusT;
+        float oneMinusT3 = oneMinusT2 * oneMinusT;
+        float t2 = t * t;
+        float t3 = t2 * t;
+
+        points[i].x = oneMinusT3 * origin.x
+                     + 3.0f * oneMinusT2 * t * control1.x
+                     + 3.0f * oneMinusT * t2 * control2.x
+                     + t3 * destination.x;
+        points[i].y = oneMinusT3 * origin.y
+                     + 3.0f * oneMinusT2 * t * control1.y
+                     + 3.0f * oneMinusT * t2 * control2.y
+                     + t3 * destination.y;
+
+        t += step;
+    }
+
+    // Ensure the last point is exactly the destination
+    points[segments] = destination;
+
+    // Draw dashed segments
+    unsigned int period = dashLength + dashGap;
+    if (!period) period = 1;
+
+    for (unsigned int i = 0; i < segments; i++) {
+        if (i % period < dashLength) {
+            this->drawSegmentEx(points[i], points[i + 1], radius, color, 1, 1);
+        }
+    }
+
+    delete[] points;
 }
 
 bool CCDrawNode::drawPolygon(CCPoint *verts, unsigned int count, const ccColor4F &fillColor, float borderWidth, const ccColor4F &borderColor)
@@ -449,6 +542,185 @@ bool CCDrawNode::drawPolygon(CCPoint *verts, unsigned int count, const ccColor4F
     return true;
 }
 
+struct ExtrudeVerts {
+    cocos2d::CCPoint offset;
+    cocos2d::CCPoint n;
+};
+
+bool CCDrawNode::drawPolygon(cocos2d::CCPoint *verts, unsigned int count, const cocos2d::_ccColor4F &fillColor, float borderWidth, const cocos2d::_ccColor4F &borderColor, BorderAlignment borderAlignment)
+{
+    ExtrudeVerts* extrude = (ExtrudeVerts*)malloc(sizeof(ExtrudeVerts) * count);
+    memset((void*)extrude, 0, sizeof(ExtrudeVerts) * count);
+
+    if (count > 0)
+    {
+        for (unsigned int i = 0; i < count; i++)
+        {
+            cocos2d::CCPoint v0 = verts[(i - 1 + count) % count];
+            cocos2d::CCPoint v1 = verts[i];
+            cocos2d::CCPoint v2 = verts[(i + 1) % count];
+
+            cocos2d::CCPoint n1 = cocos2d::ccpNormalize(cocos2d::ccpSub(v1, v0));
+            cocos2d::CCPoint n2 = cocos2d::ccpNormalize(cocos2d::ccpSub(v2, v1));
+
+            // Calculate perpendicular vectors
+            cocos2d::CCPoint n1_p = ccp(-n1.y, n1.x);
+            cocos2d::CCPoint n2_p = ccp(-n2.y, n2.x);
+
+            float invLength = 1.0f / (cocos2d::ccpDot(n1_p, n2_p) + 1.0f);
+            extrude[i].offset = cocos2d::ccpMult(cocos2d::ccpAdd(n1_p, n2_p), invLength);
+            extrude[i].n = n2_p;
+        }
+    }
+
+    bool outline = (borderColor.a > 0.0f && borderWidth > 0.0f);
+    unsigned int requiredVertexCount = 3 * (count - 2) + 6 * count; // Resolves to: 9 * count - 6
+
+    if (requiredVertexCount + m_nBufferCount > m_uBufferCapacity)
+    {
+        unsigned int newCapacity = m_uBufferCapacity;
+        if (newCapacity <= requiredVertexCount)
+        {
+            newCapacity = requiredVertexCount;
+        }
+        
+        m_uBufferCapacity += newCapacity;
+        m_pBuffer = (cocos2d::ccV2F_C4B_T2F*)realloc(m_pBuffer, sizeof(cocos2d::ccV2F_C4B_T2F) * m_uBufferCapacity);
+    }
+
+    cocos2d::ccV2F_C4B_T2F* buffer = &m_pBuffer[m_nBufferCount];
+    float inset = (outline == false) ? 0.5f : 0.0f;
+
+    cocos2d::ccColor4B fillC4B = {
+        (GLubyte)(fillColor.r * 255.0f),
+        (GLubyte)(fillColor.g * 255.0f),
+        (GLubyte)(fillColor.b * 255.0f),
+        (GLubyte)(fillColor.a * 255.0f)
+    };
+
+    if (count != 2)
+    {
+        for (unsigned int i = 0; i < count - 2; i++)
+        {
+            cocos2d::CCPoint v0 = cocos2d::ccpSub(verts[0], cocos2d::ccpMult(extrude[0].offset, inset));
+            cocos2d::CCPoint v1 = cocos2d::ccpSub(verts[i + 1], cocos2d::ccpMult(extrude[i + 1].offset, inset));
+            cocos2d::CCPoint v2 = cocos2d::ccpSub(verts[i + 2], cocos2d::ccpMult(extrude[i + 2].offset, inset));
+
+            cocos2d::ccTex2F texCoords = {0.0f, 0.0f};
+
+            buffer[0].vertices = cocos2d::vertex2(v0.x, v0.y);
+            buffer[0].colors = fillC4B;
+            buffer[0].texCoords = texCoords;
+
+            buffer[1].vertices = cocos2d::vertex2(v1.x, v1.y);
+            buffer[1].colors = fillC4B;
+            buffer[1].texCoords = texCoords;
+
+            buffer[2].vertices = cocos2d::vertex2(v2.x, v2.y);
+            buffer[2].colors = fillC4B;
+            buffer[2].texCoords = texCoords;
+
+            buffer += 3;
+        }
+    }
+
+    float outScale = borderWidth;
+    float inScale = -borderWidth;
+
+    if (outline)
+    {
+        if ((int)borderAlignment == 1) // Inner alignment
+        {
+            outScale = 0.0f;
+            inScale = borderWidth * -2.0f;
+        }
+        else if ((int)borderAlignment == 2) // Outer alignment
+        {
+            inScale = 0.0f;
+            outScale = borderWidth * 2.0f;
+        }
+    }
+
+    if (count > 0)
+    {
+        bool isFringe = !outline;
+        cocos2d::ccColor4B borderC4B = {
+            (GLubyte)(borderColor.r * 255.0f),
+            (GLubyte)(borderColor.g * 255.0f),
+            (GLubyte)(borderColor.b * 255.0f),
+            (GLubyte)(borderColor.a * 255.0f)
+        };
+
+        for (unsigned int i = 0; i < count; i++)
+        {
+            int j = (i + 1) % count;
+
+            cocos2d::CCPoint v0 = verts[i];
+            cocos2d::CCPoint v1 = verts[j];
+            cocos2d::CCPoint offset0 = extrude[i].offset;
+            cocos2d::CCPoint offset1 = extrude[j].offset;
+
+            cocos2d::ccColor4B c0, c1;
+            cocos2d::CCPoint inner0, inner1, outer0, outer1;
+            cocos2d::ccTex2F texCoords = {0.0f, 0.0f};
+
+            if (isFringe)
+            {
+                inner0 = cocos2d::ccpSub(v0, cocos2d::ccpMult(offset0, 0.5f));
+                inner1 = cocos2d::ccpSub(v1, cocos2d::ccpMult(offset1, 0.5f));
+                outer0 = cocos2d::ccpAdd(v0, cocos2d::ccpMult(offset0, 0.5f));
+                outer1 = cocos2d::ccpAdd(v1, cocos2d::ccpMult(offset1, 0.5f));
+
+                c0 = fillC4B;
+                c1 = { fillC4B.r, fillC4B.g, fillC4B.b, 0 };
+            }
+            else
+            {
+                inner0 = cocos2d::ccpAdd(v0, cocos2d::ccpMult(offset0, inScale));
+                inner1 = cocos2d::ccpAdd(v1, cocos2d::ccpMult(offset1, inScale));
+                outer0 = cocos2d::ccpAdd(v0, cocos2d::ccpMult(offset0, outScale));
+                outer1 = cocos2d::ccpAdd(v1, cocos2d::ccpMult(offset1, outScale));
+
+                c0 = borderC4B;
+                c1 = borderC4B;
+            }
+
+            buffer[0].vertices = cocos2d::vertex2(inner0.x, inner0.y);
+            buffer[0].colors = c0;
+            buffer[0].texCoords = texCoords;
+
+            buffer[1].vertices = cocos2d::vertex2(inner1.x, inner1.y);
+            buffer[1].colors = c0;
+            buffer[1].texCoords = texCoords;
+
+            buffer[2].vertices = cocos2d::vertex2(outer1.x, outer1.y);
+            buffer[2].colors = c1;
+            buffer[2].texCoords = texCoords;
+
+            buffer[3].vertices = cocos2d::vertex2(inner0.x, inner0.y);
+            buffer[3].colors = c0;
+            buffer[3].texCoords = texCoords;
+
+            buffer[4].vertices = cocos2d::vertex2(outer0.x, outer0.y);
+            buffer[4].colors = c1;
+            buffer[4].texCoords = texCoords;
+
+            buffer[5].vertices = cocos2d::vertex2(outer1.x, outer1.y);
+            buffer[5].colors = c1;
+            buffer[5].texCoords = texCoords;
+
+            buffer += 6;
+        }
+    }
+
+    m_nBufferCount += requiredVertexCount;
+    m_bDirty = true;
+    free(extrude);
+
+    return true;
+}
+
+
 void CCDrawNode::clear()
 {
     m_nBufferCount = 0;
@@ -510,23 +782,24 @@ bool CCDrawNode::drawLines(CCPoint* vertices, unsigned int count, float lineWidt
     }
     return true;
 }
-bool CCDrawNode::drawRect(CCPoint const& bottomLeft, CCPoint const& topRight, struct _ccColor4F const& fillColor, float borderWidth, struct _ccColor4F const& borderColor) {
+bool CCDrawNode::drawRect(CCPoint const& bottomLeft, CCPoint const& topRight, struct _ccColor4F const& fillColor, float borderWidth, struct _ccColor4F const& borderColor, BorderAlignment borderAlignment) {
     CCPoint verts[4] = {
         bottomLeft,
         ccp(topRight.x, bottomLeft.y),
         topRight,
         ccp(bottomLeft.x, topRight.y)
     };
-    return drawPolygon(verts, 4, fillColor, borderWidth, borderColor);
+    return drawPolygon(verts, 4, fillColor, borderWidth, borderColor, borderAlignment);
 }
-bool CCDrawNode::drawRect(class CCRect const& rect, struct _ccColor4F const& fillColor, float borderWidth, struct _ccColor4F const& borderColor) {
+
+bool CCDrawNode::drawRect(class CCRect const& rect, struct _ccColor4F const& fillColor, float borderWidth, struct _ccColor4F const& borderColor, BorderAlignment borderAlignment) {
     CCPoint verts[4] = {
         ccp(rect.getMinX(), rect.getMinY()),
         ccp(rect.getMaxX(), rect.getMinY()),
         ccp(rect.getMaxX(), rect.getMaxY()),
         ccp(rect.getMinX(), rect.getMaxY())
     };
-    return drawPolygon(verts, 4, fillColor, borderWidth, borderColor);
+    return drawPolygon(verts, 4, fillColor, borderWidth, borderColor, borderAlignment);
 }
 void CCDrawNode::enableDrawArea(class CCRect& drawArea) {
     m_bUseArea = true;
