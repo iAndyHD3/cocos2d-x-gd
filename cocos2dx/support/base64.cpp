@@ -116,4 +116,60 @@ int base64Decode(unsigned char *in, unsigned int inLength, unsigned char **out, 
     return outLength;
 }
 
+int _base64Encode(unsigned char *in, unsigned int inlen, char *out, unsigned int *outlen, bool isURL)
+{
+    unsigned char* alpha = isURL ? alphabetURL : alphabet;
+    unsigned int i, j = 0;
+    int result = 0;
+    int char_count = 0;
+
+    for (i = 0; i < inlen; i++) {
+        result = (result << 8) | in[i];
+        char_count++;
+        if (char_count == 3) {
+            out[j++] = alpha[(result >> 18) & 0x3F];
+            out[j++] = alpha[(result >> 12) & 0x3F];
+            out[j++] = alpha[(result >> 6) & 0x3F];
+            out[j++] = alpha[result & 0x3F];
+            result = 0;
+            char_count = 0;
+        }
+    }
+
+    if (char_count == 1) {
+        result <<= 8;
+        out[j++] = alpha[(result >> 18) & 0x3F];
+        out[j++] = alpha[(result >> 12) & 0x3F];
+        out[j++] = '=';
+        out[j++] = '=';
+    } else if (char_count == 2) {
+        out[j++] = alpha[(result >> 18) & 0x3F];
+        out[j++] = alpha[(result >> 12) & 0x3F];
+        out[j++] = alpha[(result >> 6) & 0x3F];
+        out[j++] = '=';
+    }
+
+    out[j] = 0;
+    *outlen = j;
+    return 0;
+}
+
+int base64Encode(unsigned char *in, unsigned int inLength, char **out, bool isURL)
+{
+    unsigned int outLength = 0;
+
+    *out = (char*)malloc((size_t)(inLength * 4.0f / 3.0f + 4));
+    if (*out) {
+        int ret = _base64Encode(in, inLength, *out, &outLength, isURL);
+
+        if (ret > 0) {
+            printf("Base64Utils: error encoding");
+            free(*out);
+            *out = NULL;
+            outLength = 0;
+        }
+    }
+    return outLength;
+}
+
 }//namespace   cocos2d 
