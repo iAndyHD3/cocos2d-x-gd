@@ -254,6 +254,8 @@ protected:
     // @note RobTop Addition
     void onGLFWMouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
     // @note RobTop Addition
+    void onGLFWWindowFocus(GLFWwindow* window, int focused);
+    // @note RobTop Addition
     void onGLFWWindowIconifyFunCallback(GLFWwindow* window, int iconified);
     // @note RobTop Addition
     void onGLFWWindowPosCallback(GLFWwindow* window, int x, int y);

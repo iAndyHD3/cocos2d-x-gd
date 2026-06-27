@@ -52,19 +52,19 @@ public:
 	}
 
 protected:
-	CCArray* m_pHandlers;	// 0x34
-	bool m_bLocked;
-    bool m_bToAdd;
-    bool m_bToRemove;
-	ccCArray* m_pHandlersToAdd; // 0x3c
-	ccCArray* m_pHandlersRemove;	// 0x40
-	bool m_bShiftPressed;		// 0x44
-	bool m_bControlPressed;	// 0x45
-	bool m_bAltPressed;			// 0x46
-	bool m_bCommandPressed;	// 0x47
-	bool m_bBlockRepeat;		// 0x48
-
-	// ~~there's more here, check the initializer~~ no there's not??
+	CCArray* m_pHandlers;	// 0x38
+	bool m_bLocked;			// 0x40
+    bool m_bToAdd;			// 0x41
+    bool m_bToRemove;		// 0x42
+    char pad0[5];
+	ccCArray* m_pHandlersToAdd; // 0x48
+	ccCArray* m_pHandlersRemove;	// 0x50
+	bool m_bShiftPressed;		// 0x58
+	bool m_bControlPressed;	// 0x59
+	bool m_bAltPressed;			// 0x5a
+	bool m_bCommandPressed;	// 0x5b
+	bool m_bBlockRepeat;		// 0x5c
+    char pad1[3];
 };
 
 NS_CC_END

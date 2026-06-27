@@ -478,6 +478,9 @@ bool CCEGLView::initWithRect(const std::string& name, cocos2d::CCRect rect, floa
     glfwSetCursorPosCallback(m_pMainWindow, [](GLFWwindow* window, double x, double y) {
         CCEGLView::sharedOpenGLView()->onGLFWMouseMoveCallBack(window, x, y);
     });
+    glfwSetWindowFocusCallback(m_pMainWindow, [](GLFWwindow* window, int focused) {
+        CCEGLView::sharedOpenGLView()->onGLFWWindowFocus(window, focused);
+    });
 
     this->initGlew();
 
@@ -486,6 +489,10 @@ bool CCEGLView::initWithRect(const std::string& name, cocos2d::CCRect rect, floa
 
 void CCEGLView::onGLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
+}
+
+void CCEGLView::onGLFWWindowFocus(GLFWwindow* window, int focused) {
+    g_bInputCaptureEnabled = focused != 0;
 }
 
 void CCEGLView::onGLFWCharCallback(GLFWwindow* window, unsigned int codepoint) {

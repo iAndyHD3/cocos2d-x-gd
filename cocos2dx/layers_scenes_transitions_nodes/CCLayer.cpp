@@ -28,6 +28,7 @@ THE SOFTWARE.
 #include "CCLayer.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
 #include "keypad_dispatcher/CCKeypadDispatcher.h"
+#include "robtop/keyboard_dispatcher/CCKeyboardDispatcher.h"
 #include "CCAccelerometer.h"
 #include "CCDirector.h"
 #include "support/CCPointExtension.h"
@@ -354,6 +355,11 @@ void CCLayer::onEnter()
     {
         pDirector->getKeypadDispatcher()->addDelegate(this);
     }
+
+    if (m_bKeyboardEnabled)
+    {
+        pDirector->getKeyboardDispatcher()->addDelegate(static_cast<CCKeyboardDelegate*>(this));
+    }
 }
 
 void CCLayer::onExit()
@@ -376,6 +382,11 @@ void CCLayer::onExit()
     if (m_bKeypadEnabled)
     {
         pDirector->getKeypadDispatcher()->removeDelegate(this);
+    }
+
+    if (m_bKeyboardEnabled)
+    {
+        pDirector->getKeyboardDispatcher()->removeDelegate(static_cast<CCKeyboardDelegate*>(this));
     }
 
     CCNode::onExit();
@@ -1164,7 +1175,17 @@ bool CCLayer::isKeyboardEnabled() {
     return m_bKeyboardEnabled;
 }
 void CCLayer::setKeyboardEnabled(bool value) {
-    m_bKeyboardEnabled = value;
+    if (value != m_bKeyboardEnabled) {
+        m_bKeyboardEnabled = value;
+        if (m_bRunning) {
+            CCDirector* pDirector = CCDirector::sharedDirector();
+            if (value) {
+                pDirector->getKeyboardDispatcher()->addDelegate(static_cast<CCKeyboardDelegate*>(this));
+            } else {
+                pDirector->getKeyboardDispatcher()->removeDelegate(static_cast<CCKeyboardDelegate*>(this));
+            }
+        }
+    }
 }
 bool CCLayer::isMouseEnabled() {
     return m_bMouseEnabled;
