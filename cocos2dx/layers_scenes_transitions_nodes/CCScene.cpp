@@ -34,6 +34,7 @@ CCScene::CCScene()
 {
     m_bIgnoreAnchorPointForPosition = true;
     setAnchorPoint(ccp(0.5f, 0.5f));
+    m_pDelegate = nullptr;
 }
 
 CCScene::~CCScene()
