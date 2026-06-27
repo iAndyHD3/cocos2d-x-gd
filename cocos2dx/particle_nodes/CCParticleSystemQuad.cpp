@@ -92,8 +92,6 @@ CCParticleSystemQuad::~CCParticleSystemQuad()
         }
         glDeleteBuffers(2, &m_pBuffersVBO[0]);
     }
-
-    CCParticleSystem::~CCParticleSystem();
 }
 
 // implementation CCParticleSystemQuad
@@ -259,7 +257,7 @@ void CCParticleSystemQuad::updateQuadWithParticle(tCCParticle* particle, const C
     }
     else
     {
-        quad = &(m_pQuads[m_uParticleIdx]);
+        quad = &(m_pQuads[CCParticleSystem::m_uParticleIdx]);
     }
 
     // RobTop color computation: use m_uOpacity and m_tQuadColor as scratchpad
@@ -361,7 +359,7 @@ void CCParticleSystemQuad::draw()
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_pBuffersVBO[1]);
 
-    glDrawElements(GL_TRIANGLES, (GLsizei)m_uParticleIdx * 6, GL_UNSIGNED_SHORT, 0);
+    glDrawElements(GL_TRIANGLES, (GLsizei)CCParticleSystem::m_uParticleIdx * 6, GL_UNSIGNED_SHORT, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
