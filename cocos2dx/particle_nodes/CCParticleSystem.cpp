@@ -43,6 +43,7 @@ THE SOFTWARE.
 
 #include "CCParticleSystem.h"
 #include "CCParticleBatchNode.h"
+#include "CCProtocols.h"
 #include "ccTypes.h"
 #include "textures/CCTextureCache.h"
 #include "textures/CCTextureAtlas.h"

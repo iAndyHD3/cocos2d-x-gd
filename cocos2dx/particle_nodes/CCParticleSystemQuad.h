@@ -239,6 +239,15 @@ protected:
 
     GLuint                m_pBuffersVBO[2]; //0: vertex  1: indices
 
+    // @note Robtop Addition
+    CCRect m_tTextureRect;
+    // @note Robtop Addition
+    ccColor4B m_tQuadColor;
+    // @note Robtop Addition
+    GLushort m_uParticleIdx;
+    // @note Robtop Addition
+    GLubyte m_uOpacity;
+
 public:
     /**
      * @js ctor

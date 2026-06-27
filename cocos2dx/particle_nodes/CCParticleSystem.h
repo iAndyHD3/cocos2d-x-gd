@@ -511,6 +511,8 @@ protected:
         float m_fDefaultModeASpeedVar;
         // @note RobTop Addition
         CCPoint m_tDefaultPosVar;
+        // @note RobTop Addition
+        int m_nCustomParticleIndex;
 public:
     // @note RobTop Addition
     void saveDefaults(void);
