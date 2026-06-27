@@ -153,11 +153,8 @@ void ccArrayAppendArrayWithResize(ccArray *arr, ccArray *plusArr)
 /** Inserts an object at index */
 void ccArrayInsertObjectAtIndex(ccArray *arr, CCObject* object, unsigned int index)
 {
-	CCAssert(index<=arr->num, "Invalid index. Out of bounds");
-	CCAssert(object != NULL, "Invalid parameter!");
-
 	ccArrayEnsureExtraCapacity(arr, 1);
-	
+
 	unsigned int remaining = arr->num - index;
 	if( remaining > 0)
     {
@@ -172,11 +169,8 @@ void ccArrayInsertObjectAtIndex(ccArray *arr, CCObject* object, unsigned int ind
 /** Swaps two objects */
 void ccArraySwapObjectsAtIndexes(ccArray *arr, unsigned int index1, unsigned int index2)
 {
-	CCAssert(index1 < arr->num, "(1) Invalid index. Out of bounds");
-	CCAssert(index2 < arr->num, "(2) Invalid index. Out of bounds");
-	
 	CCObject* object1 = arr->arr[index1];
-	
+
 	arr->arr[index1] = arr->arr[index2];
 	arr->arr[index2] = object1;
 }
@@ -194,14 +188,13 @@ void ccArrayRemoveAllObjects(ccArray *arr)
  Behavior undefined if index outside [0, num-1]. */
 void ccArrayRemoveObjectAtIndex(ccArray *arr, unsigned int index, bool bReleaseObj/* = true*/)
 {
-    CCAssert(arr && arr->num > 0 && index < arr->num, "Invalid index. Out of bounds");
     if (bReleaseObj)
     {
         CC_SAFE_RELEASE(arr->arr[index]);
     }
-    
+
 	arr->num--;
-	
+
 	unsigned int remaining = arr->num - index;
 	if(remaining>0)
     {

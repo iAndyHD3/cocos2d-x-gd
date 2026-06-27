@@ -68,9 +68,15 @@ bool CCTransitionScene::initWithDuration(float t, CCScene *scene)
 {
     CCAssert( scene != NULL, "Argument scene must be non-nil");
 
+    float duration = t;
+#if GEODE_COMP_GD_VERSION >= 22003
+    if (duration > 0.01f && CCDirector::sharedDirector()->getFastMenu())
+        duration = 0.01f;
+#endif
+
     if (CCScene::init())
     {
-        m_fDuration = t;
+        m_fDuration = duration;
 
         // retain
         m_pInScene = scene;
@@ -84,7 +90,7 @@ bool CCTransitionScene::initWithDuration(float t, CCScene *scene)
         m_pOutScene->retain();
 
         CCAssert( m_pInScene != m_pOutScene, "Incoming scene must be different from the outgoing scene" );
-        
+
         sceneOrder();
 
         return true;
@@ -134,17 +140,18 @@ void CCTransitionScene::finish()
 }
 
 void CCTransitionScene::setNewScene(float dt)
-{    
+{
     CC_UNUSED_PARAM(dt);
 
     this->unschedule(schedule_selector(CCTransitionScene::setNewScene));
-    
+
     // Before replacing, save the "send cleanup to scene"
     CCDirector *director = CCDirector::sharedDirector();
     m_bIsSendCleanupToScene = director->isSendCleanupToScene();
-    
+    director->setDontCallWillSwitch(true);
     director->replaceScene(m_pInScene);
-    
+    director->setDontCallWillSwitch(false);
+
     // issue #267
     m_pOutScene->setVisible(true);
 }

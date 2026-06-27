@@ -41,7 +41,7 @@ class CCScene;
 
 class CC_DLL CCSceneDelegate {
 public: 
-    virtual void willSwitchToScene(CCScene* scene) {}
+    virtual void willSwitchToScene() {}
 };
 
 
