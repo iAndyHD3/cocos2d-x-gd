@@ -267,11 +267,11 @@ void CCEGLView::onGLFWMouseCallBack(GLFWwindow* window, int button, int action, 
         if (action == GLFW_PRESS) {
             m_bCaptured = true;
             // TODO: mouse locked stuff
-            this->handleTouchesBegin(1, &touchID, &m_fMouseX, &m_fMouseY);
+            this->handleTouchesBegin(1, &touchID, &m_fMouseX, &m_fMouseY, 0.0);
         } else if (action == GLFW_RELEASE) {
             if (m_bCaptured) {
                 m_bCaptured = false;
-                this->handleTouchesEnd(1, &touchID, &m_fMouseX, &m_fMouseY);
+                this->handleTouchesEnd(1, &touchID, &m_fMouseX, &m_fMouseY, 0.0);
             }
         }
     }
@@ -286,7 +286,7 @@ void CCEGLView::onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y) 
     m_fMouseY = y;
 
     if (m_bCaptured) {
-        this->handleTouchesMove(1, &touchID, &fx, &fy);
+        this->handleTouchesMove(1, &touchID, &fx, &fy, 0.0);
     }
 }
 

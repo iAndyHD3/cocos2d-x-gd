@@ -12,3 +12,13 @@ You are NOT allowed to add any functions, only modify existing ones unless expli
 # Build commands:
 
 cmake --build build
+
+# Diagnosing problems
+
+When there is a problem such as a crash, unwanted behaviour, etc, it is 100% because our modified libcocos source is not the same as robtop's. Issues are caused always by our code behaving differently than robtop's. As such, the workflow for finding the root cause of a problem is as such:
+
+1. Identify what could not match the robtop libcocos: functions not doing the same thing, classes being of different size, etc.
+2. Check the original behaviour with Ida MCP
+3. Compare with our behaviour.
+
+Repeat this process until finding something odd

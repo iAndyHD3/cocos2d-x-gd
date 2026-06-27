@@ -84,12 +84,12 @@ extern "C" void mouseCB(int button, int state, int x, int y)
 
     if(state == glutMouseDown)
     {
-        pEGLView->handleTouchesBegin(1, &id, &fx, &fy);
+        pEGLView->handleTouchesBegin(1, &id, &fx, &fy, 0.0);
         buttonDepressed = true;
     }
     else if(state == glutMouseUp)
     {
-        pEGLView->handleTouchesEnd(1, &id, &fx, &fy);
+        pEGLView->handleTouchesEnd(1, &id, &fx, &fy, 0.0);
         buttonDepressed = false;
     }
 }
@@ -103,7 +103,7 @@ extern "C" void motionCB(int x, int y)
 
     if(buttonDepressed)
     {
-        pEGLView->handleTouchesMove(1, &id, &fx, &fy);
+        pEGLView->handleTouchesMove(1, &id, &fx, &fy, 0.0);
     }
 }
 

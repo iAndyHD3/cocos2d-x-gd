@@ -88,6 +88,7 @@ public:
     CCPoint m_startPoint;
     CCPoint m_point;
     CCPoint m_prevPoint;
+    double m_fPrevTime;
 };
 
 class CC_DLL CCEvent : public CCObject

@@ -158,11 +158,10 @@ void CCTouchDispatcher::addStandardDelegate(CCTouchDelegate *pDelegate, int nPri
 }
 
 void CCTouchDispatcher::addTargetedDelegate(CCTouchDelegate *pDelegate, int nPriority, bool bSwallowsTouches)
-{    
-    auto origPrio = nPriority;
+{
     auto layerPrio = pDelegate->getPreviousPriority();
-    if (isUsingForcePrio() && m_forcePrio < nPriority && layerPrio == 0) {
-        nPriority = m_forcePrio;
+    if (isUsingForcePrio() && nPriority > m_targetPrio && layerPrio == 0) {
+        nPriority = m_targetPrio;
     } else if (layerPrio != 0) {
         nPriority = layerPrio;
     }
@@ -542,12 +541,12 @@ int CCTouchDelegate::getPreviousPriority(void) {
 
 void CCTouchDispatcher::addPrioTargetedDelegate(CCTouchDelegate* delegate, int prio, bool p3) {
     if (isUsingForcePrio()) {
-        prio = m_forcePrio - 1;
+        prio = m_targetPrio - 1;
     }
     return addTargetedDelegate(delegate, prio, p3);
 }
 bool CCTouchDispatcher::isUsingForcePrio(void) {
-    return 0 < m_targetPrio;
+    return 0 < m_forcePrio;
 }
 void CCTouchDispatcher::registerForcePrio(CCObject* object, int prio) {
     if (object) {
@@ -571,12 +570,12 @@ void CCTouchDispatcher::unregisterForcePrio(CCObject* object) {
 }
 
 void CCTouchDispatcher::incrementForcePrio(int priority) {
-    m_targetPrio += priority;
-    m_forcePrio -= priority;
+    m_forcePrio += priority;
+    m_targetPrio -= priority;
 }
 void CCTouchDispatcher::decrementForcePrio(int priority) {
-    m_targetPrio -= priority;
-    m_forcePrio += priority;
+    m_forcePrio -= priority;
+    m_targetPrio += priority;
 }
 
 NS_CC_END

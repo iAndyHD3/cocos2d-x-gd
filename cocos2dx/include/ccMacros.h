@@ -33,6 +33,8 @@ THE SOFTWARE.
 
 #include "../platform/CCCommon.h"
 #include "../platform/CCStdC.h"
+#include <direct.h>
+#include <cpptrace/cpptrace.hpp>
 
 #ifndef CCAssert
 #if COCOS2D_DEBUG > 0
@@ -41,6 +43,20 @@ extern bool CC_DLL cc_assert_script_compatible(const char *msg);
       if (!(cond)) {                                          \
         if (!cc_assert_script_compatible(msg) && strlen(msg)) \
           cocos2d::CCLog("Assert failed: %s", msg);           \
+        do { \
+          _mkdir("asserts"); \
+          auto trace = cpptrace::generate_trace(); \
+          std::string trace_str = trace.to_string(); \
+          time_t t = time(nullptr); \
+          char timebuf[64]; \
+          strftime(timebuf, sizeof(timebuf), "%Y-%m-%d_%H-%M-%S", localtime(&t)); \
+          std::string filename = std::string("asserts/") + timebuf + ".txt"; \
+          FILE* f = fopen(filename.c_str(), "w"); \
+          if (f) { \
+            fputs(trace_str.c_str(), f); \
+            fclose(f); \
+          } \
+        } while(0); \
         CC_ASSERT(cond);                                      \
       } \
     } while (0)

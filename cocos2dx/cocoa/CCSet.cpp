@@ -80,6 +80,14 @@ CCSet* CCSet::copy(void)
     delete pSet->m_pSet;
     pSet->m_pSet = new set<CCObject *>(*m_pSet);
 
+    for (auto it = pSet->m_pSet->begin(); it != pSet->m_pSet->end(); ++it)
+    {
+        if (*it)
+        {
+            (*it)->retain();
+        }
+    }
+
     return pSet;
 }
 

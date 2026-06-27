@@ -40,6 +40,7 @@ CCAction::CCAction()
 :m_pOriginalTarget(NULL)
 ,m_pTarget(NULL)
 ,m_nTag(kCCActionTagInvalid)
+,m_fSpeedMod(1.0)
 {
 }
 
@@ -201,6 +202,16 @@ void CCSpeed::setInnerAction(CCActionInterval *pAction)
         m_pInnerAction = pAction;
         CC_SAFE_RETAIN(m_pInnerAction);
     }
+}
+
+void CCAction::setSpeedMod(float mod)
+{
+    m_fSpeedMod = mod;
+}
+
+float CCAction::getSpeedMod()
+{
+    return m_fSpeedMod;
 }
 
 //

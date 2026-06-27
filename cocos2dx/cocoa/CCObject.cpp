@@ -32,8 +32,12 @@ NS_CC_BEGIN
 
 CCObject::CCObject(void)
 : m_nLuaID(0)
-, m_uReference(1) // when the object is created, the reference count of it is 1
+, m_uReference(1)
 , m_uAutoReleaseCount(0)
+, m_uIndexInArray(-1)
+, m_uChildIndex(-1)
+, m_unknown2(0)
+, m_unknown5(0)
 {
     static unsigned int uObjectCount = 0;
 

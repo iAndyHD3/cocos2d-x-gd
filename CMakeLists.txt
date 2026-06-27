@@ -465,3 +465,7 @@ if (PROJECT_IS_TOP_LEVEL)
 		install(TARGETS libcocos2d RUNTIME DESTINATION $ENV{GD_INSTALL_PATH})
 	endif()
 endif()
+
+
+CPMAddPackage("gh:jeremy-rifkin/cpptrace#91b6b78")
+target_link_libraries(libcocos2d PUBLIC cpptrace::cpptrace)

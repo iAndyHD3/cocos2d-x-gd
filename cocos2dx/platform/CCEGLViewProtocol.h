@@ -148,19 +148,19 @@ public:
     /** Touch events are handled by default; if you want to customize your handlers, please override these functions: 
      * @lua NA
      */
-    virtual void handleTouchesBegin(int num, int ids[], float xs[], float ys[]);
+    virtual void handleTouchesBegin(int num, int ids[], float xs[], float ys[], double timestamp);
     /**
      * @lua NA
      */
-    virtual void handleTouchesMove(int num, int ids[], float xs[], float ys[]);
+    virtual void handleTouchesMove(int num, int ids[], float xs[], float ys[], double timestamp);
     /**
      * @lua NA
      */
-    virtual void handleTouchesEnd(int num, int ids[], float xs[], float ys[]);
+    virtual void handleTouchesEnd(int num, int ids[], float xs[], float ys[], double timestamp);
     /**
      * @lua NA
      */
-    virtual void handleTouchesCancel(int num, int ids[], float xs[], float ys[]);
+    virtual void handleTouchesCancel(int num, int ids[], float xs[], float ys[], double timestamp);
 
     /**
      * Get the opengl view port rectangle.
@@ -177,11 +177,17 @@ public:
      */
     float getScaleY() const;
 
-	virtual void pollInputEvents();
-	void updateDesignResolutionSize();
+    virtual void pollInputEvents();
+
+    float getBackingScaleFactor() const;
+    void setBackingScaleFactor(float fScaleFactor);
+    double getPlatformTimestamp();
+
+protected:
+    void updateDesignResolutionSize();
 
 private:
-    void getSetOfTouchesEndOrCancel(CCSet& set, int num, int ids[], float xs[], float ys[]);
+    void getSetOfTouchesEndOrCancel(CCSet& set, int num, int ids[], float xs[], float ys[], double timestamp);
 
 public:
     EGLTouchDelegate* m_pDelegate;
@@ -198,6 +204,7 @@ public:
     float  m_fScaleX;
     float  m_fScaleY;
     ResolutionPolicy m_eResolutionPolicy;
+    float  m_fBackingScaleFactor;
 };
 
 // end of platform group
