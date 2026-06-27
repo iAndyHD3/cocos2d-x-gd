@@ -70,6 +70,7 @@ public:
     virtual void setIMEKeyboardState(bool bOpen);
     void updateWindow(int width, int height);
     void pollEvents(void);
+    void pumpRawInput(void);
 
 protected:
     // Robtop Removal

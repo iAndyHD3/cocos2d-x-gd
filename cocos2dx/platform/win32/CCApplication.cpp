@@ -44,6 +44,7 @@ int CCApplication::run()
 
     while (!egl->windowShouldClose()) {
         egl->pollEvents();
+        egl->pumpRawInput();
         dir->mainLoop();
     }
 

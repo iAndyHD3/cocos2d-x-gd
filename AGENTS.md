@@ -22,3 +22,14 @@ When there is a problem such as a crash, unwanted behaviour, etc, it is 100% bec
 3. Compare with our behaviour.
 
 Repeat this process until finding something odd
+
+# Language & Terms
+
+## Robtop Code
+ida libcocos2d.dll, use the mcp to browse
+
+## Our Code
+the project and sources in the current directory you are working on right now
+
+## Goal 
+Match our code as closely as possible to whatever robtop code is doing

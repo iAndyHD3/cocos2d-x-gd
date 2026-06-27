@@ -330,6 +330,19 @@ void CCIMEDispatcher::dispatchKeyboardDidHide(CCIMEKeyboardNotificationInfo& inf
 // static member function
 //////////////////////////////////////////////////////////////////////////
 
+bool CCIMEDispatcher::hasDelegate()
+{
+    return m_pImpl && m_pImpl->m_DelegateWithIme != nullptr;
+}
+
+void CCIMEDispatcher::dispatchDeleteForward()
+{
+    if (m_pImpl && m_pImpl->m_DelegateWithIme)
+    {
+        m_pImpl->m_DelegateWithIme->deleteForward();
+    }
+}
+
 CCIMEDispatcher* CCIMEDispatcher::sharedDispatcher()
 {
     static CCIMEDispatcher s_instance;

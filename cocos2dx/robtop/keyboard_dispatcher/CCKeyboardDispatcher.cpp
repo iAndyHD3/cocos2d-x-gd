@@ -73,12 +73,23 @@ bool CCKeyboardDispatcher::dispatchKeyboardMSG(enumKeyCodes key, bool isKeyDown,
     if (m_bBlockRepeat && isKeyRepeat) {
         return false;
     }
-    key = convertKeyCode(key);
     switch (key) {
+        case KEY_ArrowUp:
+            key = KEY_Up;
+            break;
+        case KEY_ArrowDown:
+            key = KEY_Down;
+            break;
+        case KEY_ArrowLeft:
+            key = KEY_Left;
+            break;
+        case KEY_ArrowRight:
+            key = KEY_Right;
+            break;
         case KEY_Shift:
         case KEY_Control:
         case KEY_Alt:
-        case KEY_Escape:
+        case CONTROLLER_Back:
             return false;
         default:
             break;
