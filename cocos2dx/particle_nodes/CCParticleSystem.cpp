@@ -104,6 +104,9 @@ CCParticleSystem::CCParticleSystem()
 , m_bEndRGBVarSync(false)
 , m_bWasRemoved(false)
 , m_bUsingSchedule(false)
+, m_bIsVisibleWithoutParticles(true)
+, m_tWorldPos(CCPointZero)
+, m_bWorldPosUninitialized(true)
 , m_sPlistFile("")
 , m_fElapsed(0)
 , m_pParticles(NULL)
@@ -633,6 +636,8 @@ void CCParticleSystem::update(float dt)
 {
     CC_PROFILER_START_CATEGORY(kCCProfilerCategoryParticles , "CCParticleSystem - update");
 
+    m_bWorldPosUninitialized = true;
+
     if (m_bIsActive && m_fEmissionRate)
     {
         float rate = 1.0f / m_fEmissionRate;
@@ -641,8 +646,8 @@ void CCParticleSystem::update(float dt)
         {
             m_fEmitCounter += dt;
         }
-        
-        while (m_uParticleCount < m_uTotalParticles && m_fEmitCounter > rate) 
+
+        while (m_uParticleCount < m_uTotalParticles && m_fEmitCounter > rate)
         {
             this->addParticle();
             m_fEmitCounter -= rate;
@@ -653,6 +658,8 @@ void CCParticleSystem::update(float dt)
         {
             this->stopSystem();
         }
+
+        updateVisible();
     }
 
     m_uParticleIdx = 0;
@@ -660,7 +667,8 @@ void CCParticleSystem::update(float dt)
     CCPoint currentPosition = CCPointZero;
     if (m_ePositionType == kCCPositionTypeFree)
     {
-        currentPosition = this->convertToWorldSpace(CCPointZero);
+        calculateWorldSpace();
+        currentPosition = m_tWorldPos;
     }
     else if (m_ePositionType == kCCPositionTypeRelative)
     {
@@ -789,8 +797,9 @@ void CCParticleSystem::update(float dt)
             }
         } //while
         m_bTransformSystemDirty = false;
+        updateVisible();
     }
-    if (! m_pBatchNode)
+    if (! m_pBatchNode && m_bVisible)
     {
         postStep();
     }
@@ -801,6 +810,23 @@ void CCParticleSystem::update(float dt)
 void CCParticleSystem::updateWithNoTime(void)
 {
     this->update(0.0f);
+}
+
+void CCParticleSystem::updateVisible()
+{
+    bool v1 = m_bIsVisibleWithoutParticles;
+    if (v1)
+        v1 = m_uParticleCount != 0;
+    m_bVisible = v1;
+}
+
+void CCParticleSystem::calculateWorldSpace()
+{
+    if (m_bWorldPosUninitialized)
+    {
+        m_bWorldPosUninitialized = false;
+        m_tWorldPos = this->convertToWorldSpace(CCPointZero);
+    }
 }
 
 void CCParticleSystem::updateQuadWithParticle(tCCParticle* particle, const CCPoint& newPosition)
@@ -1379,12 +1405,7 @@ void CCParticleSystem::setScaleY(float newScaleY)
 
 void cocos2d::CCParticleSystem::setVisible(bool visible) {
     m_bIsVisibleWithoutParticles = visible;
-    if (visible && m_uParticleCount != 0) {
-        m_bVisible = true;
-    }
-    else {
-        m_bVisible = false;
-    }
+    updateVisible();
 }
 void cocos2d::CCParticleSystem::updateEmissionRate(void) {
     if (m_fLife > 0.f) {

@@ -8,8 +8,8 @@ CCKeyboardDispatcher::CCKeyboardDispatcher() {
     m_bDispatching = false;
     m_bDeferredAdd = false;
     m_bDeferredRemove = false;
-    m_pDeferredAddDelegates = ccCArrayNew(8);
-    m_pDeferredRemoveDelegates = ccCArrayNew(8);
+    m_pDeferredAddDelegates = ccCArrayNew(100);
+    m_pDeferredRemoveDelegates = ccCArrayNew(100);
     m_bShiftPressed = false;
     m_bControlPressed = false;
     m_bAltPressed = false;
@@ -25,7 +25,7 @@ CCKeyboardDispatcher::~CCKeyboardDispatcher() {
 void CCKeyboardDispatcher::addDelegate(CCKeyboardDelegate* pDelegate) {
     CCLOG("Adding delegate: %p", pDelegate);
     if (m_bDispatching) {
-        ccCArrayAppendValue(m_pDeferredAddDelegates, pDelegate);
+        ccCArrayAppendValueWithResize(m_pDeferredAddDelegates, pDelegate);
         m_bDeferredAdd = true;
     } else {
         forceAddDelegate(pDelegate);
@@ -33,27 +33,48 @@ void CCKeyboardDispatcher::addDelegate(CCKeyboardDelegate* pDelegate) {
 }
 void CCKeyboardDispatcher::removeDelegate(CCKeyboardDelegate* pDelegate) {
     if (m_bDispatching) {
-        ccCArrayAppendValue(m_pDeferredRemoveDelegates, pDelegate);
+        ccCArrayAppendValueWithResize(m_pDeferredRemoveDelegates, pDelegate);
         m_bDeferredRemove = true;
     } else {
         forceRemoveDelegate(pDelegate);
     }
 }
+void cocos2d::CCKeyboardDispatcher::forceAddDelegate(CCKeyboardDelegate* pDelegate) {
+    if (!pDelegate) return;
 
-void CCKeyboardDispatcher::forceAddDelegate(CCKeyboardDelegate* pDelegate) {
+    // Guard: Prevent duplicate entries of the same delegate from accumulating
+    cocos2d::CCObject* pObj = nullptr;
+    CCARRAY_FOREACH(m_pHandlers, pObj) {
+        auto pHandler = static_cast<cocos2d::CCKeyboardHandler*>(pObj);
+        if (pHandler && pHandler->getDelegate() == pDelegate) {
+            CCLOG("Delegate %p already exists, skipping duplicate addition.", pDelegate);
+            return;
+        }
+    }
+
     CCLOG("Forcing addition of delegate: %p", pDelegate);
     m_pHandlers->addObject(CCKeyboardHandler::handlerWithDelegate(pDelegate));
 }
-void CCKeyboardDispatcher::forceRemoveDelegate(CCKeyboardDelegate* pDelegate) {
+
+void cocos2d::CCKeyboardDispatcher::forceRemoveDelegate(CCKeyboardDelegate* pDelegate) {
+    if (!pDelegate || !m_pHandlers) return;
+
     CCLOG("Forcing removal of delegate: %p", pDelegate);
-    CCKeyboardHandler* pHandler = nullptr;
-    CCObject* pObj = nullptr;
-    CCARRAY_FOREACH(m_pHandlers, pObj) {
-        pHandler = (CCKeyboardHandler*)pObj;
+    bool removedAny = false;
+
+    // Loop backwards to safely clear out ALL instances wrapping this delegate
+    for (int i = static_cast<int>(m_pHandlers->count()) - 1; i >= 0; --i) {
+        auto pHandler = static_cast<cocos2d::CCKeyboardHandler*>(m_pHandlers->objectAtIndex(i));
         if (pHandler && pHandler->getDelegate() == pDelegate) {
-            m_pHandlers->removeObject(pHandler);
-            break;
+            m_pHandlers->removeObjectAtIndex(i);
+            removedAny = true;
         }
+    }
+
+    if (removedAny) {
+        CCLOG("Delegate removed: %p", pDelegate);
+    } else {
+        CCLOG("Delegate not found for removal: %p", pDelegate);
     }
 }
 
@@ -79,70 +100,71 @@ enumKeyCodes CCKeyboardDispatcher::convertKeyCode(enumKeyCodes key) {
     }
     return key;
 }
-bool CCKeyboardDispatcher::dispatchKeyboardMSG(
-    enumKeyCodes a_key,
+
+
+bool cocos2d::CCKeyboardDispatcher::dispatchKeyboardMSG(
+    cocos2d::enumKeyCodes a_key,
     bool isKeyDown,
     bool isKeyRepeat,
     double unk)
 {
-    // Block repeated keys if configured
     if (isKeyRepeat && m_bBlockRepeat)
         return false;
 
-    // Convert key code and filter out modifier / special keys
-    enumKeyCodes key = convertKeyCode(a_key);
-    if(key == KEY_Unknown)
+    cocos2d::enumKeyCodes key = convertKeyCode(a_key);
+    if ((key >= KEY_Shift && key <= KEY_Alt) || key == CONTROLLER_Back)
         return false;
 
-    // Signal that we are currently dispatching
     m_bDispatching = true;
 
-    // Deliver the event to all delegates in reverse order
-
-    unsigned int count = m_pHandlers->count();
-    for (unsigned int i = 0; i < count; ++i)
+    // Dispatch exclusively to the top-most handler to prevent background event leakage
+    if (m_pHandlers && m_pHandlers->count() > 0)
     {
-        CCKeyboardHandler* handler = static_cast<CCKeyboardHandler*>(m_pHandlers->objectAtIndex(i));
-        if (!handler)
-            continue;
-
-        CCKeyboardDelegate* delegate = handler->getDelegate();
-        if(!dynamic_cast<CCKeyboardDelegate*>(delegate))
-            continue;
-        CCLOG("Dispatching keyboard event to delegate: %p", delegate);
-        if (isKeyDown)
-            delegate->keyDown(key, unk);
-        else
-            delegate->keyUp(key, unk);
+        unsigned int count = m_pHandlers->count();
+        auto handler = static_cast<CCKeyboardHandler*>(m_pHandlers->objectAtIndex(count - 1));
+        if (handler)
+        {
+            CCKeyboardDelegate* delegate = handler->getDelegate();
+            if (delegate)
+            {
+                if (isKeyDown)
+                    delegate->keyDown(key, unk);
+                else
+                    delegate->keyUp(key, unk);
+            }
+        }
     }
 
     m_bDispatching = false;
 
-    // Process deferred removals
-    if (m_bDeferredRemove)
+    // Process deferred removals safely
+    if (m_bDeferredRemove && m_pDeferredRemoveDelegates && m_pDeferredRemoveDelegates->num > 0)
     {
         m_bDeferredRemove = false;
-        for (unsigned int i = 0; i < m_pDeferredRemoveDelegates->num; ++i)
+        unsigned int numRemovals = m_pDeferredRemoveDelegates->num;
+        for (unsigned int i = 0; i < numRemovals; ++i)
         {
-            forceRemoveDelegate(static_cast<CCKeyboardDelegate*>(m_pDeferredRemoveDelegates->arr[i]));
+            auto delegate = static_cast<CCKeyboardDelegate*>(m_pDeferredRemoveDelegates->arr[i]);
+            forceRemoveDelegate(delegate);
         }
         ccCArrayRemoveAllValues(m_pDeferredRemoveDelegates);
     }
 
-    // Process deferred additions
-    if (m_bDeferredAdd)
+    // Process deferred additions safely
+    if (m_bDeferredAdd && m_pDeferredAddDelegates && m_pDeferredAddDelegates->num > 0)
     {
         m_bDeferredAdd = false;
-        for (unsigned int i = 0; i < m_pDeferredAddDelegates->num; ++i)
+        unsigned int numAdditions = m_pDeferredAddDelegates->num;
+        for (unsigned int i = 0; i < numAdditions; ++i)
         {
-            forceAddDelegate(static_cast<CCKeyboardDelegate*>(m_pDeferredAddDelegates->arr[i]));
+            auto delegate = static_cast<CCKeyboardDelegate*>(m_pDeferredAddDelegates->arr[i]);
+            forceAddDelegate(delegate);
         }
         ccCArrayRemoveAllValues(m_pDeferredAddDelegates);
-        return true;
     }
-    return false;
-}
 
+    return true;
+}
 const char* CCKeyboardDispatcher::keyToString(enumKeyCodes key) {
     // TODO: possibly implement this
     return "PLACEHOLDER_KEY";
@@ -156,7 +178,9 @@ void CCKeyboardDispatcher::updateModifierKeys(bool shft, bool ctrl, bool alt, bo
 }
 // CCKeyboardHandler
 
-CCKeyboardHandler::~CCKeyboardHandler() {}
+CCKeyboardHandler::~CCKeyboardHandler() {
+
+}
 
 CCKeyboardHandler& CCKeyboardHandler::operator=(const CCKeyboardHandler&) = default;
 
@@ -177,20 +201,12 @@ CCKeyboardHandler* CCKeyboardHandler::handlerWithDelegate(CCKeyboardDelegate* pD
 
 bool CCKeyboardHandler::initWithDelegate(CCKeyboardDelegate* pDelegate) {
     m_pDelegate = pDelegate;
-    if(auto delegate = dynamic_cast<CCObject*>(pDelegate)) {
-        delegate->retain();
-    }
+
     return true;
 }
 
 void CCKeyboardHandler::setDelegate(CCKeyboardDelegate* pDelegate) {
-    if(auto delegate = dynamic_cast<CCObject*>(m_pDelegate)) {
-        delegate->release();
-    }
-    if(auto delegate = dynamic_cast<CCObject*>(pDelegate)) {
-        delegate->retain();
 
-    }
     m_pDelegate = pDelegate;
 }
 

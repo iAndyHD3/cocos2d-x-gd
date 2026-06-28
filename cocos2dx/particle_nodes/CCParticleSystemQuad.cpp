@@ -35,6 +35,8 @@ THE SOFTWARE.
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCGLProgram.h"
 #include "support/TransformUtils.h"
+#include "support/CCNotificationCenter.h"
+#include "CCEventType.h"
 
 #include <math.h>
 
@@ -61,6 +63,12 @@ bool CCParticleSystemQuad::initWithTotalParticles(unsigned int numberOfParticles
     setupVBO();
 
     setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey("ShaderPositionTextureColor"));
+
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(
+        this,
+        (SEL_CallFuncO)&CCParticleSystemQuad::listenBackToForeground,
+        EVENT_COME_TO_FOREGROUND,
+        nullptr);
 
     return true;
 }
@@ -191,16 +199,16 @@ void CCParticleSystemQuad::initTexCoordsWithRect(const CCRect& pointRect)
 
     for (unsigned int i = start; i < end; i++)
     {
-        // RobTop layout (no Y flip):
-        //   bl.v = top, br.v = bottom, tl.v = bottom, tr.v = top
+        // cocos2d-x 2.2.3 Y-flipped layout (matches RobTop's binary):
+        //   bl.v = top, br.v = top, tl.v = bottom, tr.v = bottom
         quads[i].bl.texCoords.u = left;
         quads[i].bl.texCoords.v = top;
         quads[i].br.texCoords.u = right;
-        quads[i].br.texCoords.v = bottom;
+        quads[i].br.texCoords.v = top;
         quads[i].tl.texCoords.u = left;
         quads[i].tl.texCoords.v = bottom;
         quads[i].tr.texCoords.u = right;
-        quads[i].tr.texCoords.v = top;
+        quads[i].tr.texCoords.v = bottom;
     }
 }
 
@@ -274,10 +282,20 @@ void CCParticleSystemQuad::updateQuadWithParticle(tCCParticle* particle, const C
             opacity *= y / fadeVar;
     }
 
-    m_tQuadColor.r = (GLubyte)(m_bOpacityModifyRGB ? alpha * particle->color.r : opacity * particle->color.r);
-    m_tQuadColor.g = (GLubyte)(m_bOpacityModifyRGB ? alpha * particle->color.g : opacity * particle->color.g);
-    m_tQuadColor.b = (GLubyte)(m_bOpacityModifyRGB ? alpha * particle->color.b : opacity * particle->color.b);
-    m_tQuadColor.a = (GLubyte)alpha;
+    if (m_bOpacityModifyRGB)
+    {
+        m_tQuadColor.r = (GLubyte)(alpha * particle->color.r);
+        m_tQuadColor.g = (GLubyte)(alpha * particle->color.g);
+        m_tQuadColor.b = (GLubyte)(alpha * particle->color.b);
+        m_tQuadColor.a = (GLubyte)alpha;
+    }
+    else
+    {
+        m_tQuadColor.r = (GLubyte)(opacity * particle->color.r);
+        m_tQuadColor.g = (GLubyte)(opacity * particle->color.g);
+        m_tQuadColor.b = (GLubyte)(opacity * particle->color.b);
+        m_tQuadColor.a = (GLubyte)(opacity * particle->color.a);
+    }
 
     quad->bl.colors = m_tQuadColor;
     quad->br.colors = m_tQuadColor;

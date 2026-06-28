@@ -297,7 +297,17 @@ CCSprite* CCSprite::initWithCGImage(CGImageRef pImage, const char *pszKey)
 
 CCSprite::CCSprite(void)
 : m_bShouldBeHidden(false),
-m_pobTexture(NULL)
+m_pobTexture(NULL),
+m_bDontDraw(false),
+m_bUseVertexMod(false),
+m_fTlVertexMod(0.f),
+m_fTrVertexMod(0.f),
+m_fBlVertexMod(0.f),
+m_fBrVertexMod(0.f),
+m_fTextureLeft(0.f),
+m_fTextureRight(0.f),
+m_fTextureBottom(0.f),
+m_fTextureTop(0.f)
 {
 }
 
@@ -344,18 +354,52 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
     else
     {
         // self rendering
-        
+
         // Atlas: Vertex
         float x1 = 0 + m_obOffsetPosition.x;
         float y1 = 0 + m_obOffsetPosition.y;
         float x2 = x1 + m_obRect.size.width;
         float y2 = y1 + m_obRect.size.height;
+        float h = y2 - y1;
 
         // Don't update Z.
         m_sQuad.bl.vertices = vertex3(x1, y1, 0);
         m_sQuad.br.vertices = vertex3(x2, y1, 0);
         m_sQuad.tl.vertices = vertex3(x1, y2, 0);
         m_sQuad.tr.vertices = vertex3(x2, y2, 0);
+
+        if (m_fBlVertexMod != 0.f)
+        {
+            m_sQuad.bl.vertices.y = y2 - (1.f - m_fBlVertexMod) * h;
+            m_sQuad.bl.texCoords.v = m_fTextureTop - (m_fTextureTop - m_fTextureBottom) * (1.f - m_fBlVertexMod);
+        }
+        if (m_fBrVertexMod != 0.f)
+        {
+            m_sQuad.br.vertices.y = y2 - (1.f - m_fBrVertexMod) * h;
+            m_sQuad.br.texCoords.v = m_fTextureTop - (m_fTextureTop - m_fTextureBottom) * (1.f - m_fBrVertexMod);
+        }
+        if (m_fTlVertexMod != 0.f)
+        {
+            m_sQuad.tl.vertices.y = y1 + (1.f - m_fTlVertexMod) * h;
+            if (m_fTlVertexMod >= 0.f)
+            {
+                if (m_bRectRotated)
+                    m_sQuad.tl.texCoords.u = m_fTextureLeft + (m_fTextureRight - m_fTextureLeft) * (1.f - m_fTlVertexMod);
+                else
+                    m_sQuad.tl.texCoords.v = m_fTextureBottom + (m_fTextureTop - m_fTextureBottom) * (1.f - m_fTlVertexMod);
+            }
+        }
+        if (m_fTrVertexMod != 0.f)
+        {
+            m_sQuad.tr.vertices.y = y1 + (1.f - m_fTrVertexMod) * h;
+            if (m_fTrVertexMod >= 0.f)
+            {
+                if (m_bRectRotated)
+                    m_sQuad.tr.texCoords.u = m_fTextureLeft + (m_fTextureRight - m_fTextureLeft) * (1.f - m_fTrVertexMod);
+                else
+                    m_sQuad.tr.texCoords.v = m_fTextureBottom + (m_fTextureTop - m_fTextureBottom) * (1.f - m_fTrVertexMod);
+            }
+        }
     }
 }
 
@@ -445,6 +489,11 @@ void CCSprite::setTextureCoords(const CCRect& recta)
         m_sQuad.tl.texCoords.v = top;
         m_sQuad.tr.texCoords.u = right;
         m_sQuad.tr.texCoords.v = top;
+
+        m_fTextureLeft = left;
+        m_fTextureRight = right;
+        m_fTextureBottom = bottom;
+        m_fTextureTop = top;
     }
 }
 
@@ -461,58 +510,61 @@ void CCSprite::updateTransform(void)
             m_sQuad.br.vertices = m_sQuad.tl.vertices = m_sQuad.tr.vertices = m_sQuad.bl.vertices = vertex3(0,0,0);
             m_bShouldBeHidden = true;
         }
-        else 
+        else
         {
             m_bShouldBeHidden = false;
 
-            if( ! m_pParent || m_pParent == m_pobBatchNode )
+            if( !m_bDontDraw )
             {
-                m_transformToBatch = nodeToParentTransform();
+                if( ! m_pParent || m_pParent == m_pobBatchNode )
+                {
+                    m_transformToBatch = nodeToParentTransform();
+                }
+                else
+                {
+                    CCAssert( dynamic_cast<CCSprite*>(m_pParent), "Logic error in CCSprite. Parent must be a CCSprite");
+                    m_transformToBatch = CCAffineTransformConcat( nodeToParentTransform() , ((CCSprite*)m_pParent)->m_transformToBatch );
+                }
+
+                //
+                // calculate the Quad based on the Affine Matrix
+                //
+
+                CCSize size = m_obRect.size;
+
+                float x1 = m_obOffsetPosition.x;
+                float y1 = m_obOffsetPosition.y;
+
+                float x2 = x1 + size.width;
+                float y2 = y1 + size.height;
+                float x = m_transformToBatch.tx;
+                float y = m_transformToBatch.ty;
+
+                float cr = m_transformToBatch.a;
+                float sr = m_transformToBatch.b;
+                float cr2 = m_transformToBatch.d;
+                float sr2 = -m_transformToBatch.c;
+                float ax = x1 * cr - y1 * sr2 + x;
+                float ay = x1 * sr + y1 * cr2 + y;
+
+                float bx = x2 * cr - y1 * sr2 + x;
+                float by = x2 * sr + y1 * cr2 + y;
+
+                float cx = x2 * cr - y2 * sr2 + x;
+                float cy = x2 * sr + y2 * cr2 + y;
+
+                float dx = x1 * cr - y2 * sr2 + x;
+                float dy = x1 * sr + y2 * cr2 + y;
+
+                m_sQuad.bl.vertices = vertex3( RENDER_IN_SUBPIXEL(ax), RENDER_IN_SUBPIXEL(ay), m_fVertexZ );
+                m_sQuad.br.vertices = vertex3( RENDER_IN_SUBPIXEL(bx), RENDER_IN_SUBPIXEL(by), m_fVertexZ );
+                m_sQuad.tl.vertices = vertex3( RENDER_IN_SUBPIXEL(dx), RENDER_IN_SUBPIXEL(dy), m_fVertexZ );
+                m_sQuad.tr.vertices = vertex3( RENDER_IN_SUBPIXEL(cx), RENDER_IN_SUBPIXEL(cy), m_fVertexZ );
             }
-            else 
-            {
-                CCAssert( dynamic_cast<CCSprite*>(m_pParent), "Logic error in CCSprite. Parent must be a CCSprite");
-                m_transformToBatch = CCAffineTransformConcat( nodeToParentTransform() , ((CCSprite*)m_pParent)->m_transformToBatch );
-            }
-
-            //
-            // calculate the Quad based on the Affine Matrix
-            //
-
-            CCSize size = m_obRect.size;
-
-            float x1 = m_obOffsetPosition.x;
-            float y1 = m_obOffsetPosition.y;
-
-            float x2 = x1 + size.width;
-            float y2 = y1 + size.height;
-            float x = m_transformToBatch.tx;
-            float y = m_transformToBatch.ty;
-
-            float cr = m_transformToBatch.a;
-            float sr = m_transformToBatch.b;
-            float cr2 = m_transformToBatch.d;
-            float sr2 = -m_transformToBatch.c;
-            float ax = x1 * cr - y1 * sr2 + x;
-            float ay = x1 * sr + y1 * cr2 + y;
-
-            float bx = x2 * cr - y1 * sr2 + x;
-            float by = x2 * sr + y1 * cr2 + y;
-
-            float cx = x2 * cr - y2 * sr2 + x;
-            float cy = x2 * sr + y2 * cr2 + y;
-
-            float dx = x1 * cr - y2 * sr2 + x;
-            float dy = x1 * sr + y2 * cr2 + y;
-
-            m_sQuad.bl.vertices = vertex3( RENDER_IN_SUBPIXEL(ax), RENDER_IN_SUBPIXEL(ay), m_fVertexZ );
-            m_sQuad.br.vertices = vertex3( RENDER_IN_SUBPIXEL(bx), RENDER_IN_SUBPIXEL(by), m_fVertexZ );
-            m_sQuad.tl.vertices = vertex3( RENDER_IN_SUBPIXEL(dx), RENDER_IN_SUBPIXEL(dy), m_fVertexZ );
-            m_sQuad.tr.vertices = vertex3( RENDER_IN_SUBPIXEL(cx), RENDER_IN_SUBPIXEL(cy), m_fVertexZ );
         }
 
         // MARMALADE CHANGE: ADDED CHECK FOR NULL, TO PERMIT SPRITES WITH NO BATCH NODE / TEXTURE ATLAS
-        if (m_pobTextureAtlas)
+        if (!m_bDontDraw && m_pobTextureAtlas)
 		{
             m_pobTextureAtlas->updateQuad(&m_sQuad, m_uAtlasIndex);
         }
@@ -547,6 +599,11 @@ void CCSprite::updateTransform(void)
 
 void CCSprite::draw(void)
 {
+    if (m_bDontDraw || !_realOpacity)
+    {
+        return;
+    }
+
     CC_PROFILER_START_CATEGORY(kCCProfilerCategorySprite, "CCSprite - draw");
 
     CCAssert(!m_pobBatchNode, "If CCSprite is being rendered by CCSpriteBatchNode, CCSprite#draw SHOULD NOT be called");

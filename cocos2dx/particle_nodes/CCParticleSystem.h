@@ -357,6 +357,10 @@ public:
     bool m_bUsingSchedule;
     // @note RobTop Addition
     bool m_bIsVisibleWithoutParticles;
+    // @note RobTop Addition
+    CCPoint m_tWorldPos;
+    // @note RobTop Addition
+    bool m_bWorldPosUninitialized;
 
 
     /** start size in pixels of each particle */

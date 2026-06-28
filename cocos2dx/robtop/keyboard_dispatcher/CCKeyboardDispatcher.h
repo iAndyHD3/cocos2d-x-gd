@@ -3,6 +3,7 @@
 
 #include "CCKeyboardDelegate.h"
 #include "../../cocoa/CCArray.h"
+#include "support/data_support/ccCArray.h"
 
 
 NS_CC_BEGIN
