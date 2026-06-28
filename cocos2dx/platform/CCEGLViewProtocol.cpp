@@ -133,8 +133,8 @@ CCPoint CCEGLViewProtocol::getVisibleOrigin() const
 {
     if (m_eResolutionPolicy == kResolutionNoBorder)
         return CCPoint(
-            (m_obDesignResolutionSize.height - m_obScreenSize.width / m_fScaleX) * 0.5f,
-            (m_obDesignResolutionSize.width - m_obScreenSize.height / m_fScaleY) * 0.5f);
+            (m_obDesignResolutionSize.width - m_obScreenSize.width / m_fScaleX) * 0.5f,
+            (m_obDesignResolutionSize.height - m_obScreenSize.height / m_fScaleY) * 0.5f);
     else
         return CCPointZero;
 }

@@ -777,7 +777,7 @@ bool CCDrawNode::drawCircle(CCPoint const& center, float radius, struct _ccColor
     return true;
 }
 bool CCDrawNode::drawLines(CCPoint* vertices, unsigned int count, float lineWidth, struct _ccColor4F const& color) {
-    for (unsigned int i = 0; i < count - 1; i++) {
+    for (unsigned int i = 0; i < count; i += 2) {
         drawSegment(vertices[i], vertices[i + 1], lineWidth, color);
     }
     return true;
