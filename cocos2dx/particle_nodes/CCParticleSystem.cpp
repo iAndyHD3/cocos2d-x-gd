@@ -888,170 +888,170 @@ bool CCParticleSystem::isBlendAdditive()
 // ParticleSystem - Properties of Gravity Mode 
 void CCParticleSystem::setTangentialAccel(float t)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.tangentialAccel = t;
 }
 
 float CCParticleSystem::getTangentialAccel()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.tangentialAccel;
 }
 
 void CCParticleSystem::setTangentialAccelVar(float t)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.tangentialAccelVar = t;
 }
 
 float CCParticleSystem::getTangentialAccelVar()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.tangentialAccelVar;
 }    
 
 void CCParticleSystem::setRadialAccel(float t)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.radialAccel = t;
 }
 
 float CCParticleSystem::getRadialAccel()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.radialAccel;
 }
 
 void CCParticleSystem::setRadialAccelVar(float t)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.radialAccelVar = t;
 }
 
 float CCParticleSystem::getRadialAccelVar()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.radialAccelVar;
 }
 
 void CCParticleSystem::setRotationIsDir(bool t)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.rotationIsDir = t;
 }
 
 bool CCParticleSystem::getRotationIsDir()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.rotationIsDir;
 }
 
 void CCParticleSystem::setGravity(const CCPoint& g)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.gravity = g;
 }
 
 const CCPoint& CCParticleSystem::getGravity()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.gravity;
 }
 
 void CCParticleSystem::setSpeed(float speed)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.speed = speed;
 }
 
 float CCParticleSystem::getSpeed()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.speed;
 }
 
 void CCParticleSystem::setSpeedVar(float speedVar)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.speedVar = speedVar;
 }
 
 float CCParticleSystem::getSpeedVar()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
+    //CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.speedVar;
 }
 
 // ParticleSystem - Properties of Radius Mode
 void CCParticleSystem::setStartRadius(float startRadius)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     modeB.startRadius = startRadius;
 }
 
 float CCParticleSystem::getStartRadius()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     return modeB.startRadius;
 }
 
 void CCParticleSystem::setStartRadiusVar(float startRadiusVar)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     modeB.startRadiusVar = startRadiusVar;
 }
 
 float CCParticleSystem::getStartRadiusVar()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     return modeB.startRadiusVar;
 }
 
 void CCParticleSystem::setEndRadius(float endRadius)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     modeB.endRadius = endRadius;
 }
 
 float CCParticleSystem::getEndRadius()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     return modeB.endRadius;
 }
 
 void CCParticleSystem::setEndRadiusVar(float endRadiusVar)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     modeB.endRadiusVar = endRadiusVar;
 }
 
 float CCParticleSystem::getEndRadiusVar()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     return modeB.endRadiusVar;
 }
 
 void CCParticleSystem::setRotatePerSecond(float degrees)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     modeB.rotatePerSecond = degrees;
 }
 
 float CCParticleSystem::getRotatePerSecond()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     return modeB.rotatePerSecond;
 }
 
 void CCParticleSystem::setRotatePerSecondVar(float degrees)
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     modeB.rotatePerSecondVar = degrees;
 }
 
 float CCParticleSystem::getRotatePerSecondVar()
 {
-    CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
+    //CCAssert( m_nEmitterMode == kCCParticleModeRadius, "Particle Mode should be Radius");
     return modeB.rotatePerSecondVar;
 }
 

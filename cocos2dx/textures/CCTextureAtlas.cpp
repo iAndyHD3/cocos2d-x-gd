@@ -49,6 +49,7 @@ CCTextureAtlas::CCTextureAtlas()
     ,m_bDirty(false)
     ,m_pTexture(NULL)
     ,m_pQuads(NULL)
+    ,m_uMaxQuads(0)
 {}
 
 CCTextureAtlas::~CCTextureAtlas()
@@ -152,6 +153,7 @@ bool CCTextureAtlas::initWithTexture(CCTexture2D *texture, unsigned int capacity
 //    CCAssert(texture != NULL, "texture should not be null");
     m_uCapacity = capacity;
     m_uTotalQuads = 0;
+    m_uMaxQuads = 0;
 
     // retained in property
     this->m_pTexture = texture;
@@ -327,6 +329,7 @@ void CCTextureAtlas::insertQuad(ccV3F_C4B_T2F_Quad *quad, unsigned int index)
 
     m_uTotalQuads++;
     CCAssert( m_uTotalQuads <= m_uCapacity, "invalid totalQuads");
+    m_uMaxQuads = MAX(m_uMaxQuads, m_uTotalQuads);
 
     // issue #575. index can be > totalQuads
     unsigned int remaining = (m_uTotalQuads-1) - index;
@@ -352,6 +355,7 @@ void CCTextureAtlas::insertQuads(ccV3F_C4B_T2F_Quad* quads, unsigned int index, 
     m_uTotalQuads += amount;
 
     CCAssert( m_uTotalQuads <= m_uCapacity, "invalid totalQuads");
+    m_uMaxQuads = MAX(m_uMaxQuads, m_uTotalQuads);
 
     // issue #575. index can be > totalQuads
     int remaining = (m_uTotalQuads-1) - index - amount;
@@ -525,6 +529,7 @@ bool CCTextureAtlas::resizeCapacity(unsigned int newCapacity)
 void CCTextureAtlas::increaseTotalQuadsWith(unsigned int amount)
 {
     m_uTotalQuads += amount;
+    m_uMaxQuads = MAX(m_uMaxQuads, m_uTotalQuads);
 }
 
 void CCTextureAtlas::moveQuadsFromIndex(unsigned int oldIndex, unsigned int amount, unsigned int newIndex)

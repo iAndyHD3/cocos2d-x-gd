@@ -1,7 +1,6 @@
 #ifndef __CCKEYBOARD_DELEGATE_H__
 #define __CCKEYBOARD_DELEGATE_H__
 
-#include "../../include/ccMacros.h"
 #include "../../cocoa/CCObject.h"
 
 NS_CC_BEGIN
@@ -216,7 +215,7 @@ class CC_DLL CCKeyboardHandler : public CCObject
 {
 public:
     GEODE_CUSTOM_CONSTRUCTOR_COCOS(CCKeyboardHandler, CCObject)
-    inline CCKeyboardHandler() = default;
+    inline CCKeyboardHandler() : m_pDelegate(nullptr) {}
     
     virtual ~CCKeyboardHandler();
 

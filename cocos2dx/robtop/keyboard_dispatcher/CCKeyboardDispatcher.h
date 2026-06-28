@@ -53,12 +53,12 @@ public:
 
 protected:
 	CCArray* m_pHandlers;	// 0x38
-	bool m_bLocked;			// 0x40
-    bool m_bToAdd;			// 0x41
-    bool m_bToRemove;		// 0x42
+	bool m_bDispatching;			// 0x40
+    bool m_bDeferredAdd;			// 0x41
+    bool m_bDeferredRemove;		// 0x42
     char pad0[5];
-	ccCArray* m_pHandlersToAdd; // 0x48
-	ccCArray* m_pHandlersRemove;	// 0x50
+	ccCArray* m_pDeferredAddDelegates; // 0x48
+	ccCArray* m_pDeferredRemoveDelegates;	// 0x50
 	bool m_bShiftPressed;		// 0x58
 	bool m_bControlPressed;	// 0x59
 	bool m_bAltPressed;			// 0x5a

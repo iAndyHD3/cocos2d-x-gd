@@ -781,7 +781,7 @@ int CCSpriteBatchNode::getAtlasCapacity(void) {
     return m_pobTextureAtlas->getCapacity();
 }
 int CCSpriteBatchNode::getUsedAtlasCapacity(void) {
-    return m_pobTextureAtlas->m_uUsedCapacity;
+    return m_pobTextureAtlas->m_uMaxQuads;
 }
 void CCSpriteBatchNode::increaseAtlasCapacity(unsigned int newCapacity) {
     auto capacity = m_pobTextureAtlas->getCapacity();

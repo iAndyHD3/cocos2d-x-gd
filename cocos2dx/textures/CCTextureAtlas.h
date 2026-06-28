@@ -78,7 +78,7 @@ protected:
     
 public:
     // @note RobTop Addition
-    unsigned int m_uUsedCapacity;
+    unsigned int m_uMaxQuads;
     /**
      * @js ctor
      */
