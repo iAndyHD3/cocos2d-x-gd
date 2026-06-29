@@ -81,6 +81,9 @@ CCNode::CCNode(void)
 , m_eGLServerState(ccGLServerState(0))
 , m_bRunning(false)
 , m_bTransformDirty(true)
+, m_bPositionDirty(false)
+, m_fTransformX(0.0f)
+, m_fTransformY(0.0f)
 , m_bInverseDirty(true)
 , m_bAdditionalTransformDirty(false)
 , m_bVisible(true)
@@ -89,6 +92,8 @@ CCNode::CCNode(void)
 , m_nScriptHandler(0)
 , m_nUpdateScriptHandler(0)
 , m_pComponentContainer(NULL)
+, m_bUseChildIndex(false)
+, m_bUnkBool2(false)
 {
     // set default scheduler and actionManager
     CCDirector *director = CCDirector::sharedDirector();
@@ -300,7 +305,8 @@ const CCPoint& CCNode::getPosition()
 void CCNode::setPosition(const CCPoint& newPosition)
 {
     m_obPosition = newPosition;
-    m_bTransformDirty = m_bInverseDirty = true;
+    m_bPositionDirty = true;
+    m_bInverseDirty = true;
 }
 
 void CCNode::getPosition(float* x, float* y)
@@ -337,6 +343,9 @@ void CCNode::setPositionY(float y)
 /// children getter
 CCArray* CCNode::getChildren()
 {
+    if (m_bUseChildIndex) {
+        updateChildIndexes();
+    }
     return m_pChildren;
 }
 
@@ -732,7 +741,11 @@ void CCNode::detachChild(CCNode *child, bool doCleanup)
     // set parent nil at the end
     child->setParent(NULL);
 
-    m_pChildren->removeObject(child);
+    if (m_bUseChildIndex) {
+        m_pChildren->removeObjectAtIndex(child->m_uChildIndex);
+    } else {
+        m_pChildren->removeObject(child);
+    }
 }
 
 
@@ -756,29 +769,45 @@ void CCNode::sortAllChildren()
 {
     if (m_bReorderChildDirty)
     {
-        int i,j,length = m_pChildren->data->num;
-        CCNode ** x = (CCNode**)m_pChildren->data->arr;
-        CCNode *tempItem;
-
-        // insertion sort
-        for(i=1; i<length; i++)
-        {
-            tempItem = x[i];
-            j = i-1;
-
-            //continue moving element downwards while zOrder is smaller or when zOrder is the same but mutatedIndex is smaller
-            while(j>=0 && ( tempItem->m_nZOrder < x[j]->m_nZOrder || ( tempItem->m_nZOrder== x[j]->m_nZOrder && tempItem->m_uOrderOfArrival < x[j]->m_uOrderOfArrival ) ) )
-            {
-                x[j+1] = x[j];
-                j = j-1;
-            }
-            x[j+1] = tempItem;
-        }
-
-        //don't need to check children recursively, that's done in visit of each child
-
+        if (m_bUseChildIndex)
+            sortAllChildrenWithIndex();
+        else
+            sortAllChildrenNoIndex();
         m_bReorderChildDirty = false;
     }
+}
+
+void CCNode::sortAllChildrenNoIndex()
+{
+    int i,j,length = m_pChildren->data->num;
+    CCNode ** x = (CCNode**)m_pChildren->data->arr;
+    CCNode *tempItem;
+
+    for(i=1; i<length; i++)
+    {
+        tempItem = x[i];
+        j = i-1;
+
+        while(j>=0 && ( tempItem->m_nZOrder < x[j]->m_nZOrder || ( tempItem->m_nZOrder== x[j]->m_nZOrder && tempItem->m_uOrderOfArrival < x[j]->m_uOrderOfArrival ) ) )
+        {
+            x[j+1] = x[j];
+            j = j-1;
+        }
+        x[j+1] = tempItem;
+    }
+}
+
+void CCNode::sortAllChildrenWithIndex()
+{
+    if (m_bUseChildIndex) {
+        ccArrayUpdateChildIndexes(m_pChildren->data);
+    }
+    std::sort(m_pChildren->data->arr, m_pChildren->data->arr + m_pChildren->data->num, [](CCObject* a, CCObject* b) {
+        if (a->m_nZOrder == b->m_nZOrder) {
+            return a->m_uOrderOfArrival < b->m_uOrderOfArrival;
+        }
+        return a->m_nZOrder < b->m_nZOrder;
+    });
 }
 
 
@@ -843,9 +872,6 @@ void CCNode::visit()
     {
         this->draw();
     }
-
-    // reset for next frame
-    m_uOrderOfArrival = 0;
 
      if (m_pGrid && m_pGrid->isActive())
      {
@@ -1106,12 +1132,14 @@ void CCNode::unscheduleAllSelectors()
 
 void CCNode::resumeSchedulerAndActions()
 {
+    if (m_bUnkBool2) return;
     m_pScheduler->resumeTarget(this);
     m_pActionManager->resumeTarget(this);
 }
 
 void CCNode::pauseSchedulerAndActions()
 {
+    if (m_bUnkBool2) return;
     m_pScheduler->pauseTarget(this);
     m_pActionManager->pauseTarget(this);
 }
@@ -1134,10 +1162,12 @@ const CCAffineTransform CCNode::nodeToParentTransform(void)
 {
     if (m_bTransformDirty) 
     {
+        m_fTransformX = m_obPosition.x;
+        m_fTransformY = m_obPosition.y;
 
         // Translate values
-        float x = m_obPosition.x;
-        float y = m_obPosition.y;
+        float x = m_fTransformX;
+        float y = m_fTransformY;
 
         if (m_bIgnoreAnchorPointForPosition) 
         {
@@ -1201,6 +1231,19 @@ const CCAffineTransform CCNode::nodeToParentTransform(void)
         }
 
         m_bTransformDirty = false;
+        m_bPositionDirty = false;
+    }
+    else if (m_bPositionDirty)
+    {
+        float newX = m_obPosition.x;
+        float newY = m_obPosition.y;
+        float dx = newX - m_fTransformX;
+        float dy = newY - m_fTransformY;
+        m_fTransformX = newX;
+        m_fTransformY = newY;
+        m_sTransform.tx += dx;
+        m_sTransform.ty += dy;
+        m_bPositionDirty = false;
     }
 
     return m_sTransform;
@@ -1461,7 +1504,7 @@ void CCNodeRGBA::setCascadeColorEnabled(bool cascadeColorEnabled)
 }
 
 CCSize CCNode::getScaledContentSize() {
-    return m_obContentSize * m_fScaleX;
+    return CCSize(m_obContentSize.width * m_fScaleX, m_obContentSize.height * m_fScaleY);
 }
 
 void CCNode::removeMeAndCleanup() {

@@ -426,17 +426,10 @@ void CCSprite::setTextureCoords(const CCRect& recta)
 
     if (m_bRectRotated)
     {
-#if CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
-        left    = (2*rect.origin.x+1)/(2*atlasWidth);
-        right    = left+(rect.size.height*2-2)/(2*atlasWidth);
-        top        = (2*rect.origin.y+1)/(2*atlasHeight);
-        bottom    = top+(rect.size.width*2-2)/(2*atlasHeight);
-#else
         left    = rect.origin.x/atlasWidth;
         right    = (rect.origin.x+rect.size.height) / atlasWidth;
         top        = rect.origin.y/atlasHeight;
         bottom    = (rect.origin.y+rect.size.width) / atlasHeight;
-#endif // CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
 
         if (m_bFlipX)
         {
@@ -459,17 +452,10 @@ void CCSprite::setTextureCoords(const CCRect& recta)
     }
     else
     {
-#if CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
-        left    = (2*rect.origin.x+1)/(2*atlasWidth);
-        right    = left + (rect.size.width*2-2)/(2*atlasWidth);
-        top        = (2*rect.origin.y+1)/(2*atlasHeight);
-        bottom    = top + (rect.size.height*2-2)/(2*atlasHeight);
-#else
         left    = rect.origin.x/atlasWidth;
         right    = (rect.origin.x + rect.size.width) / atlasWidth;
         top        = rect.origin.y/atlasHeight;
         bottom    = (rect.origin.y + rect.size.height) / atlasHeight;
-#endif // ! CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
 
         if(m_bFlipX)
         {
@@ -501,10 +487,8 @@ void CCSprite::updateTransform(void)
 {
     CCAssert(m_pobBatchNode, "updateTransform is only valid when CCSprite is being rendered using an CCSpriteBatchNode");
 
-    // recalculate matrix only if it is dirty
     if( isDirty() ) {
 
-        // If it is not visible, or one of its ancestors is not visible, then do nothing:
         if( !m_bVisible || ( m_pParent && m_pParent != m_pobBatchNode && ((CCSprite*)m_pParent)->m_bShouldBeHidden) )
         {
             m_sQuad.br.vertices = m_sQuad.tl.vertices = m_sQuad.tr.vertices = m_sQuad.bl.vertices = vertex3(0,0,0);
@@ -526,44 +510,46 @@ void CCSprite::updateTransform(void)
                     m_transformToBatch = CCAffineTransformConcat( nodeToParentTransform() , ((CCSprite*)m_pParent)->m_transformToBatch );
                 }
 
-                //
-                // calculate the Quad based on the Affine Matrix
-                //
+                if (_realOpacity)
+                {
+                    CCSize size = m_obRect.size;
 
-                CCSize size = m_obRect.size;
+                    float x1 = m_obOffsetPosition.x;
+                    float y1 = m_obOffsetPosition.y;
 
-                float x1 = m_obOffsetPosition.x;
-                float y1 = m_obOffsetPosition.y;
+                    float x2 = x1 + size.width;
+                    float y2 = y1 + size.height;
+                    float x = m_transformToBatch.tx;
+                    float y = m_transformToBatch.ty;
 
-                float x2 = x1 + size.width;
-                float y2 = y1 + size.height;
-                float x = m_transformToBatch.tx;
-                float y = m_transformToBatch.ty;
+                    float cr = m_transformToBatch.a;
+                    float sr = m_transformToBatch.b;
+                    float cr2 = m_transformToBatch.d;
+                    float sr2 = -m_transformToBatch.c;
+                    float ax = x1 * cr - y1 * sr2 + x;
+                    float ay = x1 * sr + y1 * cr2 + y;
 
-                float cr = m_transformToBatch.a;
-                float sr = m_transformToBatch.b;
-                float cr2 = m_transformToBatch.d;
-                float sr2 = -m_transformToBatch.c;
-                float ax = x1 * cr - y1 * sr2 + x;
-                float ay = x1 * sr + y1 * cr2 + y;
+                    float bx = x2 * cr - y1 * sr2 + x;
+                    float by = x2 * sr + y1 * cr2 + y;
 
-                float bx = x2 * cr - y1 * sr2 + x;
-                float by = x2 * sr + y1 * cr2 + y;
+                    float cx = x2 * cr - y2 * sr2 + x;
+                    float cy = x2 * sr + y2 * cr2 + y;
 
-                float cx = x2 * cr - y2 * sr2 + x;
-                float cy = x2 * sr + y2 * cr2 + y;
+                    float dx = x1 * cr - y2 * sr2 + x;
+                    float dy = x1 * sr + y2 * cr2 + y;
 
-                float dx = x1 * cr - y2 * sr2 + x;
-                float dy = x1 * sr + y2 * cr2 + y;
-
-                m_sQuad.bl.vertices = vertex3( RENDER_IN_SUBPIXEL(ax), RENDER_IN_SUBPIXEL(ay), m_fVertexZ );
-                m_sQuad.br.vertices = vertex3( RENDER_IN_SUBPIXEL(bx), RENDER_IN_SUBPIXEL(by), m_fVertexZ );
-                m_sQuad.tl.vertices = vertex3( RENDER_IN_SUBPIXEL(dx), RENDER_IN_SUBPIXEL(dy), m_fVertexZ );
-                m_sQuad.tr.vertices = vertex3( RENDER_IN_SUBPIXEL(cx), RENDER_IN_SUBPIXEL(cy), m_fVertexZ );
+                    m_sQuad.bl.vertices = vertex3( RENDER_IN_SUBPIXEL(ax), RENDER_IN_SUBPIXEL(ay), m_fVertexZ );
+                    m_sQuad.br.vertices = vertex3( RENDER_IN_SUBPIXEL(bx), RENDER_IN_SUBPIXEL(by), m_fVertexZ );
+                    m_sQuad.tl.vertices = vertex3( RENDER_IN_SUBPIXEL(dx), RENDER_IN_SUBPIXEL(dy), m_fVertexZ );
+                    m_sQuad.tr.vertices = vertex3( RENDER_IN_SUBPIXEL(cx), RENDER_IN_SUBPIXEL(cy), m_fVertexZ );
+                }
+                else
+                {
+                    memset(&m_sQuad, 0, sizeof(m_sQuad));
+                }
             }
         }
 
-        // MARMALADE CHANGE: ADDED CHECK FOR NULL, TO PERMIT SPRITES WITH NO BATCH NODE / TEXTURE ATLAS
         if (!m_bDontDraw && m_pobTextureAtlas)
 		{
             m_pobTextureAtlas->updateQuad(&m_sQuad, m_uAtlasIndex);
@@ -834,6 +820,7 @@ void CCSprite::setDirtyRecursively(bool bValue)
 
 void CCSprite::setPosition(const CCPoint& pos)
 {
+    if (m_obPosition.equals(pos)) return;
     CCNode::setPosition(pos);
     SET_DIRTY_RECURSIVELY();
 }
@@ -870,18 +857,21 @@ void CCSprite::setSkewY(float sy)
 
 void CCSprite::setScaleX(float fScaleX)
 {
+    if (m_fScaleX == fScaleX) return;
     CCNode::setScaleX(fScaleX);
     SET_DIRTY_RECURSIVELY();
 }
 
 void CCSprite::setScaleY(float fScaleY)
 {
+    if (m_fScaleY == fScaleY) return;
     CCNode::setScaleY(fScaleY);
     SET_DIRTY_RECURSIVELY();
 }
 
 void CCSprite::setScale(float fScale)
 {
+    if (m_fScaleX == fScale && m_fScaleY == fScale) return;
     CCNode::setScale(fScale);
     SET_DIRTY_RECURSIVELY();
 }
@@ -900,7 +890,6 @@ void CCSprite::setAnchorPoint(const CCPoint& anchor)
 
 void CCSprite::ignoreAnchorPointForPosition(bool value)
 {
-    CCAssert(! m_pobBatchNode, "ignoreAnchorPointForPosition is invalid in CCSprite");
     CCNode::ignoreAnchorPointForPosition(value);
 }
 
@@ -980,13 +969,22 @@ void CCSprite::updateColor(void)
 
 void CCSprite::setOpacity(GLubyte opacity)
 {
+    if (_realOpacity == opacity) return;
+
+    float oldOpacity = (float)_realOpacity;
     CCNodeRGBA::setOpacity(opacity);
+
+    if (m_pobBatchNode && ((oldOpacity == 0.0f && opacity) || (!opacity && oldOpacity > 0.0f)))
+    {
+        setDirtyRecursively(true);
+    }
 
     updateColor();
 }
 
 void CCSprite::setColor(const ccColor3B& color3)
 {
+    if (_realColor.r == color3.r && _realColor.g == color3.g && _realColor.b == color3.b) return;
     CCNodeRGBA::setColor(color3);
 
     updateColor();
@@ -1086,15 +1084,6 @@ void CCSprite::setBatchNode(CCSpriteBatchNode *pobSpriteBatchNode)
         setTextureAtlas(NULL);
         m_bRecursiveDirty = false;
         setDirty(false);
-
-        float x1 = m_obOffsetPosition.x;
-        float y1 = m_obOffsetPosition.y;
-        float x2 = x1 + m_obRect.size.width;
-        float y2 = y1 + m_obRect.size.height;
-        m_sQuad.bl.vertices = vertex3( x1, y1, 0 );
-        m_sQuad.br.vertices = vertex3( x2, y1, 0 );
-        m_sQuad.tl.vertices = vertex3( x1, y2, 0 );
-        m_sQuad.tr.vertices = vertex3( x2, y2, 0 );
 
     } else {
 
@@ -1206,7 +1195,8 @@ void cocos2d::CCSprite::setChildOpacity(unsigned char opacity) {
     }
 }
 void cocos2d::CCSprite::refreshTextureRect(void) {
-    m_bDontDraw = m_fTlVertexMod == 0.f && m_fTrVertexMod == 0.f && m_fBlVertexMod == 0.f && m_fBrVertexMod == 0.f;
+    bool anyModNonZero = m_fTlVertexMod != 0.f || m_fTrVertexMod != 0.f || m_fBlVertexMod != 0.f || m_fBrVertexMod != 0.f;
+    setUseVertexMod(anyModNonZero);
 
     setDirty(true);
     setTextureRect(m_obRect, m_bRectRotated, m_obContentSize);
