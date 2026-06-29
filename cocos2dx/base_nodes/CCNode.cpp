@@ -654,10 +654,7 @@ void CCNode::removeChild(CCNode* child, bool cleanup)
         return;
     }
 
-    if ( m_pChildren->containsObject(child) )
-    {
-        this->detachChild(child,cleanup);
-    }
+    this->detachChild(child,cleanup);
 }
 
 void CCNode::removeChildByTag(int tag)

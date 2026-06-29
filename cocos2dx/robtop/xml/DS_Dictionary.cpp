@@ -2,6 +2,10 @@
 
 // source: https://forum.cocosengine.org/t/c-c-plist-reader-parser/1256/4
 
+#include <cstdio>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 using namespace cocos2d;
 using namespace pugi;
@@ -177,11 +181,27 @@ bool DS_Dictionary::loadRootSubDictFromFile(const char* fileName)
 
 bool DS_Dictionary::saveRootSubDictToFile(const char* fileName)
 {
-    //Attempt to save file
-    bool result = doc.save_file(fileName);
+    auto dot = string(fileName).rfind(".dat");
+    std::string bak2 = dot != string::npos ? string(fileName).substr(0, dot) + "2.dat" : string(fileName) + ".dat2";
+    std::string bak3 = dot != string::npos ? string(fileName).substr(0, dot) + "3.dat" : string(fileName) + ".dat3";
 
-    if(!result)
+    remove(bak3.c_str());
+    rename(bak2.c_str(), bak3.c_str());
+    if (rename(fileName, bak2.c_str()) != 0) {
+        rename(bak3.c_str(), bak2.c_str());
+    } else {
+        remove(bak3.c_str());
+    }
+
+    bool result = doc.save_file(fileName, "\t", format_raw, encoding_auto);
+
+    if (!result)
     {
+        std::ifstream ifs(bak2, std::ios::binary);
+        std::ofstream ofs(fileName, std::ios::binary);
+        if (ifs && ofs) {
+            ofs << ifs.rdbuf();
+        }
         if(DS_DEBUG_MODE){ printf("%s \n",string("DS_ENGINE:> :ERROR: FAILED TO SAVE XML FILE: ").append(fileName).c_str()); }
     }
 
@@ -362,7 +382,7 @@ float DS_Dictionary::getFloatForKey(const char* key)
 {
     for(xml_node node = dictTree.back().child(COMPAT_STR("key")); node; node = node.next_sibling(COMPAT_STR("key")))
     {
-        if(node.child_value() == string(key) && (node.next_sibling() == node.next_sibling(COMPAT_STR("integer")) || node.next_sibling() == node.next_sibling(COMPAT_STR("real"))))
+        if(node.child_value() == string(key) && node.next_sibling() == node.next_sibling(COMPAT_STR("real")))
         {
             return strtod(node.next_sibling().child_value(), NULL);
         }
@@ -837,11 +857,9 @@ void DS_Dictionary::setRectArrayForKey(const char* key, const vector<CCRect>& va
 
 // robtop additions
 void DS_Dictionary::addBoolValuesToMapForKey(std::map<std::string, bool>& map, char const* key, bool unk) {
-    // TODO: actually implement
-    // ROB_UNIMPLEMENTED();
     if (key == nullptr || unk || stepIntoSubDictWithKey(key)) {
         for (xml_node node = dictTree.back().first_child(); node; node = node.next_sibling().next_sibling()) {
-            auto value = node.child_value();
+            map[node.child_value()] = true;
         }
         if (key != nullptr) {
             stepOutOfSubDict();
@@ -849,14 +867,28 @@ void DS_Dictionary::addBoolValuesToMapForKey(std::map<std::string, bool>& map, c
     }
 }
 void DS_Dictionary::addBoolValuesToMapForKeySpecial(std::map<std::string, bool>& map, char const* key, bool unk) {
-    // TODO: actually implement
-    // ROB_UNIMPLEMENTED();
-    if (unk && key != nullptr) {
-        stepOutOfSubDict();
+    if (key == nullptr || unk || stepIntoSubDictWithKey(key)) {
+        for (xml_node node = dictTree.back().first_child(); node; node = node.next_sibling().next_sibling()) {
+            auto value = node.next_sibling().child_value();
+            int num = atoi(value);
+            if (num > 0) continue;
+            string s(value);
+            if (s.find("Rate") != string::npos) continue;
+            if (s.find("like") != string::npos) continue;
+            if (s.find("report") != string::npos) continue;
+            map[node.child_value()] = true;
+        }
+        if (key != nullptr) {
+            stepOutOfSubDict();
+        }
     }
 }
-void DS_Dictionary::copyFile(char const *, char const *) {
-    ROB_UNIMPLEMENTED();
+void DS_Dictionary::copyFile(char const* src, char const* dest) {
+    std::ifstream ifs(src, std::ios::binary);
+    std::ofstream ofs(dest, std::ios::binary);
+    if (ifs && ofs) {
+        ofs << ifs.rdbuf();
+    }
 }
 
 bool DS_Dictionary::loadRootSubDictFromCompressedFile(char const* path) {
@@ -893,18 +925,76 @@ bool DS_Dictionary::loadRootSubDictFromString(std::string const& str) {
     return true;
 }
 
-bool DS_Dictionary::saveRootSubDictToCompressedFile(char const *) {
-    ROB_UNIMPLEMENTED();
+bool DS_Dictionary::saveRootSubDictToCompressedFile(char const* path) {
+    string fn(path);
+    auto p = fn.rfind(".dat");
+    string bak2 = p != string::npos ? fn.substr(0, p) + "2.dat" : fn + ".dat2";
+    string bak3 = p != string::npos ? fn.substr(0, p) + "3.dat" : fn + ".dat3";
+
+    remove(bak3.c_str());
+    rename(bak2.c_str(), bak3.c_str());
+    if (rename(path, bak2.c_str()) != 0) {
+        rename(bak3.c_str(), bak2.c_str());
+    } else {
+        remove(bak3.c_str());
+    }
+
+    doc.child("plist").attribute("gjver").set_value("2.0");
+
+    std::ostringstream oss;
+    xml_writer_stream writer(oss);
+    doc.save(writer, "\t", format_raw, encoding_auto);
+    string xmlStr = oss.str();
+
+    string compressed = ZipUtils::compressString(xmlStr, true, 11);
+
+    FILE* file = fopen(path, "wb");
+    if (!file) {
+        std::ifstream ifs(bak2, std::ios::binary);
+        std::ofstream ofs(path, std::ios::binary);
+        if (ifs && ofs) ofs << ifs.rdbuf();
+        return false;
+    }
+
+    bool ok = fwrite(compressed.data(), 1, compressed.size(), file) == compressed.size();
+    fclose(file);
+
+    if (!ok) {
+        std::ifstream ifs(bak2, std::ios::binary);
+        std::ofstream ofs(path, std::ios::binary);
+        if (ifs && ofs) ofs << ifs.rdbuf();
+    }
+
+    return ok;
 }
-std::string DS_Dictionary::saveRootSubDictToString(void) {
-    ROB_UNIMPLEMENTED();
+std::string DS_Dictionary::saveRootSubDictToString() {
+    doc.child("plist").attribute("gjver").set_value("2.0");
+    std::ostringstream oss;
+    xml_writer_stream writer(oss);
+    doc.save(writer, "\t", format_raw, encoding_auto);
+    return oss.str();
 }
 
-void DS_Dictionary::setBoolMapForKey(char const *, std::map<std::string, bool>&) {
-    ROB_UNIMPLEMENTED();
+void DS_Dictionary::setBoolMapForKey(char const* key, std::map<std::string, bool>& map) {
+    setSubDictForKey(key);
+    if (stepIntoSubDictWithKey(key)) {
+        for (auto& entry : map) {
+            setBoolForKey(entry.first.c_str(), entry.second, false);
+        }
+        stepOutOfSubDict();
+    }
 }
-void DS_Dictionary::setArrayForKey(char const *, CCArray*) {
-    ROB_UNIMPLEMENTED();
+void DS_Dictionary::setArrayForKey(char const* key, CCArray* arr) {
+    if (!arr) return;
+    setSubDictForKey(key, false, true);
+    stepIntoSubDictWithKey(key);
+    setBoolForKey("_isArr", true);
+    for (unsigned int i = 0; i < arr->count(); i++) {
+        auto* str = arr->stringAtIndex(i);
+        auto* keyStr = CCString::createWithFormat("k_%i", i);
+        setObjectForKey(keyStr->getCString(), str);
+    }
+    stepOutOfSubDict();
 }
 CCArray* DS_Dictionary::getArrayForKey(char const* key, bool unk) {
     if (unk || this->stepIntoSubDictWithKey(key)) {
@@ -968,8 +1058,18 @@ CCDictionary* DS_Dictionary::getDictForKey(char const* key, bool unk) {
         return CCDictionary::create();
     }
 }
-void DS_Dictionary::setDictForKey(char const *, CCDictionary*) {
-    ROB_UNIMPLEMENTED();
+void DS_Dictionary::setDictForKey(char const* key, CCDictionary* dict) {
+    if (!dict) return;
+    setSubDictForKey(key);
+    if (stepIntoSubDictWithKey(key)) {
+        auto* allKeys = dict->allKeys();
+        for (unsigned int i = 0; i < allKeys->count(); i++) {
+            auto* keyStr = allKeys->stringAtIndex(i);
+            auto* obj = dict->objectForKey(keyStr->getCString());
+            setObjectForKey(keyStr->getCString(), obj);
+        }
+        stepOutOfSubDict();
+    }
 }
 
 CCObject* DS_Dictionary::getObjectForKey(char const* key) {
@@ -1002,4 +1102,32 @@ CCObject* DS_Dictionary::getObjectForKey(char const* key) {
         }
     }
     return nullptr;
+}
+
+void DS_Dictionary::setObjectForKey(const char* key, CCObject* obj) {
+    if (dynamic_cast<CCString*>(obj)) {
+        setStringForKey(key, static_cast<CCString*>(obj)->getCString(), false);
+    } else if (dynamic_cast<CCDictionary*>(obj)) {
+        setDictForKey(key, static_cast<CCDictionary*>(obj));
+    } else if (dynamic_cast<CCArray*>(obj)) {
+        setArrayForKey(key, static_cast<CCArray*>(obj));
+    } else if (obj->canEncode()) {
+        setSubDictForKey(key, false, true);
+        obj->encodeWithCoder(this);
+        stepOutOfSubDict();
+    }
+}
+
+CCObject* DS_Dictionary::decodeObjectForKey(const char* key, bool unk, int cek) {
+    if (!unk && !stepIntoSubDictWithKey(key)) {
+        return nullptr;
+    }
+    if (cek == -1) {
+        cek = getIntegerForKey("kCEK");
+    }
+    auto* obj = ObjectDecoder::sharedDecoder()->getDecodedObject(cek, this);
+    if (dictTree.size() > 1) {
+        stepOutOfSubDict();
+    }
+    return obj;
 }

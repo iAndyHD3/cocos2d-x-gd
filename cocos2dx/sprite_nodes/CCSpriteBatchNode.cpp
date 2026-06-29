@@ -216,6 +216,8 @@ void CCSpriteBatchNode::reorderChild(CCNode *child, int zOrder)
 // override remove child
 void CCSpriteBatchNode::removeChild(CCNode *child, bool cleanup)
 {
+    CCLOG("CCSpriteBatchNode::removeChild - typename: %s", typeid(*child).name());
+
     CCSprite *pSprite = (CCSprite*)(child);
 
     // explicit null handling
