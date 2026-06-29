@@ -1819,13 +1819,12 @@ protected:
     bool m_bRunning;                    ///< is running
     
     bool m_bTransformDirty;             ///< transform dirty flag
-    bool m_bPositionDirty;              ///< position dirty flag
+    bool m_bInverseDirty;               ///< transform dirty flag
+    bool m_bAdditionalTransformDirty;   ///< The flag to check whether the additional transform is dirty
+
+    // 2.2 additions
+    PAD(10); // i dont know if this is related to transform at all, but its here
     
-    float m_fTransformX;                ///< cached transform X position
-    float m_fTransformY;                ///< cached transform Y position
-    
-    bool m_bInverseDirty;               ///< inverse dirty flag
-    bool m_bAdditionalTransformDirty;   ///< additional transform dirty flag
     bool m_bVisible;                    ///< is this node visible
     
     bool m_bIgnoreAnchorPointForPosition; ///< true if the Anchor Point will be (0,0) when you position the CCNode, false otherwise.
